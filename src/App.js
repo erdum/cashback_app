@@ -45,7 +45,7 @@ export default function App({ children }) {
 			alert("testing...\n" + window.navigator.userAgent);
 			try{
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					devices.map((device) => {
+					devices.forEach((device) => {
 						const myRegex = /^.*(back).*$/;
 						if(myRegex.test(device.label)) {
 							alert(device.deviceId);
