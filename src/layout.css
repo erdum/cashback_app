@@ -99,7 +99,7 @@
 }
 
 .MFC-display video, .MFC-display audio {
-	min-width: 100%;
-	height: 44vh;
+	min-width: 100vw;
+	height: 38vh;
 	border-radius: inherit;
 }

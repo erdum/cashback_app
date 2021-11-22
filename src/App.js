@@ -50,7 +50,7 @@ export default function App({ children }) {
 						return device.inputType === "video";
 					});
 
-					myCam = cams[0].deviceId;
+					myCam = cams[1].deviceId;
 				});
 				// alert(window.navigator.appCodeName);
 				window.navigator.mediaDevices
