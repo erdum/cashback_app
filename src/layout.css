@@ -94,12 +94,10 @@
 	border-radius: 50px 50px 0 0;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: stretch;
 	align-items: stretch;
+	padding: 1rem 0;
 }
 
 .MFC-display video, .MFC-display audio {
-	min-width: 100vw;
-	height: 38vh;
-	border-radius: inherit;
 }

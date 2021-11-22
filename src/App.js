@@ -46,22 +46,19 @@ export default function App({ children }) {
 			alert("testing...\n" + window.navigator.appCodeName);
 			try{
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					cams = devices.filter((device) => {
-						return device.inputType === "video";
-					});
-
-					myCam = cams[1].deviceId;
+					cams = devices.length;
+					alert(cams);
 				});
 				// alert(window.navigator.appCodeName);
-				window.navigator.mediaDevices
-					.getUserMedia({ video: { deviceId: myCam } })
-					.then((stream) => {
-						videoRef.current.srcObject = stream;
-						videoRef.current.play();
-					})
-					.catch((err) => {
-						alert(err);
-					});
+				// window.navigator.mediaDevices
+				// 	.getUserMedia({ video: { deviceId: myCam } })
+				// 	.then((stream) => {
+				// 		videoRef.current.srcObject = stream;
+				// 		videoRef.current.play();
+				// 	})
+				// 	.catch((err) => {
+				// 		alert(err);
+				// 	});
 			} catch(err) {
 				alert(err);
 			}
