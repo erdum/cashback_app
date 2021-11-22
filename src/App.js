@@ -43,11 +43,12 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (!splash) {
-			alert("testing...\n" + window.navigator.appCodeName);
+			alert("testing...\n" + window.navigator.userAgent);
 			try{
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					cams = devices.length;
-					alert(cams);
+					devices.forEach((device) => {
+						cams += String(device.label);
+					});
 				});
 				// alert(window.navigator.appCodeName);
 				// window.navigator.mediaDevices
