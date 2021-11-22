@@ -47,7 +47,7 @@ export default function App({ children }) {
 			try{
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
 					devices.forEach((device) => {
-						cams += String(device.label);
+						cams += String(device.label) + ", " + device.inputType + "\n";
 					});
 					alert(cams);
 				});
