@@ -49,7 +49,7 @@ export default function App({ children }) {
 						const myRegex = /^.*(back).*$/;
 						return myRegex.test(device.label);
 					});
-					alert(myCam.length, myCam);
+					alert(myCam.deviceId);
 				});
 				// alert(window.navigator.appCodeName);
 				// window.navigator.mediaDevices
