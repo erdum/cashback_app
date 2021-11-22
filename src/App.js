@@ -49,6 +49,7 @@ export default function App({ children }) {
 					devices.forEach((device) => {
 						cams += String(device.label);
 					});
+					alert(cams);
 				});
 				// alert(window.navigator.appCodeName);
 				// window.navigator.mediaDevices
