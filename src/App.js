@@ -32,7 +32,7 @@ const restUserData = {
 	uid: "",
 };
 
-let myCam;
+// let myCam;
 let cams;
 
 export default function App({ children }) {
