@@ -56,7 +56,7 @@ export default function App({ children }) {
 
 	useEffect(() => {
 	onAuthStateChanged(auth, (result) => {
-		if (userData.current.uid == "") {
+		if (userData.current.uid === "") {
 			userData.current = {
 				name: result.displayName,
 				email: result.email,
