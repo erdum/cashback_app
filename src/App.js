@@ -55,10 +55,6 @@ export default function App({ children }) {
 	}, [renderState, splash]);
 
 	useEffect(() => {
-		document.body.style.height = window.innerHeight;
-		setTimeout(() => {
-			document.body.style.height = window.innerHeight;
-		}, 2000);
 		onAuthStateChanged(auth, (result) => {
 			if (userData.current.uid === "") {
 				userData.current = {
