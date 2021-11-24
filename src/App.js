@@ -32,7 +32,7 @@ const restUserData = {
 	uid: "",
 };
 
-// let myCam;
+let myCam;
 
 export default function App({ children }) {
 	const [splash, setSplash] = useState(true);
@@ -47,19 +47,19 @@ export default function App({ children }) {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
 					devices.forEach((dev) => {
 						if(dev.kind === "videoinput") {
-							alert(JSON.stringify(dev));
+							myCam = dev.deviceId;
 						}
 					});
 				});
-				// window.navigator.mediaDevices
-				// 	.getUserMedia({ video: { deviceId: myCam } })
-				// 	.then((stream) => {
-				// 		videoRef.current.srcObject = stream;
-				// 		videoRef.current.play();
-				// 	})
-				// 	.catch((err) => {
-				// 		alert(err);
-				// 	});
+				window.navigator.mediaDevices
+					.getUserMedia({ video: { deviceId: myCam } })
+					.then((stream) => {
+						videoRef.current.srcObject = stream;
+						videoRef.current.play();
+					})
+					.catch((err) => {
+						alert(err);
+					});
 			} catch (err) {
 				alert(err);
 			}
