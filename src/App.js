@@ -10,7 +10,7 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	// onAuthStateChanged,
-	// signOut
+	signOut
 } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
@@ -81,6 +81,10 @@ export default function App({ children }) {
 		setSplash(false);
 	};
 
+	const signout = async () => {
+		signOut();
+	};
+
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -101,7 +105,8 @@ export default function App({ children }) {
 					points={userPoints.current}
 					dpURL={userData.current.dpURL}
 					ref={videoRef}
-					handleEarn = {() => reRender(!renderState)}
+					handleLogout={signout()}
+					handleEarn={() => reRender(!renderState)}
 				>
 					{children}
 				</Layout>
