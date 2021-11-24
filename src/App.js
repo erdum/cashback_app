@@ -70,14 +70,14 @@ export default function App({ children }) {
 	// }, []);
 
 	const signin = async () => {
-		// const result = await signInWithPopup(auth, provider);
-		// userData.current = {
-		// 	name: result.user.displayName,
-		// 	email: result.user.email,
-		// 	phone: result.user.phoneNumber,
-		// 	dpURL: result.user.photoURL,
-		// 	uid: result.user.uid,
-		// };
+		const result = await signInWithPopup(auth, provider);
+		userData.current = {
+			name: result.user.displayName,
+			email: result.user.email,
+			phone: result.user.phoneNumber,
+			dpURL: result.user.photoURL,
+			uid: result.user.uid,
+		};
 		setSplash(false);
 	};
 
