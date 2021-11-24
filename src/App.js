@@ -53,8 +53,7 @@ export default function App({ children }) {
 					});
 					videoRef.current.srcObject = stream;
 					videoRef.current.play();
-					const tracks = await stream.getTracks();
-					alert(JSON.stringify(tracks));
+					alert(JSON.stringify(myCam));
 				} catch (err) {
 					alert(err);
 				}
