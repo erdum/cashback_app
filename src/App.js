@@ -10,7 +10,7 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	onAuthStateChanged,
-	signOut
+	signOut,
 } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
@@ -55,18 +55,22 @@ export default function App({ children }) {
 	}, [renderState, splash]);
 
 	useEffect(() => {
-	onAuthStateChanged(auth, (result) => {
-		if (userData.current.uid === "") {
-			userData.current = {
-				name: result.displayName,
-				email: result.email,
-				phone: result.phoneNumber,
-				dpURL: result.photoURL,
-				uid: result.uid,
-			};
-			setSplash(false);
-		}
-	});
+		document.body.style.height = window.innerHeight;
+		setTimeout(() => {
+			document.body.style.height = window.innerHeight;
+		}, 2000);
+		onAuthStateChanged(auth, (result) => {
+			if (userData.current.uid === "") {
+				userData.current = {
+					name: result.displayName,
+					email: result.email,
+					phone: result.phoneNumber,
+					dpURL: result.photoURL,
+					uid: result.uid,
+				};
+				setSplash(false);
+			}
+		});
 	}, []);
 
 	const signin = async () => {
