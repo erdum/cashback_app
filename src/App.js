@@ -52,7 +52,7 @@ export default function App({ children }) {
 			}
 		};
 		getCameras();
-	}, [renderState]);
+	}, [renderState, splash]);
 
 	// useEffect(() => {
 	// onAuthStateChanged(auth, (result) => {
