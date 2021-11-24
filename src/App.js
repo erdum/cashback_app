@@ -45,21 +45,21 @@ export default function App({ children }) {
 			alert("testing...\n" + window.navigator.userAgent);
 			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					devices.forEach((dev) => {
-						if(dev.kind === "videoinput") {
-							myCam = dev.deviceId;
-						}
+					myCam = devices.filter((dev) => {
+						return dev.kind === "videoinput";
 					});
 				});
-				window.navigator.mediaDevices
-					.getUserMedia({ video: { deviceId: myCam } })
-					.then((stream) => {
-						videoRef.current.srcObject = stream;
-						videoRef.current.play();
-					})
-					.catch((err) => {
-						alert(err);
-					});
+				setTimeout(() => {
+					window.navigator.mediaDevices
+						.getUserMedia({ video: { deviceId: myCam[1].deviceId } })
+						.then((stream) => {
+							videoRef.current.srcObject = stream;
+							videoRef.current.play();
+						})
+						.catch((err) => {
+							alert(err);
+						});
+				}, 2000);
 			} catch (err) {
 				alert(err);
 			}
