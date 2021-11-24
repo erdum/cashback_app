@@ -87,7 +87,7 @@ export default function App({ children }) {
 
 	const signout = async () => {
 		userData.current.uid = "";
-		signOut();
+		signOut(auth);
 	};
 
 	const theme = createTheme({
