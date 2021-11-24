@@ -42,7 +42,7 @@ export default function App({ children }) {
 		const getCameras = async () => {
 			if (!splash) {
 				// let myCam;
-				const devices = window.navigator.mediaDevices.enumerateDevices();
+				const devices = await window.navigator.mediaDevices.enumerateDevices();
 				devices.forEach((dev) => {
 					if (dev.kind === "videoinput") {
 						alert(JSON.stringify(dev));
