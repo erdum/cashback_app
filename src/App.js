@@ -42,13 +42,20 @@ export default function App({ children }) {
 	useEffect(() => {
 		const getCameras = async () => {
 			if (!splash && renderState) {
-				// let myCam;
-				const devices = await window.navigator.mediaDevices.enumerateDevices();
-				devices.forEach((dev) => {
-					if (dev.kind === "videoinput") {
-						alert(JSON.stringify(dev));
-					}
-				});
+				try {
+					const devices =
+						await window.navigator.mediaDevices.enumerateDevices();
+					let myCam = devices.filter((dev) => {
+						return dev.kind === "videoinput";
+					});
+					const stream = await window.navigator.mediaDevices.getUserMedia({
+						video: myCam[1].deviceId,
+					});
+					videoRef.current.srcObject = stream;
+					videoRef.current.play();
+				} catch (err) {
+					alert(err);
+				}
 			}
 		};
 		getCameras();
@@ -83,10 +90,10 @@ export default function App({ children }) {
 
 	const signout = async () => {
 		userData.current.uid = "";
-		signOut(auth)
-			.then(() => {
-				setSplash(true);
-			});
+		signOut(auth).then(() => {
+			reRender(false);
+			setSplash(true);
+		});
 	};
 
 	const theme = createTheme({
