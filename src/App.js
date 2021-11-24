@@ -89,7 +89,7 @@ export default function App({ children }) {
 		userData.current.uid = "";
 		signOut(auth)
 			.then(() => {
-				reRender(!renderState);
+				setSplash(true);
 			});
 	};
 
