@@ -32,37 +32,21 @@ const restUserData = {
 	uid: "",
 };
 
-let myCam;
-
 export default function App({ children }) {
 	const [splash, setSplash] = useState(true);
 	const userData = useRef(restUserData);
 	const userPoints = useRef("0");
 	const videoRef = useRef(null);
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (!splash) {
-			alert("testing...\n" + window.navigator.userAgent);
-			try {
-				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					myCam = devices.filter((dev) => {
-						return dev.kind === "videoinput";
-					});
-				});
-				setTimeout(() => {
-					window.navigator.mediaDevices
-						.getUserMedia({ video: { deviceId: myCam[1].deviceId } })
-						.then((stream) => {
-							videoRef.current.srcObject = stream;
-							videoRef.current.play();
-						})
-						.catch((err) => {
-							alert(err);
-						});
-				}, 2000);
-			} catch (err) {
-				alert(err);
-			}
+			// let myCam;
+			const devices = window.navigator.mediaDevices.enumerateDevices();
+			devices.forEach((dev) => {
+				if (dev.kind === "videoinput") {
+					alert(JSON.stringify(dev));
+				}
+			});
 		}
 	}, [splash]);
 
