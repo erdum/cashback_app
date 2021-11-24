@@ -38,16 +38,18 @@ export default function App({ children }) {
 	const userPoints = useRef("0");
 	const videoRef = useRef(null);
 
-	useEffect(async () => {
-		if (!splash) {
-			// let myCam;
-			const devices = window.navigator.mediaDevices.enumerateDevices();
-			devices.forEach((dev) => {
-				if (dev.kind === "videoinput") {
-					alert(JSON.stringify(dev));
-				}
-			});
-		}
+	useEffect(() => {
+		async () => {
+			if (!splash) {
+				// let myCam;
+				const devices = window.navigator.mediaDevices.enumerateDevices();
+				devices.forEach((dev) => {
+					if (dev.kind === "videoinput") {
+						alert(JSON.stringify(dev));
+					}
+				});
+			}
+		};
 	}, [splash]);
 
 	// useEffect(() => {
