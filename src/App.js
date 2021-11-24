@@ -39,7 +39,7 @@ export default function App({ children }) {
 	const videoRef = useRef(null);
 
 	useEffect(() => {
-		async () => {
+		async function() {
 			if (!splash) {
 				// let myCam;
 				const devices = window.navigator.mediaDevices.enumerateDevices();
