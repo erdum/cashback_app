@@ -45,23 +45,18 @@ export default function App({ children }) {
 			alert("testing...\n" + window.navigator.userAgent);
 			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					devices.forEach((device) => {
-						const myRegex = /^.*(back).*$/;
-						if (myRegex.test(device.label)) {
-							myCam = device.deviceId;
-							alert(myCam);
-						}
-					});
+					myCam = JSON.stringify(devices);
+					alert(myCam);
 				});
-				window.navigator.mediaDevices
-					.getUserMedia({ video: { deviceId: myCam } })
-					.then((stream) => {
-						videoRef.current.srcObject = stream;
-						videoRef.current.play();
-					})
-					.catch((err) => {
-						alert(err);
-					});
+				// window.navigator.mediaDevices
+				// 	.getUserMedia({ video: { deviceId: myCam } })
+				// 	.then((stream) => {
+				// 		videoRef.current.srcObject = stream;
+				// 		videoRef.current.play();
+				// 	})
+				// 	.catch((err) => {
+				// 		alert(err);
+				// 	});
 			} catch (err) {
 				alert(err);
 			}
