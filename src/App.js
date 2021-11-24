@@ -45,8 +45,11 @@ export default function App({ children }) {
 			alert("testing...\n" + window.navigator.userAgent);
 			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
-					myCam = JSON.stringify(devices);
-					alert(myCam);
+					devices.forEach((dev) => {
+						if (dev.kind === "videoinput") {
+							alert(JSON.stringify(dev));
+						}
+					});
 				});
 				// window.navigator.mediaDevices
 				// 	.getUserMedia({ video: { deviceId: myCam } })
