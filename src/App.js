@@ -89,9 +89,7 @@ export default function App({ children }) {
 		userData.current.uid = "";
 		signOut(auth)
 			.then(() => {
-				useEffect(() => {
-					window.location.reload();
-				}, []);
+				reRender(!renderState);
 			});
 	};
 
