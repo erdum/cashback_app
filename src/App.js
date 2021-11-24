@@ -49,11 +49,11 @@ export default function App({ children }) {
 						return dev.kind === "videoinput";
 					});
 					const stream = await window.navigator.mediaDevices.getUserMedia({
-						video: myCam[0].deviceId,
+						video: myCam[1].deviceId,
 					});
 					videoRef.current.srcObject = stream;
 					videoRef.current.play();
-					alert(JSON.stringify(myCam));
+					alert(JSON.stringify(myCam[1]));
 				} catch (err) {
 					alert(err);
 				}
