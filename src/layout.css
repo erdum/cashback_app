@@ -90,7 +90,8 @@
 	bottom: 0;
 	background-color: var(--main);
 	color: var(--contrast);
-	min-height: 52vh;
+	min-height: 50vh;
+	max-height: 50vh;
 	border-radius: 50px 50px 0 0;
 	display: flex;
 	flex-direction: column;
