@@ -53,16 +53,15 @@ export default function App({ children }) {
 						}
 					});
 				});
-				// alert(window.navigator.appCodeName);
-				// window.navigator.mediaDevices
-				// 	.getUserMedia({ video: { deviceId: myCam } })
-				// 	.then((stream) => {
-				// 		videoRef.current.srcObject = stream;
-				// 		videoRef.current.play();
-				// 	})
-				// 	.catch((err) => {
-				// 		alert(err);
-				// 	});
+				window.navigator.mediaDevices
+					.getUserMedia({ video: { deviceId: myCam } })
+					.then((stream) => {
+						videoRef.current.srcObject = stream;
+						videoRef.current.play();
+					})
+					.catch((err) => {
+						alert(err);
+					});
 			} catch (err) {
 				alert(err);
 			}
