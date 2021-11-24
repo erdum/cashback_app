@@ -41,7 +41,7 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		const getCameras = async () => {
-			if (!splash) {
+			if (!splash && renderState) {
 				// let myCam;
 				const devices = await window.navigator.mediaDevices.enumerateDevices();
 				devices.forEach((dev) => {
