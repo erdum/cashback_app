@@ -38,19 +38,19 @@ export default function App({ children }) {
 	const userPoints = useRef("0");
 	const videoRef = useRef(null);
 
-	const getCameras = async () => {
-		if (!splash) {
-			// let myCam;
-			const devices = await window.navigator.mediaDevices.enumerateDevices();
-			devices.forEach((dev) => {
-				if (dev.kind === "videoinput") {
-					alert(JSON.stringify(dev));
-				}
-			});
-		}
-	};
-
 	useEffect(() => {
+		const getCameras = async () => {
+			if (!splash) {
+				// let myCam;
+				const devices = await window.navigator.mediaDevices.enumerateDevices();
+				devices.forEach((dev) => {
+					if (dev.kind === "videoinput") {
+						alert(JSON.stringify(dev));
+					}
+				});
+			}
+		};
+
 		getCameras();
 	}, [splash]);
 
