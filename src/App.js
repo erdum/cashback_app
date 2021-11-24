@@ -46,9 +46,7 @@ export default function App({ children }) {
 			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
 					devices.forEach((dev) => {
-						if (dev.kind === "videoinput") {
-							alert(JSON.stringify(dev));
-						}
+						alert(dev.kind);
 					});
 				});
 				// window.navigator.mediaDevices
