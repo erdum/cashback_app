@@ -33,6 +33,7 @@ const restUserData = {
 };
 
 export default function App({ children }) {
+	const [renderState, reRender] = useState(false);
 	const [splash, setSplash] = useState(true);
 	const userData = useRef(restUserData);
 	const userPoints = useRef("0");
@@ -50,9 +51,8 @@ export default function App({ children }) {
 				});
 			}
 		};
-
 		getCameras();
-	}, [splash]);
+	}, [renderState]);
 
 	// useEffect(() => {
 	// onAuthStateChanged(auth, (result) => {
@@ -94,14 +94,14 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			{splash && <SplashScreen signinHandler={signin} />}
+			{splash && <SplashScreen handleSignin={signin} />}
 			{!splash && (
 				<Layout
 					userName={userData.current.name}
 					points={userPoints.current}
 					dpURL={userData.current.dpURL}
 					ref={videoRef}
-					handleLogout={() => {console.log("test logout")}}
+					handleEarn = {() => reRender(!renderState)}
 				>
 					{children}
 				</Layout>

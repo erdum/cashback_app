@@ -13,7 +13,7 @@ const SplashScreen = forwardRef((props, ref) => {
 				<p>
 					Scan <span>&</span> Win
 				</p>
-				<button onClick={props.signinHandler}>Signin</button>
+				<button onClick={props.handleSignin}>Signin</button>
 			</div>
 		</div>
 	);
