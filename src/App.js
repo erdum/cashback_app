@@ -54,20 +54,20 @@ export default function App({ children }) {
 		getCameras();
 	}, [renderState, splash]);
 
-	// useEffect(() => {
-	// onAuthStateChanged(auth, (result) => {
-	// 	if (userData.current.uid == "" && result != null) {
-	// 		userData.current = {
-	// 			name: result.displayName,
-	// 			email: result.email,
-	// 			phone: result.phoneNumber,
-	// 			dpURL: result.photoURL,
-	// 			uid: result.uid,
-	// 		};
-	// 		setSplash(false);
-	// 	}
-	// });
-	// }, []);
+	useEffect(() => {
+	onAuthStateChanged(auth, (result) => {
+		if (userData.current.uid == "") {
+			userData.current = {
+				name: result.displayName,
+				email: result.email,
+				phone: result.phoneNumber,
+				dpURL: result.photoURL,
+				uid: result.uid,
+			};
+			setSplash(false);
+		}
+	});
+	}, []);
 
 	const signin = async () => {
 		const result = await signInWithPopup(auth, provider);
@@ -82,6 +82,7 @@ export default function App({ children }) {
 	};
 
 	const signout = async () => {
+		userData.current.uid = "";
 		signOut();
 	};
 
