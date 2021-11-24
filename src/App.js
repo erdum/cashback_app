@@ -32,7 +32,7 @@ const restUserData = {
 	uid: "",
 };
 
-let myCam;
+// let myCam;
 
 export default function App({ children }) {
 	const [splash, setSplash] = useState(true);
@@ -46,7 +46,9 @@ export default function App({ children }) {
 			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
 					devices.forEach((dev) => {
-						alert(dev.kind);
+						if(dev.kind === "videoinput") {
+							alert(JSON.stringify(dev));
+						}
 					});
 				});
 				// window.navigator.mediaDevices
