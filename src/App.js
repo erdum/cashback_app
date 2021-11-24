@@ -32,7 +32,7 @@ const restUserData = {
 	uid: "",
 };
 
-// let myCam;
+let myCam;
 
 export default function App({ children }) {
 	const [splash, setSplash] = useState(true);
@@ -43,12 +43,13 @@ export default function App({ children }) {
 	useEffect(() => {
 		if (!splash) {
 			alert("testing...\n" + window.navigator.userAgent);
-			try{
+			try {
 				window.navigator.mediaDevices.enumerateDevices().then((devices) => {
 					devices.forEach((device) => {
 						const myRegex = /^.*(back).*$/;
-						if(myRegex.test(device.label)) {
-							alert(device.deviceId);
+						if (myRegex.test(device.label)) {
+							myCam = device.deviceId;
+							alert(myCam);
 						}
 					});
 				});
@@ -62,7 +63,7 @@ export default function App({ children }) {
 				// 	.catch((err) => {
 				// 		alert(err);
 				// 	});
-			} catch(err) {
+			} catch (err) {
 				alert(err);
 			}
 		}
