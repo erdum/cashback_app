@@ -53,6 +53,8 @@ export default function App({ children }) {
 					});
 					videoRef.current.srcObject = stream;
 					videoRef.current.play();
+					const tracks = await stream.getVideoTracks();
+					alert(JSON.stringify(tracks));
 				} catch (err) {
 					alert(err);
 				}
