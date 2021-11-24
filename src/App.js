@@ -113,7 +113,7 @@ export default function App({ children }) {
 					points={userPoints.current}
 					dpURL={userData.current.dpURL}
 					ref={videoRef}
-					handleLogout={signout()}
+					handleLogout={signout}
 					handleEarn={() => reRender(!renderState)}
 				>
 					{children}
