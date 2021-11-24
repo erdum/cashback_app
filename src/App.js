@@ -39,7 +39,7 @@ export default function App({ children }) {
 	const videoRef = useRef(null);
 
 	useEffect(() => {
-		async function() {
+		const getCameras = async () => {
 			if (!splash) {
 				// let myCam;
 				const devices = window.navigator.mediaDevices.enumerateDevices();
@@ -50,6 +50,8 @@ export default function App({ children }) {
 				});
 			}
 		};
+
+		getCameras();
 	}, [splash]);
 
 	// useEffect(() => {
