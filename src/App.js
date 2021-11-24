@@ -101,6 +101,7 @@ export default function App({ children }) {
 					points={userPoints.current}
 					dpURL={userData.current.dpURL}
 					ref={videoRef}
+					handleLogout={() => {console.log("test logout")}}
 				>
 					{children}
 				</Layout>

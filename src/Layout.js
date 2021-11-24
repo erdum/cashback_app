@@ -16,8 +16,9 @@ const Layout = forwardRef((props, ref) => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-	const handleLogout = () => {
+	const logoutHandler = () => {
 		handleClose();
+		props.handleLogout();
 	};
 
 	return (
@@ -54,7 +55,7 @@ const Layout = forwardRef((props, ref) => {
 				open={open}
 				onClose={handleClose}
 			>
-				<MenuItem onClick={handleLogout}>Logout</MenuItem>
+				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
 				<video ref={ref}></video>
