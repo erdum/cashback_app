@@ -87,7 +87,12 @@ export default function App({ children }) {
 
 	const signout = async () => {
 		userData.current.uid = "";
-		signOut(auth);
+		signOut(auth)
+			.then(() => {
+				useEffect(() => {
+					window.location.reload();
+				}, []);
+			});
 	};
 
 	const theme = createTheme({
