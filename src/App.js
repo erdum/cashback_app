@@ -7,10 +7,10 @@ import avatar from "./avatar.webp";
 import { initializeApp } from "firebase/app";
 import {
 	getAuth,
-	signInWithPopup,
+	// signInWithPopup,
 	GoogleAuthProvider,
 	onAuthStateChanged,
-	signOut,
+	// signOut,
 } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
