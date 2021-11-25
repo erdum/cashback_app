@@ -19,7 +19,7 @@ const SplashScreen = (props) => {
 			</div>
 			{/*{props.loading && <CircularProgress />}*/}
 			<div className="loader">
-				<CircularProgress />
+				<CircularProgress size={100} />
 			</div>
 		</>
 	);
