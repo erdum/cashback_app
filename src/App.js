@@ -7,8 +7,8 @@ import avatar from "./avatar.webp";
 import { initializeApp } from "firebase/app";
 import {
 	getAuth,
-	// signInWithPopup,
-	// GoogleAuthProvider,
+	signInWithPopup,
+	GoogleAuthProvider,
 	onAuthStateChanged,
 	// signOut,
 } from "firebase/auth";
@@ -22,7 +22,7 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 const auth = getAuth();
-// const provider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 
 const restUserData = {
 	name: "User",
@@ -70,21 +70,19 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				setLoader(false);
-			} else {
-				setLoader(false);
 			}
 		});
 	}, []);
 
 	const signin = async () => {
-		// const result = await signInWithPopup(auth, provider);
-		// userData.current = {
-		// 	name: result.user.displayName,
-		// 	email: result.user.email,
-		// 	phone: result.user.phoneNumber,
-		// 	dpURL: result.user.photoURL,
-		// 	uid: result.user.uid,
-		// };
+		const result = await signInWithPopup(auth, provider);
+		userData.current = {
+			name: result.user.displayName,
+			email: result.user.email,
+			phone: result.user.phoneNumber,
+			dpURL: result.user.photoURL,
+			uid: result.user.uid,
+		};
 	};
 
 	// const signout = async () => {
