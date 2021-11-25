@@ -70,6 +70,8 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				setLoader(false);
+			} else {
+				setLoader(false);
 			}
 		});
 	}, []);
