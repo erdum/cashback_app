@@ -61,7 +61,7 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (result) => {
-			if (userData.current.uid === "") {
+			if (userData.current.uid === "" && result) {
 				userData.current = {
 					name: result.displayName,
 					email: result.email,
@@ -69,6 +69,8 @@ export default function App({ children }) {
 					dpURL: result.photoURL,
 					uid: result.uid,
 				};
+				setLoader(false);
+			} else {
 				setLoader(false);
 			}
 		});
