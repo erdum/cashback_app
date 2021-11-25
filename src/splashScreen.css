@@ -4,6 +4,7 @@
 	left: 0;
 	width: 100%;
 	height: 100vh;
+	filter: blur(5px);
 }
 
 .splash-wrapper {
@@ -80,4 +81,11 @@
 
 .splash-wrapper button:active {
 	box-shadow: none;
+}
+
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
