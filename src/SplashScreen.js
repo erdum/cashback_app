@@ -1,11 +1,10 @@
-import { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import "./splashScreen.css";
 
-const SplashScreen = forwardRef((props, ref) => {
+const SplashScreen = (props) => {
 	return (
-		<div ref={ref} className="splash-wrapper-wrapper">
+		<div className="splash-wrapper-wrapper">
 			<div className="splash-wrapper">
 				<div></div>
 				<h1>Customer Loyality Program</h1>
