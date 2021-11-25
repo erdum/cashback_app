@@ -58,7 +58,6 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				<video ref={ref}></video>
 			</div>
 		</div>
 	);
