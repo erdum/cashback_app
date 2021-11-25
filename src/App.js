@@ -1,4 +1,4 @@
-// import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
@@ -35,8 +35,13 @@ import SplashScreen from "./SplashScreen";
 export default function App({ children }) {
 	// const [points, setPoints] = useState('0');
 	// const userData = useRef(restUserData);
+	const loader = useRef(true);
 
-	// useEffect(() => null);
+	useEffect(() => {
+		setTimeout(() => {
+			loader.current = false;
+		}, 2000);
+	}, []);
 
 	// useEffect(() => {
 	// 	const getCameras = async () => {
@@ -104,7 +109,7 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<SplashScreen handleSignin={signin} />
+			<SplashScreen loader={loader.current} handleSignin={signin} />
 		</ThemeProvider>
 	);
 }
