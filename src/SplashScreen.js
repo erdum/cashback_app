@@ -18,7 +18,9 @@ const SplashScreen = (props) => {
 				</div>
 			</div>
 			{/*{props.loading && <CircularProgress />}*/}
-			<CircularProgress className="loader" />
+			<div className="loader">
+				<CircularProgress />
+			</div>
 		</>
 	);
 };
