@@ -18,7 +18,7 @@ const SplashScreen = (props) => {
 				</div>
 			</div>
 			{props.loader && (
-				<div className="loader" style={props.loader ? "filter: blur(5px);" : "filter: none;"}>
+				<div className="loader" style={props.loader ? {filter: "blur(5px)"} : {filter: "none"}}>
 					<CircularProgress size={80} />
 				</div>
 			)}
