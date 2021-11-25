@@ -109,7 +109,7 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<SplashScreen loader={loader.current} handleSignin={signin} />
+			<SplashScreen key={loader.current} loader={loader.current} handleSignin={signin} />
 		</ThemeProvider>
 	);
 }
