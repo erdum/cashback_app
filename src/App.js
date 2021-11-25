@@ -104,7 +104,7 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			{splash && <SplashScreen handleSignin={signin} />}
+			<SplashScreen handleSignin={signin} />
 		</ThemeProvider>
 	);
 }
