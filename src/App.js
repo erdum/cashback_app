@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from "react";
+// import { useEffect, useState, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
-import avatar from "./avatar.webp";
+// import avatar from "./avatar.webp";
 
 // import { initializeApp } from "firebase/app";
 // import {
@@ -36,7 +36,7 @@ export default function App({ children }) {
 	// const [points, setPoints] = useState('0');
 	// const userData = useRef(restUserData);
 
-	useEffect(() => null);
+	// useEffect(() => null);
 
 	// useEffect(() => {
 	// 	const getCameras = async () => {
