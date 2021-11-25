@@ -6,7 +6,7 @@ import "./splashScreen.css";
 const SplashScreen = (props) => {
 	return (
 		<>
-			<div className="splash-wrapper-wrapper">
+			<div className="splash-wrapper-wrapper" style={props.loader ? {filter: "blur(5px)"} : {filter: "none"}}>
 				<div className="splash-wrapper">
 					<div></div>
 					<h1>Customer Loyality Program</h1>
@@ -18,7 +18,7 @@ const SplashScreen = (props) => {
 				</div>
 			</div>
 			{props.loader && (
-				<div className="loader" style={props.loader ? {filter: "blur(5px)"} : {filter: "none"}}>
+				<div className="loader">
 					<CircularProgress size={80} />
 				</div>
 			)}
