@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 // import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
