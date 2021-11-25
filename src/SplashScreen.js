@@ -1,9 +1,14 @@
-import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import "./splashScreen.css";
 
 const SplashScreen = (props) => {
+	let loader = true;
+
+	useEffect(() => {setTimeout(() => {loader = false;}, 2000)}, []);
+
 	return (
 		<>
 			<div className="splash-wrapper-wrapper">
@@ -17,10 +22,11 @@ const SplashScreen = (props) => {
 					<button onClick={props.handleSignin}>Signin</button>
 				</div>
 			</div>
-			{/*{props.loading && <CircularProgress />}*/}
-			<div className="loader">
-				<CircularProgress size={100} />
-			</div>
+			{loader && (
+				<div className="loader">
+					<CircularProgress size={80} />
+				</div>
+			)}
 		</>
 	);
 };
