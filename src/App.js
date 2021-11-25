@@ -8,7 +8,7 @@ import { initializeApp } from "firebase/app";
 import {
 	getAuth,
 	// signInWithPopup,
-	GoogleAuthProvider,
+	// GoogleAuthProvider,
 	onAuthStateChanged,
 	// signOut,
 } from "firebase/auth";
@@ -22,7 +22,7 @@ const firebaseConfig = {
 };
 initializeApp(firebaseConfig);
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
+// const provider = new GoogleAuthProvider();
 
 const restUserData = {
 	name: "User",
