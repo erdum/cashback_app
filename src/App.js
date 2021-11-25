@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Layout from "./Layout";
+// import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import avatar from "./avatar.webp";
 
@@ -24,17 +24,17 @@ import avatar from "./avatar.webp";
 // const auth = getAuth();
 // const provider = new GoogleAuthProvider();
 
-const restUserData = {
-	name: "User",
-	email: "",
-	phone: "",
-	dpURL: avatar,
-	uid: "",
-};
+// const restUserData = {
+// 	name: "User",
+// 	email: "",
+// 	phone: "",
+// 	dpURL: avatar,
+// 	uid: "",
+// };
 
 export default function App({ children }) {
-	const [points, setPoints] = useState('0');
-	const userData = useRef(restUserData);
+	// const [points, setPoints] = useState('0');
+	// const userData = useRef(restUserData);
 
 	useEffect(() => null);
 
