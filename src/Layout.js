@@ -6,6 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./layout.css";
+import mfcBg from "./MFC-display-bg.webp";
 
 const Layout = forwardRef((props, ref) => {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -58,6 +59,7 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
+				<img src={mfcBg} />
 			</div>
 		</div>
 	);
