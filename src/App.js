@@ -124,6 +124,13 @@ export default function App({ children }) {
 		});
 	};
 
+	const earn = async () => {
+		let newPoints = points + 100;
+		newPoints = String(newPoints);
+		console.log(newPoints);
+		setPixelWidth(newPoints);
+	};
+
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -138,7 +145,7 @@ export default function App({ children }) {
 	return (
 		<ThemeProvider theme={theme}>
 			{functionState.splashScreen && <SplashScreen loader={loader} handleSignin={signin} />}
-			{functionState.layoutScreen && <Layout handleLogout={signout} points={points} dpURL={userData.current.dpURL} userName={userData.current.name} />}
+			{functionState.layoutScreen && <Layout handleLogout={signout} handleEarn={earn} points={points} dpURL={userData.current.dpURL} userName={userData.current.name} />}
 		</ThemeProvider>
 	);
 }
