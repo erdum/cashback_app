@@ -1,11 +1,11 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useLayoutEffect } from "react";
 import Webcam from "react-webcam";
 import "./camera.css";
 
 const Camera = () => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
-	const [cam, setCam] = useState({ index: 0, id: null });
+	const cams = useRef(null);
 
 	const capture = useCallback(() => {
 		if (image === null) {
@@ -16,19 +16,13 @@ const Camera = () => {
 		}
 	}, [webcamRef, image]);
 
-	useEffect(() => {
-		const getCams = async () => {
-			const devices = await window.navigator.mediaDevices.enumerateDevices();
-			const camList = devices.filter((dev) => {
-				return dev.kind === "videoinput";
-			});
-			if (cam.current.index === 0) {
-				setCam({ index: 1, id: camList[1].deviceId });
-			} else {
-				setCam({ index: 0, id: camList[0].deviceId });
-			}
-		};
-	}, [cam, image]);
+	useLayoutEffect(() => {
+		const devices = await window.navigator.mediaDevices.enumerateDevices();
+		const camList = devices.filter((dev) => {
+			return dev.kind === "videoinput";
+		});
+		cams.current = { index: 0, id: camList[0].deviceId };
+	}, []);
 
 	return (
 		<div className="camera-wrapper">
@@ -39,7 +33,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: cam.id }}
+					videoConstraints={{ deviceId: cams.current.id }}
 				/>
 			) : (
 				<img
@@ -52,7 +46,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={getCams}>Change Camera</button> : null}
+			{image === null ? <button onClick={}>Change Camera</button> : null}
 		</div>
 	);
 };
