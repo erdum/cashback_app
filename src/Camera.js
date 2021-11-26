@@ -6,13 +6,14 @@ const videoConstraints = {
 };
 
 const Camera = () => {
+	const [image, setImage] = React.useState(null);
 	const webcamRef = React.useRef(null);
 	const imgRef = React.useRef(null);
 
 	const capture = React.useCallback(() => {
 		const imageSrc = webcamRef.current.getScreenshot();
 		alert(imageSrc);
-		imgRef.current.src = imageSrc;
+		setImage(imageSrc);
 	}, [webcamRef]);
 
 	return (
@@ -26,7 +27,7 @@ const Camera = () => {
 				videoConstraints={videoConstraints}
 			/>
 			<button onClick={capture}>Capture photo</button>
-			<img ref={imgRef} alt="" />
+			<img ref={imgRef} alt="" src={image} />
 		</>
 	);
 };
