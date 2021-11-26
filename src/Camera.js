@@ -14,7 +14,7 @@ const Camera = () => {
 		} else {
 			setImage(null);
 		}
-	}, [webcamRef]);
+	}, [webcamRef, image]);
 
 	const changeCam = useCallback(() => {
 		const getCams = async () => {
@@ -31,7 +31,7 @@ const Camera = () => {
 			}
 		};
 		getCams()
-	}, [cam, image]);
+	}, [cam]);
 
 	return (
 		<div className="camera-wrapper">
