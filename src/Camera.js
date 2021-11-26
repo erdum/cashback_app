@@ -5,7 +5,7 @@ import "./camera.css";
 const Camera = () => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
-	const cam = useRef({ index: 0, id: null });
+	const [cam, setCam] = useState({ index: 0, id: null });
 
 	const capture = useCallback(() => {
 		if (image === null) {
@@ -16,21 +16,20 @@ const Camera = () => {
 		}
 	}, [webcamRef, image]);
 
-	const changeCam = useCallback(() => {
+	useEffect(() => {
 		const getCams = async () => {
 			const devices = await window.navigator.mediaDevices.enumerateDevices();
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
 			if (cam.current.index === 0) {
-				cam.current = { index: 1, id: camList[1].deviceId }
+				setCam({ index: 1, id: camList[1].deviceId });
 			} else {
-				cam.current = { index: 0, id: camList[0].deviceId }
+				setCam({ index: 0, id: camList[0].deviceId });
 			}
 		};
 		getCams();
-		setImage(null);
-	}, [cam]);
+	}, [cam, image]);
 
 	return (
 		<div className="camera-wrapper">
@@ -54,7 +53,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={changeCam}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {setImage(null);}}>Change Camera</button> : null}
 		</div>
 	);
 };
