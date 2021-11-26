@@ -51,7 +51,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={() => {alert(testList)}}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {alert(test)}}>Change Camera</button> : null}
 		</div>
 	);
 };
