@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import Webcam from "react-webcam";
 import "./camera.css";
 
@@ -17,7 +17,7 @@ const Camera = () => {
 	}, [webcamRef]);
 
 	const changeCam = useCallback(() => {
-		const getCams = async (camIndex=0) => {
+		const getCams = async () => {
 			const devices = await window.navigator.mediaDevices.enumerateDevices();
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
@@ -30,7 +30,8 @@ const Camera = () => {
 				setImage(null);
 			}
 		};
-	}, [cam]);
+		getCams()
+	}, [cam, image]);
 
 	return (
 		<div className="camera-wrapper">
