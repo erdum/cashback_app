@@ -9,7 +9,6 @@ const Camera = () => {
 	const webcamRef = useRef(null);
 	const cams0 = useRef(null);
 	const cams1 = useRef(null);
-	const camKey = useRef(0);
 
 	const capture = useCallback(() => {
 		if (image === null) {
