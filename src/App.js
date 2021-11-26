@@ -128,7 +128,7 @@ export default function App({ children }) {
 		let newPoints = points + 100;
 		newPoints = String(newPoints);
 		console.log(newPoints);
-		setPixelWidth(newPoints);
+		setPoints(newPoints);
 	};
 
 	const theme = createTheme({
