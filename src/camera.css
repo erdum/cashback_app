@@ -2,6 +2,7 @@
 	min-width: 100vw;
 	min-height: 100vh;
 	position: relative;
+	background-color: whitesmoke;
 }
 
 .camera {
