@@ -19,7 +19,7 @@ const Camera = () => {
 		<>
 			<Webcam
 				className="camera"
-				style={{ width: "300px", height: "550px" }}
+				style={{ width: "75vw", height: "75vh" }}
 				audio={false}
 				ref={webcamRef}
 				screenshotFormat="image/jpeg"

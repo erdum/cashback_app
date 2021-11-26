@@ -7,16 +7,14 @@
 	top: 0;
 	left: 50%;
 	border: none;
-	background-color: var(--main);
-	color: var(--contrast);
+	background-color: white;
+	color: green;
 	font-size: 1.4rem;
 	font-weight: bold;
 	padding: 0.7rem 4.8rem;
 	border-radius: 0.4rem;
 	position: absolute;
 	bottom: 4rem;
-	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 	transition: all 0.02s ease-in;
 }
