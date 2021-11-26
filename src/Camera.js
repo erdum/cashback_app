@@ -1,12 +1,7 @@
 import { forwardRef } from "react";
 
 const Camera = forwardRef((props, ref) => {
-	return(
-		<div className="video-wrapper">
-		<video ref={ref}>
-		</video>
-		</div>
-	);
+	return <video width="300px" height="200px" ref={ref}></video>;
 });
 
 export default Camera;
