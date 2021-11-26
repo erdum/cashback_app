@@ -2,6 +2,8 @@ import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
+import Camera from "./Camera";
+import getCamera from "./getCamera";
 import avatar from "./avatar.webp";
 
 import { initializeApp } from "firebase/app";
@@ -59,30 +61,15 @@ export default function App({ children }) {
 		initialFunctionState
 	);
 	const [points, setPoints] = useState("0");
-	const userData = useRef(restUserData);
 	const [loader, setLoader] = useState(true);
+	const userData = useRef(restUserData);
+	const videoRef = useRef();
 
-	// useEffect(() => {
-	// 	const getCameras = async () => {
-	// 		if (!splash && renderState) {
-	// 			try {
-	// 				const devices =
-	// 					await window.navigator.mediaDevices.enumerateDevices();
-	// 				let myCam = devices.filter((dev) => {
-	// 					return dev.kind === "videoinput";
-	// 				});
-	// 				const stream = await window.navigator.mediaDevices.getUserMedia({
-	// 					video: { deviceId: myCam[1].deviceId },
-	// 				});
-	// 				videoRef.current.srcObject = stream;
-	// 				videoRef.current.play();
-	// 			} catch (err) {
-	// 				alert(err);
-	// 			}
-	// 		}
-	// 	};
-	// 	getCameras();
-	// }, [renderState, splash]);
+	useEffect(() => {
+		if (functionState.cameraScreen) {
+			getCamera(1, videoRef);
+		}
+	}, [functionState.cameraScreen]);
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (result) => {
@@ -128,7 +115,7 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		let newPoints = points + 100;
+		let newPoints = Number(points) + 100;
 		newPoints = String(newPoints);
 		console.log(newPoints);
 		setPoints(newPoints);
@@ -159,6 +146,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 				/>
 			)}
+			{functionState.cameraScreen && <Camera ref={videoRef} />}
 		</ThemeProvider>
 	);
 }
