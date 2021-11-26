@@ -4,6 +4,7 @@ import "./camera.css";
 
 const Camera = () => {
 	const [image, setImage] = useState(null);
+	const [camKey, setCamKey] = useState(0);
 	const webcamRef = useRef(null);
 	const cams = useRef(null);
 
@@ -22,8 +23,7 @@ const Camera = () => {
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
-			// cams.current = { index: 0, id: camList[0].deviceId };
-			cams.current = camList[0].deviceId;
+			cams.current = camList;
 		};
 		getCams();
 	}, []);
@@ -37,7 +37,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: cams.current }}
+					videoConstraints={{ deviceId: cams.current[camKey].deviceId }}
 				/>
 			) : (
 				<img
@@ -50,7 +50,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={() => {setImage(null);}}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {setCamKey(1);}}>Change Camera</button> : null}
 		</div>
 	);
 };
