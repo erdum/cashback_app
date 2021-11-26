@@ -24,7 +24,6 @@ const Camera = () => {
 				return dev.kind === "videoinput";
 			});
 			cams.current[0] = camList[0].deviceId;
-			cams.current[1] = camList[1].deviceId;
 			alert(JSON.stringify(cams.current));
 		};
 		getCams();
