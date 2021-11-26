@@ -41,9 +41,9 @@ const reducer = (state, action) => {
 		case "showSplash":
 			return { ...state, splashScreen: true, layoutScreen: false };
 		case "hideCamera":
-			return { ...state, cameraScreen: false };
+			return { ...state, cameraScreen: false, layoutScreen: true };
 		case "showCamera":
-			return { ...state, cameraScreen: true };
+			return { ...state, cameraScreen: true, layoutScreen: false };
 		default:
 			throw new Error();
 	}
@@ -115,10 +115,10 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		let newPoints = Number(points) + 100;
-		newPoints = String(newPoints);
-		console.log(newPoints);
-		setPoints(newPoints);
+		// let newPoints = Number(points) + 100;
+		// newPoints = String(newPoints);
+		// setPoints(newPoints);
+		dispatchFunction({ type: "showCamera" });
 	};
 
 	const theme = createTheme({
