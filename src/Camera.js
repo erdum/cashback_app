@@ -28,7 +28,7 @@ const Camera = () => {
 				setCam({ index: 0, id: camList[0].deviceId });
 			}
 		};
-	}, []);
+	}, [cam]);
 
 	return (
 		<div className="camera-wrapper">
@@ -52,7 +52,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={() => {setImage(null);}}>Change Camera</button> : null}
+			{image === null ? <button onClick={getCams}>Change Camera</button> : null}
 		</div>
 	);
 };
