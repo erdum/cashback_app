@@ -49,7 +49,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {setImage(null);}}>Change Camera</button> : null}
 		</div>
 	);
 };
