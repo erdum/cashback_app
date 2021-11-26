@@ -6,28 +6,27 @@ const videoConstraints = {
 };
 
 const Camera = () => {
-	const [image, setImage] = React.useState(null);
+	// const [image, setImage] = React.useState(null);
 	const webcamRef = React.useRef(null);
 	const imgRef = React.useRef(null);
 
 	const capture = React.useCallback(() => {
 		const imageSrc = webcamRef.current.getScreenshot();
 		alert(imageSrc);
-		setImage(imageSrc);
+		// setImage(imageSrc);
 	}, [webcamRef]);
 
 	return (
 		<>
 			<Webcam
+				className="camera"
+				style={{ width: "100vw", height: "100vh" }}
 				audio={false}
-				height={720}
 				ref={webcamRef}
 				screenshotFormat="image/jpeg"
-				width={1280}
 				videoConstraints={videoConstraints}
+				onClick={capture}
 			/>
-			<button onClick={capture}>Capture photo</button>
-			<img ref={imgRef} alt="" src={image} />
 		</>
 	);
 };
