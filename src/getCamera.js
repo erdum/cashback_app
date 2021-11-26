@@ -7,8 +7,9 @@ const getCamera = async (camIndex=1, videoRef) => {
 		const stream = await window.navigator.mediaDevices.getUserMedia({
 			video: { deviceId: myCam[camIndex].deviceId },
 		});
-		videoRef.current.srcObject = stream;
-		videoRef.current.play();
+		// videoRef.current.srcObject = stream;
+		// videoRef.current.play();
+		alert(stream.getVideoTracks()[0]);
 	} catch (err) {
 		alert(err);
 	}
