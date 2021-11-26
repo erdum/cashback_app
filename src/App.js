@@ -68,6 +68,7 @@ export default function App({ children }) {
 	useEffect(() => {
 		if (functionState.cameraScreen) {
 			getCamera(1, videoRef);
+			videoRef.current.style.height = window.innerHeight;
 		}
 	}, [functionState.cameraScreen]);
 
