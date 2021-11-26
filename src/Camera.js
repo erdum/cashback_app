@@ -28,8 +28,7 @@ const Camera = () => {
 				setCam({ index: 0, id: camList[0].deviceId });
 			}
 		};
-		getCams();
-	}, [cam, image]);
+	}, []);
 
 	return (
 		<div className="camera-wrapper">
@@ -40,7 +39,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: cam.current.id }}
+					videoConstraints={{ deviceId: cam.id }}
 				/>
 			) : (
 				<img
