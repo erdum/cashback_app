@@ -99,8 +99,10 @@ export default function App({ children }) {
 	}, []);
 
 	const signin = async () => {
+		setLoader(true);
 		try {
 			const result = await signInWithPopup(auth, provider);
+			setLoader(false);
 			userData.current = {
 				name: result.user.displayName,
 				email: result.user.email,
@@ -110,6 +112,7 @@ export default function App({ children }) {
 			};
 			dispatchFunction({ type: "hideSplash" });
 		} catch(err) {
+			setLoader(false);
 			alert(err);
 		}
 	};
@@ -135,7 +138,7 @@ export default function App({ children }) {
 	return (
 		<ThemeProvider theme={theme}>
 			{functionState.splashScreen && <SplashScreen loader={loader} handleSignin={signin} />}
-			{functionState.layoutScreen && <Layout handleLogout={signout} handleEarn={() => {setPoints("1200")}} points={points} dpURL={userData.current.dpURL} userName={userData.current.name} />}
+			{functionState.layoutScreen && <Layout handleLogout={signout} handleEarn={() => {setPoints(String(points + 100))}} points={points} dpURL={userData.current.dpURL} userName={userData.current.name} />}
 		</ThemeProvider>
 	);
 }
