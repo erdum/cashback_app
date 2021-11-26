@@ -16,18 +16,30 @@ const Camera = () => {
 		}
 	}, [webcamRef, image]);
 
+	const getCams = async () => {
+		const devices = await window.navigator.mediaDevices.enumerateDevices();
+		const camList = devices.filter((dev) => {
+			return dev.kind === "videoinput";
+		});
+		if (cam.current.index === 0) {
+			setCam({ index: 1, id: camList[1].deviceId });
+		} else {
+			setCam({ index: 0, id: camList[0].deviceId });
+		}
+	};
+
 	useEffect(() => {
-		const getCams = async () => {
-			const devices = await window.navigator.mediaDevices.enumerateDevices();
-			const camList = devices.filter((dev) => {
-				return dev.kind === "videoinput";
-			});
-			if (cam.current.index === 0) {
-				setCam({ index: 1, id: camList[1].deviceId });
-			} else {
-				setCam({ index: 0, id: camList[0].deviceId });
-			}
-		};
+		// const getCams = async () => {
+		// 	const devices = await window.navigator.mediaDevices.enumerateDevices();
+		// 	const camList = devices.filter((dev) => {
+		// 		return dev.kind === "videoinput";
+		// 	});
+		// 	if (cam.current.index === 0) {
+		// 		setCam({ index: 1, id: camList[1].deviceId });
+		// 	} else {
+		// 		setCam({ index: 0, id: camList[0].deviceId });
+		// 	}
+		// };
 	}, [cam]);
 
 	return (
