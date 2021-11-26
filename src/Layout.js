@@ -59,7 +59,7 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				<img src={mfcBg} alt="" />
+				{props.data === null ? <img src={mfcBg} alt="" /> : null}
 			</div>
 		</div>
 	);

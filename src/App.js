@@ -33,15 +33,15 @@ const restUserData = {
 };
 
 const reducer = (state, action) => {
-	switch(action.type) {
+	switch (action.type) {
 		case "hideSplash":
-			return { ...state, splashScreen: false, layoutScreen: true }
+			return { ...state, splashScreen: false, layoutScreen: true };
 		case "showSplash":
-			return { ...state, splashScreen: true, layoutScreen: false }
+			return { ...state, splashScreen: true, layoutScreen: false };
 		case "hideCamera":
-			return { ...state, cameraScreen: false }
+			return { ...state, cameraScreen: false };
 		case "showCamera":
-			return { ...state, cameraScreen: true }
+			return { ...state, cameraScreen: true };
 		default:
 			throw new Error();
 	}
@@ -54,8 +54,11 @@ const initialFunctionState = {
 };
 
 export default function App({ children }) {
-	const [functionState, dispatchFunction] = useReducer(reducer, initialFunctionState);
-	const [points, setPoints] = useState('0');
+	const [functionState, dispatchFunction] = useReducer(
+		reducer,
+		initialFunctionState
+	);
+	const [points, setPoints] = useState("0");
 	const userData = useRef(restUserData);
 	const [loader, setLoader] = useState(true);
 
@@ -111,7 +114,7 @@ export default function App({ children }) {
 				uid: result.user.uid,
 			};
 			dispatchFunction({ type: "hideSplash" });
-		} catch(err) {
+		} catch (err) {
 			setLoader(false);
 			alert(err);
 		}
@@ -144,8 +147,18 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			{functionState.splashScreen && <SplashScreen loader={loader} handleSignin={signin} />}
-			{functionState.layoutScreen && <Layout handleLogout={signout} handleEarn={earn} points={points} dpURL={userData.current.dpURL} userName={userData.current.name} />}
+			{functionState.splashScreen && (
+				<SplashScreen loader={loader} handleSignin={signin} />
+			)}
+			{functionState.layoutScreen && (
+				<Layout
+					handleLogout={signout}
+					handleEarn={earn}
+					points={points}
+					dpURL={userData.current.dpURL}
+					userName={userData.current.name}
+				/>
+			)}
 		</ThemeProvider>
 	);
 }
