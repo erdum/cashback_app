@@ -16,7 +16,7 @@ const Camera = () => {
 	}, [webcamRef]);
 
 	return (
-		<>
+		<div className="camera-wrapper">
 			<Webcam
 				className="camera"
 				style={{ width: "75vw", height: "75vh" }}
@@ -29,7 +29,7 @@ const Camera = () => {
 				{/*<button>Change Camera</button>*/}
 				<button>Capture Reciept</button>
 			</Webcam>
-		</>
+		</div>
 	);
 };
 
