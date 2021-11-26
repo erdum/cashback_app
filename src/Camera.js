@@ -5,7 +5,7 @@ import "./camera.css";
 const Camera = () => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
-	const cams = useRef(null);
+	const cams = useRef([]);
 	const camKey = useRef(0);
 
 	const capture = useCallback(() => {
@@ -23,7 +23,7 @@ const Camera = () => {
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
-			cams.current = { id: camList[0].deviceId };
+			cams.current[0] = camList[0].deviceId;
 			alert(JSON.stringify(cams.current));
 		};
 		getCams();
@@ -38,7 +38,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: cams.current.id }}
+					videoConstraints={{ deviceId: cams.current[0] }}
 				/>
 			) : (
 				<img
