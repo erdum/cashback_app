@@ -13,7 +13,7 @@
 
 .camera-wrapper button {
 	position: absolute;
-	top: 70%;
+	top: 75%;
 	left: 50%;
 	transform: translate(-50%, 0);
 	border: none;
@@ -30,7 +30,7 @@
 }
 
 .camera-wrapper button:last-child {
-	top: 77%;
+	top: 82%;
 }
 
 .camera-wrapper button:active {
