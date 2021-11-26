@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import Layout from "./Layout";
+import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import avatar from "./avatar.webp";
 
@@ -32,7 +32,29 @@ const restUserData = {
 	uid: "",
 };
 
+const reducer = (state, action) => {
+	switch(action.type) {
+		case "hideSplash":
+			return { ...state, splashScreen: false, layoutScreen: true }
+		case "showSplash":
+			return { ...state, splashScreen: true, layoutScreen: false }
+		case "hideCamera":
+			return { ...state, cameraScreen: false }
+		case "showCamera":
+			return { ...state, cameraScreen: true }
+		default:
+			throw new Error();
+	}
+};
+
+const initialFunctionState = {
+	splashScreen: true,
+	layoutScreen: false,
+	// cameraScreen: false
+};
+
 export default function App({ children }) {
+	const [functionState, dispatchFunction] = useReducer(reducer, initialFunctionState);
 	// const [points, setPoints] = useState('0');
 	const userData = useRef(restUserData);
 	const [loader, setLoader] = useState(true);
@@ -69,7 +91,7 @@ export default function App({ children }) {
 					dpURL: result.photoURL,
 					uid: result.uid,
 				};
-				setLoader(false);
+				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
 			}
@@ -77,21 +99,27 @@ export default function App({ children }) {
 	}, []);
 
 	const signin = async () => {
-		const result = await signInWithPopup(auth, provider);
-		userData.current = {
-			name: result.user.displayName,
-			email: result.user.email,
-			phone: result.user.phoneNumber,
-			dpURL: result.user.photoURL,
-			uid: result.user.uid,
-		};
+		try {
+			const result = await signInWithPopup(auth, provider);
+			userData.current = {
+				name: result.user.displayName,
+				email: result.user.email,
+				phone: result.user.phoneNumber,
+				dpURL: result.user.photoURL,
+				uid: result.user.uid,
+			};
+			dispatchFunction({ type: "hideSplash" });
+		} catch(err) {
+			alert(err);
+		}
 	};
 
-	// const signout = async () => {
-	// 	userData.current.uid = "";
-	// 	signOut(auth).then(() => {
-	// 	});
-	// };
+	const signout = async () => {
+		signOut(auth).then(() => {
+			userData.current.uid = "";
+			dispatchFunction({ type: "showSplash" });
+		});
+	};
 
 	const theme = createTheme({
 		palette: {
@@ -106,7 +134,8 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<SplashScreen loader={loader} handleSignin={signin} />
+			{functionState.splashScreen && <SplashScreen loader={loader} handleSignin={signin} />}
+			{functionState.layoutScreen && <Layout handleLogout={signout} />}
 		</ThemeProvider>
 	);
 }
