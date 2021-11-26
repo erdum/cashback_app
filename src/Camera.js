@@ -20,13 +20,16 @@ const Camera = () => {
 		<>
 			<Webcam
 				className="camera"
-				style={{ width: "100vw", height: "100vh" }}
+				style={{ width: "300px", height: "550px" }}
 				audio={false}
 				ref={webcamRef}
 				screenshotFormat="image/jpeg"
 				videoConstraints={videoConstraints}
 				onClick={capture}
-			/>
+			>
+				{/*<button>Change Camera</button>*/}
+				<button>Capture Reciept</button>
+			</Webcam>
 		</>
 	);
 };
