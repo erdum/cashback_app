@@ -8,7 +8,6 @@ const videoConstraints = {
 const Camera = () => {
 	// const [image, setImage] = React.useState(null);
 	const webcamRef = React.useRef(null);
-	const imgRef = React.useRef(null);
 
 	const capture = React.useCallback(() => {
 		const imageSrc = webcamRef.current.getScreenshot();
