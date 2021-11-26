@@ -19,7 +19,7 @@ const SplashScreen = (props) => {
 			</div>
 			{props.loader && (
 				<div className="loader">
-					<CircularProgress size={80} />
+					<CircularProgress size={100} />
 				</div>
 			)}
 		</>
