@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
-import getCamera from "./getCamera";
+// import getCamera from "./getCamera";
 import avatar from "./avatar.webp";
 
 import { initializeApp } from "firebase/app";
@@ -63,7 +63,6 @@ export default function App({ children }) {
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
 	const userData = useRef(restUserData);
-	const videoRef = useRef();
 
 	useEffect(() => {
 		if (functionState.cameraScreen) {
@@ -146,7 +145,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 				/>
 			)}
-			{functionState.cameraScreen && <Camera ref={videoRef} />}
+			{functionState.cameraScreen && <Camera />}
 		</ThemeProvider>
 	);
 }
