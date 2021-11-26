@@ -2,15 +2,17 @@ import React from "react";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-	facingMode: "user",
+	facingMode: "back",
 };
 
 const Camera = () => {
 	const webcamRef = React.useRef(null);
+	const imgRef = React.useRef(null);
 
 	const capture = React.useCallback(() => {
 		const imageSrc = webcamRef.current.getScreenshot();
 		alert(imageSrc);
+		imgRef.current.srcObject = imageSrc;
 	}, [webcamRef]);
 
 	return (
@@ -24,6 +26,7 @@ const Camera = () => {
 				videoConstraints={videoConstraints}
 			/>
 			<button onClick={capture}>Capture photo</button>
+			<img ref={imgRef} alt="" />
 		</>
 	);
 };
