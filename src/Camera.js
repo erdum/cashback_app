@@ -11,8 +11,12 @@ const Camera = () => {
 	const webcamRef = React.useRef(null);
 
 	const capture = React.useCallback(() => {
-		const imageSrc = webcamRef.current.getScreenshot();
-		setImage(imageSrc);
+		if (image === null) {
+			const imageSrc = webcamRef.current.getScreenshot();
+			setImage(imageSrc);
+		} else {
+			setImage(null);
+		}
 	}, [webcamRef]);
 
 	return (
@@ -37,7 +41,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button>Change Camera</button> : null}
+			{image === null ? <button onClick={}>Change Camera</button> : null}
 		</div>
 	);
 };
