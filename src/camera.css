@@ -29,6 +29,10 @@
 	transition: all 0.02s ease-in;
 }
 
+.camera-wrapper button:last-child {
+	top: 92%;
+}
+
 .camera-wrapper button:active {
 	cursor: pointer;
 	box-shadow: none;

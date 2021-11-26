@@ -26,8 +26,8 @@ const Camera = () => {
 				screenshotFormat="image/jpeg"
 				videoConstraints={videoConstraints}
 			/>
-				{/*<button>Change Camera</button>*/}
 				<button onClick={capture}>Capture Reciept</button>
+				<button>Change Camera</button>
 		</div>
 	);
 };
