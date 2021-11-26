@@ -22,7 +22,8 @@ const Camera = () => {
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
-			cams.current = { index: 0, id: camList[0].deviceId };
+			// cams.current = { index: 0, id: camList[0].deviceId };
+			cams.current = camList[0].deviceId;
 		};
 		getCams();
 	}, []);
@@ -36,7 +37,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: cams.current.id }}
+					videoConstraints={{ deviceId: cams.current }}
 				/>
 			) : (
 				<img
