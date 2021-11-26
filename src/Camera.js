@@ -16,7 +16,7 @@ const Camera = () => {
 		}
 	}, [webcamRef]);
 
-	useEffect(() => {
+	const changeCam = useCallback(() => {
 		const getCams = async (camIndex=0) => {
 			const devices = await window.navigator.mediaDevices.enumerateDevices();
 			const camList = devices.filter((dev) => {
@@ -30,7 +30,7 @@ const Camera = () => {
 				setImage(null);
 			}
 		};
-	}, []);
+	}, [cam]);
 
 	return (
 		<div className="camera-wrapper">
@@ -54,7 +54,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={() => {setImage(null)}}>Change Camera</button> : null}
+			{image === null ? <button onClick={changeCam}>Change Camera</button> : null}
 		</div>
 	);
 };
