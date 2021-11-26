@@ -55,7 +55,7 @@ const initialFunctionState = {
 
 export default function App({ children }) {
 	const [functionState, dispatchFunction] = useReducer(reducer, initialFunctionState);
-	// const [points, setPoints] = useState('0');
+	const [points, setPoints] = useState('0');
 	const userData = useRef(restUserData);
 	const [loader, setLoader] = useState(true);
 
@@ -135,7 +135,7 @@ export default function App({ children }) {
 	return (
 		<ThemeProvider theme={theme}>
 			{functionState.splashScreen && <SplashScreen loader={loader} handleSignin={signin} />}
-			{functionState.layoutScreen && <Layout handleLogout={signout} />}
+			{functionState.layoutScreen && <Layout handleLogout={signout} points={points} dpURL={userData.current.dpURL} name={userData.current.name} />}
 		</ThemeProvider>
 	);
 }
