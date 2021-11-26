@@ -24,13 +24,12 @@ const Camera = () => {
 			});
 			if (cam.current.index === 0) {
 				cam.current = { index: 1, id: camList[1].deviceId }
-				setImage(null);
 			} else {
 				cam.current = { index: 0, id: camList[0].deviceId }
-				setImage(null);
 			}
 		};
-		getCams()
+		getCams();
+		setImage(null);
 	}, [cam]);
 
 	return (
