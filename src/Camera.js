@@ -17,11 +17,14 @@ const Camera = () => {
 	}, [webcamRef, image]);
 
 	useLayoutEffect(() => {
-		const devices = await window.navigator.mediaDevices.enumerateDevices();
-		const camList = devices.filter((dev) => {
-			return dev.kind === "videoinput";
-		});
-		cams.current = { index: 0, id: camList[0].deviceId };
+		const getCams = async () => {
+			const devices = await window.navigator.mediaDevices.enumerateDevices();
+			const camList = devices.filter((dev) => {
+				return dev.kind === "videoinput";
+			});
+			cams.current = { index: 0, id: camList[0].deviceId };
+		};
+		getCams();
 	}, []);
 
 	return (
