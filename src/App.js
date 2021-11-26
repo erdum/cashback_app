@@ -115,9 +115,9 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// let newPoints = Number(points) + 100;
-		// newPoints = String(newPoints);
-		// setPoints(newPoints);
+		let newPoints = Number(points) + 100;
+		newPoints = String(newPoints);
+		setPoints(newPoints);
 		dispatchFunction({ type: "showCamera" });
 	};
 
