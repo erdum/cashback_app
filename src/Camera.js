@@ -1,16 +1,13 @@
-import React from "react";
+import { useState, useCallback, useEffect } from "react";
 import Webcam from "react-webcam";
 import "./camera.css";
 
-const videoConstraints = {
-	facingMode: "back",
-};
-
 const Camera = () => {
-	const [image, setImage] = React.useState(null);
-	const webcamRef = React.useRef(null);
+	const [image, setImage] = useState(null);
+	const webcamRef = useRef(null);
+	const cam = useRef({ index: 0, id: null });
 
-	const capture = React.useCallback(() => {
+	const capture = useCallback(() => {
 		if (image === null) {
 			const imageSrc = webcamRef.current.getScreenshot();
 			setImage(imageSrc);
@@ -18,6 +15,22 @@ const Camera = () => {
 			setImage(null);
 		}
 	}, [webcamRef]);
+
+	useEffect(() => {
+		const getCams = async (camIndex=0) => {
+			const devices = await window.navigator.mediaDevices.enumerateDevices();
+			const camList = devices.filter((dev) => {
+				return dev.kind === "videoinput";
+			});
+			if (cam.current.index === 0) {
+				cam.current = { index: 1, id: camList[1].deviceId }
+				setImage(null);
+			} else {
+				cam.current = { index: 0, id: camList[0].deviceId }
+				setImage(null);
+			}
+		};
+	}, []);
 
 	return (
 		<div className="camera-wrapper">
@@ -28,7 +41,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={videoConstraints}
+					videoConstraints={{ deviceId: cam.current.id }}
 				/>
 			) : (
 				<img
@@ -41,7 +54,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {setImage(null)}}>Change Camera</button> : null}
 		</div>
 	);
 };
