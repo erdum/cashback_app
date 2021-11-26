@@ -13,8 +13,9 @@
 
 .camera-wrapper button {
 	position: absolute;
-	top: 0;
+	top: 80%;
 	left: 50%;
+	transform: translate(-50%, 0);
 	border: none;
 	background-color: white;
 	color: green;
@@ -22,8 +23,6 @@
 	font-weight: bold;
 	padding: 0.7rem 4.8rem;
 	border-radius: 0.4rem;
-	position: absolute;
-	bottom: 4rem;
 	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 	transition: all 0.02s ease-in;
 	z-index: 1;
