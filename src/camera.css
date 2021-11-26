@@ -11,7 +11,7 @@
 	transform: translate(-50%, -50%);
 }
 
-.camera button {
+.camera-wrapper button {
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -29,7 +29,7 @@
 	z-index: 1;
 }
 
-.camera button:hover {
+.camera-wrapper button:hover {
 	cursor: pointer;
 	box-shadow: none;
 }
