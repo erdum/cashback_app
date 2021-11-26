@@ -10,7 +10,7 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	onAuthStateChanged,
-	// signOut,
+	signOut,
 } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
