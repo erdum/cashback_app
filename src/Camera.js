@@ -23,9 +23,7 @@ const Camera = () => {
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
-			if (test === null) {
-				setTest({ id: camList[0].deviceId, index: 0 });
-			}
+			setTest({ id: camList[0].deviceId, index: 0 });
 			// cam0.current = camList[0].deviceId;
 		};
 		getCams();
