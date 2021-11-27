@@ -65,11 +65,6 @@ export default function App({ children }) {
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
-		if (functionState.cameraScreen) {
-		}
-	}, [functionState.cameraScreen]);
-
-	useEffect(() => {
 		onAuthStateChanged(auth, (result) => {
 			if (userData.current.uid === "" && result) {
 				userData.current = {
@@ -119,6 +114,11 @@ export default function App({ children }) {
 		dispatchFunction({ type: "showCamera" });
 	};
 
+	const capture = async (image) => {
+		dispatchFunction({ type: "hideCamera" });
+		alert(image);
+	};
+
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -144,7 +144,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 				/>
 			)}
-			{functionState.cameraScreen && <Camera />}
+			{functionState.cameraScreen && <Camera handleCapture={capture} />}
 		</ThemeProvider>
 	);
 }

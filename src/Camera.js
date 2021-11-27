@@ -2,17 +2,17 @@ import { useState, useCallback, useRef, useLayoutEffect } from "react";
 import Webcam from "react-webcam";
 import "./camera.css";
 
-const Camera = () => {
+const Camera = (props) => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
-	// const cam0 = useRef(null);
-	const [camId, setCamId] =  useState(null);
+	const [camId, setCamId] = useState(null);
 	const [camKey, setCamKey] = useState(0);
 
 	const capture = useCallback(() => {
 		if (image === null) {
 			const imageSrc = webcamRef.current.getScreenshot();
 			setImage(imageSrc);
+			props.handleCapture(imageSrc);
 		} else {
 			setImage(null);
 		}
@@ -31,28 +31,23 @@ const Camera = () => {
 
 	return (
 		<div className="camera-wrapper">
-			{image === null ? (
-				<Webcam
-					className="camera"
-					style={{ width: "75vw", height: "75vh" }}
-					audio={false}
-					ref={webcamRef}
-					screenshotQuality={1}
-					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: camId }}
-				/>
-			) : (
-				<img
-					className="camera"
-					src={image}
-					alt=""
-					style={{ width: "75vw", height: "75vh" }}
-				/>
-			)}
-			<button onClick={capture}>
-				{image === null ? "Capture Reciept" : "Capture Agian"}
+			<Webcam
+				className="camera"
+				style={{ width: "75vw", height: "75vh" }}
+				audio={false}
+				ref={webcamRef}
+				screenshotQuality={1}
+				screenshotFormat="image/jpeg"
+				videoConstraints={{ deviceId: camId }}
+			/>
+			<button onClick={capture}>"Capture Reciept"</button>
+			<button
+				onClick={() => {
+					setCamKey(!camKey);
+				}}
+			>
+				Change Camera
 			</button>
-			{image === null ? <button onClick={() => {setCamKey(!camKey);}}>Change Camera</button> : null}
 		</div>
 	);
 };
