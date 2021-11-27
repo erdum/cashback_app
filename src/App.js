@@ -116,6 +116,7 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
+		scanReceipt(image);
 	};
 
 	const scanReceipt = async (image) => {
@@ -134,7 +135,7 @@ export default function App({ children }) {
 			redirect: "follow",
 		};
 
-		const res = await fetch("https://api.ocr.space/parse/image", requestOptions);
+		const res = await fetch(apiBase, requestOptions);
 		const data = await res.text();
 		alert(data);
 	};
