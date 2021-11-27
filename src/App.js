@@ -128,7 +128,7 @@ export default function App({ children }) {
 		const requestOptions = {
 			method: "POST",
 			headers: {
-				"x-api-key": "5b8c7cfbc188957";
+				"x-api-key": "5b8c7cfbc188957",
 			},
 			body: formdata,
 			redirect: "follow",
