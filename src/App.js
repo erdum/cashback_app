@@ -108,9 +108,9 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		let newPoints = Number(points) + 100;
-		newPoints = String(newPoints);
-		setPoints(newPoints);
+		// let newPoints = Number(points) + 100;
+		// newPoints = String(newPoints);
+		// setPoints(newPoints);
 		dispatchFunction({ type: "showCamera" });
 	};
 
@@ -129,7 +129,7 @@ export default function App({ children }) {
 		const requestOptions = {
 			method: "POST",
 			headers: {
-				"x-api-key": "5b8c7cfbc188957",
+				"apikey": "5b8c7cfbc188957",
 			},
 			body: formdata,
 			redirect: "follow",
