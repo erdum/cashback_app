@@ -7,6 +7,7 @@ const Camera = () => {
 	const webcamRef = useRef(null);
 	// const cam0 = useRef(null);
 	const [test, setTest] =  useState(null);
+	const [camKey, setCamKey] = useState(0);
 
 	const capture = useCallback(() => {
 		if (image === null) {
@@ -23,11 +24,11 @@ const Camera = () => {
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
-			setTest({ id: camList[0].deviceId, index: 0 });
+			setTest(camList[Number(camKey)].deviceId);
 			// cam0.current = camList[0].deviceId;
 		};
 		getCams();
-	}, [image]);
+	}, [image, camKey]);
 
 	return (
 		<div className="camera-wrapper">
@@ -38,7 +39,7 @@ const Camera = () => {
 					audio={false}
 					ref={webcamRef}
 					screenshotFormat="image/jpeg"
-					videoConstraints={{ deviceId: test.id }}
+					videoConstraints={{ deviceId: test }}
 				/>
 			) : (
 				<img
@@ -51,7 +52,7 @@ const Camera = () => {
 			<button onClick={capture}>
 				{image === null ? "Capture Reciept" : "Capture Agian"}
 			</button>
-			{image === null ? <button onClick={() => {alert(test)}}>Change Camera</button> : null}
+			{image === null ? <button onClick={() => {setCamKey(!camKey);}}>Change Camera</button> : null}
 		</div>
 	);
 };
