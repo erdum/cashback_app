@@ -6,7 +6,7 @@ const Camera = () => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
 	// const cam0 = useRef(null);
-	const [test, setTest] =  useState(null);
+	const [camId, setCamId] =  useState(null);
 	const [camKey, setCamKey] = useState(0);
 
 	const capture = useCallback(() => {
@@ -25,10 +25,9 @@ const Camera = () => {
 				return dev.kind === "videoinput";
 			});
 			setTest(camList[Number(camKey)].deviceId);
-			// cam0.current = camList[0].deviceId;
 		};
 		getCams();
-	}, [image, camKey]);
+	}, [camKey]);
 
 	return (
 		<div className="camera-wrapper">
