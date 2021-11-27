@@ -16,7 +16,7 @@ const Camera = (props) => {
 		} else {
 			setImage(null);
 		}
-	}, [webcamRef, image]);
+	}, [webcamRef, image, props]);
 
 	useLayoutEffect(() => {
 		const getCams = async () => {
