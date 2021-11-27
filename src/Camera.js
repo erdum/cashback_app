@@ -38,6 +38,7 @@ const Camera = () => {
 					style={{ width: "75vw", height: "75vh" }}
 					audio={false}
 					ref={webcamRef}
+					screenshotQuality={1}
 					screenshotFormat="image/jpeg"
 					videoConstraints={{ deviceId: test }}
 				/>
