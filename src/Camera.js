@@ -37,10 +37,10 @@ const Camera = (props) => {
 				audio={false}
 				ref={webcamRef}
 				screenshotQuality={1}
-				screenshotFormat="image/jpeg"
+				screenshotFormat="image/png"
 				videoConstraints={{ deviceId: camId }}
 			/>
-			<button onClick={capture}>"Capture Reciept"</button>
+			<button onClick={capture}>Capture Reciept</button>
 			<button
 				onClick={() => {
 					setCamKey(!camKey);

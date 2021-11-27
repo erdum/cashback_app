@@ -116,7 +116,27 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
-		alert(image);
+	};
+
+	const scanReceipt = async (image) => {
+		const apiBase = "https://api.ocr.space/parse/image";
+
+		const formdata = new FormData();
+		formdata.append("base64Image", image);
+		formdata.append("filetype", "PNG");
+
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"x-api-key": "5b8c7cfbc188957";
+			},
+			body: formdata,
+			redirect: "follow",
+		};
+
+		const res = await fetch("https://api.ocr.space/parse/image", requestOptions);
+		const data = await res.text();
+		alert(data);
 	};
 
 	const theme = createTheme({
