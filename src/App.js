@@ -134,7 +134,7 @@ export default function App({ children }) {
 
 		const res = await fetch(apiBase, requestOptions);
 		const data = await res.text();
-		// setPoints(String(Number(points) + 100));
+		setPoints(String(Number(points) + 100));
 		alert(data);
 	};
 
