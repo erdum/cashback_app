@@ -52,7 +52,7 @@ const reducer = (state, action) => {
 const initialFunctionState = {
 	splashScreen: true,
 	layoutScreen: false,
-	// cameraScreen: false
+	cameraScreen: false
 };
 
 export default function App({ children }) {
@@ -108,9 +108,6 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// let newPoints = Number(points) + 100;
-		// newPoints = String(newPoints);
-		// setPoints(newPoints);
 		dispatchFunction({ type: "showCamera" });
 	};
 
@@ -137,8 +134,8 @@ export default function App({ children }) {
 
 		const res = await fetch(apiBase, requestOptions);
 		const data = await res.text();
+		// setPoints(String(Number(points) + 100));
 		alert(data);
-		setPoints(String(Number(points) + 100));
 	};
 
 	const theme = createTheme({

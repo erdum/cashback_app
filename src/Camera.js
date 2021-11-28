@@ -6,7 +6,7 @@ const Camera = (props) => {
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
 	const [camId, setCamId] = useState(null);
-	const [camKey, setCamKey] = useState(0);
+	const [camKey, setCamKey] = useState(1);
 
 	const capture = useCallback(() => {
 		if (image === null) {
