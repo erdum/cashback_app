@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 import "./camera.css";
 
 const Camera = (props) => {
+	const [cam, setCam] = useState(false);
 	const [image, setImage] = useState(null);
 	const webcamRef = useRef(null);
 	const [camId, setCamId] = useState(null);
@@ -19,27 +20,31 @@ const Camera = (props) => {
 	}, [webcamRef, image, props]);
 
 	useLayoutEffect(() => {
+		setCam(false);
 		const getCams = async () => {
 			const devices = await window.navigator.mediaDevices.enumerateDevices();
 			const camList = devices.filter((dev) => {
 				return dev.kind === "videoinput";
 			});
 			setCamId(camList[Number(camKey)].deviceId);
+			setCam(true);
 		};
 		getCams();
 	}, [camKey]);
 
 	return (
 		<div className="camera-wrapper">
-			<Webcam
-				className="camera"
-				style={{ width: "75vw", height: "75vh" }}
-				audio={false}
-				ref={webcamRef}
-				screenshotQuality={1}
-				screenshotFormat="image/png"
-				videoConstraints={{ deviceId: camId }}
-			/>
+			{cam && (
+				<Webcam
+					className="camera"
+					style={{ width: "75vw", height: "75vh" }}
+					audio={false}
+					ref={webcamRef}
+					screenshotQuality={1}
+					screenshotFormat="image/png"
+					videoConstraints={{ deviceId: camId }}
+				/>
+			)}
 			<button onClick={capture}>Capture Reciept</button>
 			<button
 				onClick={() => {
