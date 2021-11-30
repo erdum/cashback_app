@@ -23,9 +23,8 @@ const scanReceipt = async (image) => {
 	// setPoints(String(Number(points) + 100));
 	// alert(data);
 
-	const worker = createWorker({
-		logger: (m) => console.log(m),
-	});
+	const worker = createWorker();
+		// logger: (m) => console.log(m),
 
 	await worker.load();
 	await worker.loadLanguage("eng");
@@ -35,7 +34,7 @@ const scanReceipt = async (image) => {
 	} = await worker.recognize(
 		"https://tesseract.projectnaptha.com/img/eng_bw.png"
 	);
-	console.log(text);
+	console.log(data);
 	await worker.terminate();
 };
 
