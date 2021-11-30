@@ -139,7 +139,7 @@ export default function App({ children }) {
 		setPoints(String(Number(points) + 100));
 		alert(data);
 		console.log(res);
-		console.log(data);
+		console.log(data.ParsedResults[0]);
 	};
 
 	const theme = createTheme({
