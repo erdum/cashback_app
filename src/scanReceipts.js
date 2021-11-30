@@ -1,4 +1,4 @@
-import { createWorker } from "tesseract";
+import { createWorker } from "tesseract.js";
 
 const scanReceipt = async (image) => {
 	// const apiBase = "https://api.ocr.space/parse/image";
