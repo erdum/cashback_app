@@ -108,8 +108,7 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(null);
+		dispatchFunction({ type: "showCamera" });
 	};
 
 	const capture = async (image) => {
@@ -122,8 +121,8 @@ export default function App({ children }) {
 		const apiBase = "https://api.cloudmersive.com/ocr/receipts/photo/to/csv";
 
 		const formdata = new FormData();
-		// formdata.append("imageFile", image);
-		formdata.append("imageFile", "https://www.inogic.com/blog/wp-content/uploads/2020/09/Receipt-Processor-AI-Builder-in-Canvas-App-9.png");
+		formdata.append("imageFile", image);
+		// formdata.append("imageFile", "https://www.inogic.com/blog/wp-content/uploads/2020/09/Receipt-Processor-AI-Builder-in-Canvas-App-9.png");
 
 		const requestOptions = {
 			method: "POST",
