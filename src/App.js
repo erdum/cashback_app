@@ -136,8 +136,9 @@ export default function App({ children }) {
 
 		const res = await fetch(apiBase, requestOptions);
 		const data = await res.json();
+		const test = JSON.stringify(data);
 		setPoints(String(Number(points) + 100));
-		alert(JSON.stringify(data.ParsedResults));
+		alert(test);
 	};
 
 	const theme = createTheme({
