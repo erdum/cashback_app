@@ -108,7 +108,8 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		scanReceipt(null);
 	};
 
 	const capture = async (image) => {
@@ -128,7 +129,7 @@ export default function App({ children }) {
 			method: "POST",
 			headers: {
 				// "Apikey": "5b8c7cfbc188957",
-				"Apikey": "628139e5-482e-46c9-8734-7293d6e2a500",
+				"Apikey": "628139e5-482e-46c9-8734-7293d6e2a500"
 			},
 			body: formdata,
 			redirect: "follow",
@@ -138,6 +139,8 @@ export default function App({ children }) {
 		const data = await res.text();
 		setPoints(String(Number(points) + 100));
 		alert(data);
+		console.log(res);
+		console.log(data);
 	};
 
 	const theme = createTheme({
