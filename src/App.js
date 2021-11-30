@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
 // import getCamera from "./getCamera";
+import scanReceipt from "./scanReceipts";
 import avatar from "./avatar.webp";
 
 import { initializeApp } from "firebase/app";
@@ -114,30 +115,6 @@ export default function App({ children }) {
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		scanReceipt(image);
-	};
-
-	const scanReceipt = async (image) => {
-		const apiBase = "https://api.ocr.space/parse/image";
-		// const apiBase = "https://api.cloudmersive.com/ocr/receipts/photo/to/csv";
-
-		const formdata = new FormData();
-		formdata.append("base64Image", image);
-		// formdata.append("imageFile", "https://www.inogic.com/blog/wp-content/uploads/2020/09/Receipt-Processor-AI-Builder-in-Canvas-App-9.png");
-
-		const requestOptions = {
-			method: "POST",
-			headers: {
-				"Apikey": "5b8c7cfbc188957",
-				// "Apikey": "628139e5-482e-46c9-8734-7293d6e2a500"
-			},
-			body: formdata,
-			redirect: "follow",
-		};
-
-		const res = await fetch(apiBase, requestOptions);
-		const data = await res.text();
-		setPoints(String(Number(points) + 100));
-		alert(data);
 	};
 
 	const theme = createTheme({
