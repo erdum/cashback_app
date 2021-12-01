@@ -141,6 +141,7 @@ export default function App({ children }) {
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
+					data=""
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
