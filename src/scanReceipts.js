@@ -4,6 +4,7 @@ const scanReceipt = async (image) => {
 
 	const formdata = new FormData();
 	formdata.append("base64Image", image);
+	formdata.append("isTable", true);
 	// formdata.append("imageFile", "https://www.inogic.com/blog/wp-content/uploads/2020/09/Receipt-Processor-AI-Builder-in-Canvas-App-9.png");
 
 	const requestOptions = {
