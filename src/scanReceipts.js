@@ -20,7 +20,12 @@ const scanReceipt = async (image) => {
 	let data = await res.json();
 	data = data.ParsedResults[0].ParsedText;
 	data = JSON.stringify(data);
-	alert(data);
+
+	const intRegex = /^.*\d+.*$/gm;
+
+	const test = data.match(intRegex);
+
+	alert(test);
 };
 
 export default scanReceipt;
