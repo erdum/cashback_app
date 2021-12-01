@@ -100,7 +100,7 @@
 	overflow: auto;
 }
 
-.MFC-display span::before {
+.MFC-display span {
 	width: 80%;
 	margin-top: 4rem;
 }
