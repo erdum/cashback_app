@@ -18,7 +18,7 @@ const scanReceipt = async (image) => {
 
 	const res = await fetch(apiBase, requestOptions);
 	const data = await res.text();
-	const jsonData = JSON.parse(data);
+	let jsonData = JSON.parse(data);
 	jsonData = JSON.stringify(jsonData.ParsedResults);
 	alert(data);
 	alert(jsonData);
