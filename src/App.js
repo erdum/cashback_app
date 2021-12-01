@@ -109,8 +109,7 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		capture(null);
+		dispatchFunction({ type: "showCamera" });
 	};
 
 	const capture = async (image) => {
