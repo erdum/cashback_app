@@ -17,11 +17,9 @@ const scanReceipt = async (image) => {
 	};
 
 	const res = await fetch(apiBase, requestOptions);
-	const data = await res.text();
-	let jsonData = JSON.parse(data);
-	jsonData = JSON.stringify(jsonData.ParsedResults[0].ParsedText);
+	let data = await res.json();
+	data = data.ParsedResults[0].ParsedText;
 	alert(data);
-	alert(jsonData);
 };
 
 export default scanReceipt;
