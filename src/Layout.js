@@ -46,9 +46,7 @@ const Layout = forwardRef((props, ref) => {
 					<span>$</span>
 					{props.points[0] === "0" ? "0" : props.points}
 				</h1>
-				<button onClick={props.handleEarn}>
-					Earn Points
-				</button>
+				<button onClick={props.handleEarn}>Earn Points</button>
 			</div>
 			<Menu
 				component="nav"
@@ -59,7 +57,14 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				{props.data === "" ? <Skeleton variant="text" />: null}
+				{props.data === "" ? (
+					<>
+						<Skeleton variant="text" />
+						<Skeleton variant="text" />
+						<Skeleton variant="text" />
+						<Skeleton variant="text" />
+					</>
+				) : null}
 			</div>
 		</div>
 	);
