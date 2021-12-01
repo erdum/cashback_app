@@ -20,7 +20,6 @@ const scanReceipt = async (image) => {
 
 	const res = await fetch(apiBase, requestOptions);
 	const data = await res.text();
-	setPoints(String(Number(points) + 100));
 	alert(data);
 };
 
