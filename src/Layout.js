@@ -63,6 +63,7 @@ const Layout = forwardRef((props, ref) => {
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
+						<Skeleton variant="text" />
 					</>
 				) : null}
 			</div>
