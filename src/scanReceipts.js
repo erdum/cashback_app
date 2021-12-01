@@ -21,7 +21,7 @@ const scanReceipt = async (image) => {
 	data = data.ParsedResults[0].ParsedText;
 	data = JSON.stringify(data);
 
-	const intRegex = /^.*\d+.*$/gm;
+	const intRegex = /^.*[0-9]+.*$/g;
 
 	const test = data.match(intRegex);
 
