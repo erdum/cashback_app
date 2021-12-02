@@ -65,7 +65,7 @@ const Layout = forwardRef((props, ref) => {
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
 					</>
-				) : null}
+				) : <p>{props.data}</p>}
 			</div>
 		</div>
 	);

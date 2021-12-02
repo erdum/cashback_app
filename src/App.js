@@ -63,6 +63,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
+	const [data, setData] = useState("");
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -115,7 +116,7 @@ export default function App({ children }) {
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
-		scanReceipt(image);
+		setData(scanReceipt(image));
 	};
 
 	const theme = createTheme({
@@ -141,7 +142,7 @@ export default function App({ children }) {
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
-					data=""
+					data={data}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
