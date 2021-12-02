@@ -110,13 +110,13 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(selectedImage);
+		dispatchFunction({ type: "showCamera" });
 	};
 
 	const capture = async (image) => {
-		// dispatchFunction({ type: "hideCamera" });
+		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
+		scanReceipt(selectedImage);
 	};
 
 	const theme = createTheme({
@@ -132,13 +132,6 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<input
-				type="file"
-				name="ocr-image"
-				onChange={(event) => {
-					setSelectedImage(event.target.files[0]);
-				}}
-			/>
 			{functionState.splashScreen && (
 				<SplashScreen loader={loader} handleSignin={signin} />
 			)}
