@@ -7,7 +7,7 @@ const scanReceipt = async (image) => {
 		await worker.load();
 		await worker.loadLanguage("eng");
 		await worker.initialize("eng");
-		const { data: { text } } = await worker.recognize("https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg");
+		const { data: { text } } = await worker.recognize(image);
 		await worker.terminate();
 		console.log(text);
 	} catch(err) {

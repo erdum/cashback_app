@@ -53,7 +53,7 @@ const reducer = (state, action) => {
 const initialFunctionState = {
 	splashScreen: true,
 	layoutScreen: false,
-	cameraScreen: false
+	cameraScreen: false,
 };
 
 export default function App({ children }) {
@@ -63,6 +63,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
+	const [selectedImage, setSelectedImage] = useState(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -110,7 +111,7 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(null);
+		scanReceipt(selectedImage);
 	};
 
 	const capture = async (image) => {
@@ -131,6 +132,13 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
+			<input
+				type="file"
+				name="ocr-image"
+				onChange={(event) => {
+					setSelectedImage(event.target.files[0]);
+				}}
+			/>
 			{functionState.splashScreen && (
 				<SplashScreen loader={loader} handleSignin={signin} />
 			)}
