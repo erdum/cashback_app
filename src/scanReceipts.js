@@ -1,14 +1,21 @@
-import { createWorker } from "tesseract.js";
+import Tesseract from "tesseract.js";
 
 const scanReceipt = async (image) => {
-	const worker = createWorker();
+	// const worker = createWorker();
 
-	try{
-		await worker.load();
-		await worker.loadLanguage("eng");
-		await worker.initialize("eng");
-		const { data: { text } } = await worker.recognize(image);
-		await worker.terminate();
+	// try{
+	// 	await worker.load();
+	// 	await worker.loadLanguage("eng");
+	// 	await worker.initialize("eng");
+	// 	const { data: { text } } = await worker.recognize(image);
+	// 	await worker.terminate();
+	// 	console.log(text);
+	// } catch(err) {
+	// 	console.log(err);
+	// }
+
+	try {
+		const { data: { text } } = await Tesseract.recognize(image, "eng");
 		console.log(text);
 	} catch(err) {
 		console.log(err);
