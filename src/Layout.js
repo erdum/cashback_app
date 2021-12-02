@@ -46,7 +46,7 @@ const Layout = forwardRef((props, ref) => {
 					<span>$</span>
 					{props.points[0] === "0" ? "0" : props.points}
 				</h1>
-				<button onClick={props.handleEarn}>Earn Points</button>
+				<button onClick={props.handleEarn}>Scan</button>
 			</div>
 			<Menu
 				component="nav"

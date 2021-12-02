@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
@@ -63,6 +64,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
+	const [ocrLoader, setOcrLoader] = useState(false);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -113,9 +115,10 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
+		setOcrLoader(true);
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
-		scanReceipt(image);
+		scanReceipt(image, setOcrLoader);
 	};
 
 	const theme = createTheme({
@@ -136,13 +139,21 @@ export default function App({ children }) {
 			)}
 			{functionState.layoutScreen && (
 				<Layout
+					style={ocrLoader ? { filter: "blur(5px)" } : { filter: "none" }}
 					handleLogout={signout}
 					handleEarn={earn}
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					data=""
-				/>
+				>
+					{children}
+					{ocrLoader && (
+						<div className="loader">
+							<CircularProgress size={120} />
+						</div>
+					)}
+				</Layout>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
 		</ThemeProvider>
