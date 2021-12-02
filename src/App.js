@@ -109,13 +109,13 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		scanReceipt(null);
 	};
 
 	const capture = async (image) => {
-		dispatchFunction({ type: "hideCamera" });
+		// dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
-		scanReceipt(image);
 	};
 
 	const theme = createTheme({
