@@ -63,7 +63,6 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [selectedImage, setSelectedImage] = useState(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
