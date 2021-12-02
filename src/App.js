@@ -110,13 +110,13 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		setData(scanReceipt(image));
 	};
 
 	const capture = async (image) => {
-		dispatchFunction({ type: "hideCamera" });
+		// dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
-		setData(scanReceipt(image));
 	};
 
 	const theme = createTheme({
@@ -132,6 +132,8 @@ export default function App({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
+			<input type="file" onChange={(event) => {console.log(event)}}
+			/>
 			{functionState.splashScreen && (
 				<SplashScreen loader={loader} handleSignin={signin} />
 			)}
