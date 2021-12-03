@@ -64,7 +64,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [ocrLoader, setOcrLoader] = useState(false);
+	const [ocrProcess, setOcrProcess] = useState(false);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -111,14 +111,14 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(null, setOcrLoader);
+		dispatchFunction({ type: "showCamera" });
+		setOcrProcess(true);
 	};
 
 	const capture = async (image) => {
-		setOcrLoader(true);
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
+		scanReceipt(null, setOcrProcess);
 	};
 
 	const theme = createTheme({
@@ -139,7 +139,7 @@ export default function App({ children }) {
 			)}
 			{functionState.layoutScreen && (
 				<Layout
-					style={ocrLoader ? { filter: "blur(5px)" } : { filter: "none" }}
+					style={ocrProcess ? { filter: "blur(5px)" } : { filter: "none" }}
 					handleLogout={signout}
 					handleEarn={earn}
 					points={points}
@@ -148,7 +148,7 @@ export default function App({ children }) {
 					data=""
 				>
 					{children}
-					{ocrLoader && (
+					{ocrProcess && (
 						<div className="loader">
 							<CircularProgress size={120} />
 						</div>
