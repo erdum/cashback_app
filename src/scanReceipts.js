@@ -37,7 +37,7 @@ const scanReceipt = async (image) => {
 			"method": "post",
 			"Content-Type": "application/x-www-form-urlencoded",
 			headers: {
-				"authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"
+				"authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"),
 			},
 			body: data
 		});
