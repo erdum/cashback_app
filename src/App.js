@@ -35,6 +35,22 @@ const restUserData = {
 	uid: "",
 };
 
+function dataURLtoFile(dataurl, filename) {
+	let arr = dataurl.split(","),
+		mime = arr[0].match(/:(.*?);/)[1],
+		bstr = atob(arr[1]),
+		n = bstr.length,
+		u8arr = new Uint8Array(n);
+
+	while (n--) {
+		u8arr[n] = bstr.charCodeAt(n);
+	}
+
+	return new File([u8arr], filename, {
+		type: mime,
+	});
+}
+
 const reducer = (state, action) => {
 	switch (action.type) {
 		case "hideSplash":
@@ -106,16 +122,17 @@ export default function App({ children }) {
 			userData.current.uid = "";
 			dispatchFunction({ type: "showSplash" });
 		});
+		scanReceipt(null);
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(null);
+		dispatchFunction({ type: "showCamera" });
 	};
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
+		alert(dataURLtoFile(image, "test.png"));
 	};
 
 	const theme = createTheme({
