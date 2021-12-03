@@ -15,6 +15,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -23,8 +24,9 @@ const firebaseConfig = {
 	messagingSenderId: "32610232361",
 	appId: "1:32610232361:web:ea6276c703a870a10bd438",
 };
-initializeApp(firebaseConfig);
+const firebasApp = initializeApp(firebaseConfig);
 const auth = getAuth();
+const storage = getStorage(firebaseApp);
 const provider = new GoogleAuthProvider();
 
 const restUserData = {
@@ -35,7 +37,15 @@ const restUserData = {
 	uid: "",
 };
 
-function dataURLtoFile(dataurl, filename) {
+const uploadImage = async (blob, name) => {
+	const fileRef = ref(storage, name + ".png");
+	uploadBytes(fielRef, blob)
+		.then((snapshot) => {
+			alert("File successfuly uploaded to google cloud storage");
+		});
+};
+
+const dataURLtoFile = (dataurl, filename) => {
 	let arr = dataurl.split(","),
 		mime = arr[0].match(/:(.*?);/)[1],
 		bstr = atob(arr[1]),
@@ -132,7 +142,7 @@ export default function App({ children }) {
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
-		alert(dataURLtoFile(image, "test.png"));
+		uploadImage(dataURLtoFile(image, "test.png"), "test");
 	};
 
 	const theme = createTheme({
