@@ -15,9 +15,14 @@ const scanReceipt = async (image) => {
 			body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
 		});
 
-		const data = await res.json();
+		let data = await res.json();
+		data = data.result[0].prediction;
 
-		console.log(data.result[0].prediction);
+		let test = data.filter((row) => {
+			return row.label === "Total_Amount";
+		});
+
+		console.log(test);
 
 	} catch (err) {
 		alert(err);
