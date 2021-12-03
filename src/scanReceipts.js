@@ -18,11 +18,13 @@ const scanReceipt = async (image) => {
 		let data = await res.json();
 		data = data.result[0].prediction;
 
-		let test = data.filter((row) => {
+		let total = data.filter((row) => {
 			return row.label === "Total_Amount";
 		});
 
-		console.log(test[0].ocr_text);
+		total = total[0].ocr_text;
+
+		alert(total);
 
 	} catch (err) {
 		alert(err);
