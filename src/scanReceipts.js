@@ -15,7 +15,9 @@ const scanReceipt = async (image) => {
 			body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
 		});
 
-		console.log(res);
+		const data = await res.json();
+
+		console.log(data);
 
 	} catch (err) {
 		alert(err);
