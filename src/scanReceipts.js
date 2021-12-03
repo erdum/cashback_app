@@ -57,7 +57,7 @@ const scanReceipt = async (image) => {
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"),
 			}
-			body: JSON.stringify(form_data);
+			body: JSON.stringify(form_data)
 		});
 
 		console.log(res);
