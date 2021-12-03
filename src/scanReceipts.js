@@ -7,12 +7,10 @@ const scanReceipt = async (image, setOcrLoader) => {
 		// } = await Tesseract.recognize(image, "eng");
 		// alert(text);
 		// setOcrLoader(false);
-		let fileName = "rec.jpg";
-		let base64str = image;
 		let jsonData = {
-			file_data: base64str,
-			file_name: fileName,
-			boost_mode: 1,
+			file_url: "https://media.istockphoto.com/vectors/realistic-paper-shop-receipt-vector-cashier-bill-on-white-background-vector-id889405434?k=20&m=889405434&s=612x612&w=0&h=rjD4g1QamuHPz9wxmw6tfiA88L-qbSwI_-8bMl748uw=",
+			file_name: "test.jpg",
+			categories: "Auto"
 		};
 
 		let USER_NAME = "erdumadnan";
@@ -33,10 +31,7 @@ const scanReceipt = async (image, setOcrLoader) => {
 		};
 
 		const res = await fetch(options);
-		const text = await res.text();
-
-		alert(text);
-
+		alert(JSON.stringify(res));
 	} catch (err) {
 		alert(err);
 	}
