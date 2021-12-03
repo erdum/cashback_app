@@ -8,8 +8,8 @@ const scanReceipt = async (image, setOcrLoader) => {
 		// alert(text);
 		// setOcrLoader(false);
 		let jsonData = {
-			file_url: "https://media.istockphoto.com/vectors/realistic-paper-shop-receipt-vector-cashier-bill-on-white-background-vector-id889405434?k=20&m=889405434&s=612x612&w=0&h=rjD4g1QamuHPz9wxmw6tfiA88L-qbSwI_-8bMl748uw=",
-			file_name: "test.jpg",
+			file_url: "https://marketingresources.com/wp-content/uploads/2019/03/OCR_MASTER_Receipt-01.png",
+			file_name: "OCR_MASTER_Receipt-01.png",
 			categories: "Auto"
 		};
 
