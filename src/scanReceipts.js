@@ -17,7 +17,7 @@ const scanReceipt = async (image, setOcrLoader) => {
 		let API_KEY = "1dce7281a3649b4d9bc742926ab3d3a4";
 		let CLIENT_ID = "vrfOeWTZOsxe66HHw6iVtD2NMeroxmI8mWOoL59";
 		let ENVIRONMENT_URL = "https://api.veryfi.com/";
-		let	url = "https://" + ENVIRONMENT_URL + "/api/v7/partner/documents/",
+		let	url = "https://" + ENVIRONMENT_URL + "/api/v7/partner/documents/";
 
 		let options = {
 			method: "POST",
