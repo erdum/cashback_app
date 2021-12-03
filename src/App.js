@@ -15,7 +15,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -37,12 +37,19 @@ const restUserData = {
 	uid: "",
 };
 
+const downloadImage = async (name) => {
+	const fileRef = ref(storage, name + ".png");
+	const url = getDownloadURL(fileRef);
+	const img = fetch(url);
+	const img = img.blob();
+	return img;
+};
+
 const uploadImage = async (blob, name) => {
 	const fileRef = ref(storage, name + ".png");
-	uploadBytes(fileRef, blob)
-		.then((snapshot) => {
-			alert("File successfuly uploaded to google cloud storage");
-		});
+	uploadBytes(fileRef, blob).then((snapshot) => {
+		alert("File successfuly uploaded to google cloud storage");
+	});
 };
 
 const dataURLtoFile = (dataurl, filename) => {
@@ -59,7 +66,7 @@ const dataURLtoFile = (dataurl, filename) => {
 	return new File([u8arr], filename, {
 		type: mime,
 	});
-}
+};
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -89,6 +96,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
+	const [data, setData] = useState("");
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -143,6 +151,8 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
 		uploadImage(dataURLtoFile(image, "test.png"), "test");
+		const imgSrc = await downloadImage("test");
+		setData(imgSrc);
 	};
 
 	const theme = createTheme({
@@ -168,7 +178,7 @@ export default function App({ children }) {
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
-					data=""
+					data={data}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
