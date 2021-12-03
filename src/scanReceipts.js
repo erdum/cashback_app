@@ -30,7 +30,7 @@ const scanReceipt = async (image, setOcrLoader) => {
 			body: JSON.stringify(jsonData),
 		};
 
-		const res = await fetch(url=base, options);
+		const res = await fetch(base, options);
 		const data = await res.json();
 		console.log(data);
 	} catch (err) {
