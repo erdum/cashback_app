@@ -22,7 +22,7 @@ const scanReceipt = async (image) => {
 			return row.label === "Total_Amount";
 		});
 
-		console.log(test);
+		console.log(test[0].ocr_text);
 
 	} catch (err) {
 		alert(err);
