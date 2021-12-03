@@ -18,8 +18,8 @@ const scanReceipt = async (image) => {
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"),
 			},
-			// body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
-			body: payload
+			body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
+			// body: payload
 		});
 
 		let data = await res.json();
