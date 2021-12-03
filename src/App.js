@@ -112,7 +112,7 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(image, setOcrLoader);
+		scanReceipt(null, setOcrLoader);
 	};
 
 	const capture = async (image) => {
