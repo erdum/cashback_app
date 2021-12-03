@@ -7,8 +7,8 @@ const scanReceipt = async (image) => {
 		// } = await Tesseract.recognize(image, "eng");
 		// alert(text);
 
-		var data = new FormData();
-		data.append("file", image); // This is file object
+		// var data = new FormData();
+		// data.append("file", image); // This is file object
 
 		var xhr = new XMLHttpRequest();
 
@@ -27,7 +27,7 @@ const scanReceipt = async (image) => {
 			"Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:")
 		);
 
-		xhr.send(data);
+		xhr.send("urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg");
 	} catch (err) {
 		alert(err);
 	}
