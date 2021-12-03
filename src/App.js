@@ -24,7 +24,7 @@ const firebaseConfig = {
 	messagingSenderId: "32610232361",
 	appId: "1:32610232361:web:ea6276c703a870a10bd438",
 };
-const firebasApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth();
 const storage = getStorage(firebaseApp);
 const provider = new GoogleAuthProvider();
@@ -39,7 +39,7 @@ const restUserData = {
 
 const uploadImage = async (blob, name) => {
 	const fileRef = ref(storage, name + ".png");
-	uploadBytes(fielRef, blob)
+	uploadBytes(fileRef, blob)
 		.then((snapshot) => {
 			alert("File successfuly uploaded to google cloud storage");
 		});
