@@ -17,7 +17,7 @@ const scanReceipt = async (image) => {
 
 		const data = await res.json();
 
-		console.log(data);
+		console.log(data.result[0].prediction);
 
 	} catch (err) {
 		alert(err);
