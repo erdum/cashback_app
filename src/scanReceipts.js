@@ -28,7 +28,7 @@ const scanReceipt = async (image) => {
 
 		total = total[0].ocr_text;
 
-		return(text);
+		return(total);
 
 	} catch (err) {
 		return(err);
