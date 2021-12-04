@@ -1,40 +1,23 @@
-// import { createWorker } from "tesseract.js";
-
+import Tesseract from "tesseract.js";
 
 const scanReceipt = async (image) => {
 	try {
-		// http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg
+		const exampleImage = "http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg";
 
-		const url = "https://app.nanonets.com/api/v2/OCR/Model/4616eef1-9ee9-4a4b-beba-88eba6135f89/LabelUrls/";
+		const worker = Tesseract.createWorker();
+		await worker.load();
+		await worker.loadLanguage("eng");
+		await worker.initialize("eng");
 
-		const res = await fetch(url, {
-			"method": "post",
-			"mode": "cors",
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded",
-				"Authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"),
-			},
-			// body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
-			// body: "urls=https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
-			// body: "urls=https://firebasestorage.googleapis.com/v0/b/loyality-program-e7185.appspot.com/o/rqqrf6qS3CVZEsyL7iScIpiYq7Q2.png?alt=media&token=d25e7216-8f65-448f-ab0a-bb7a1b39550f"
-			// body: payload
-			// body: "urls=" + image,
-			body: URL.createObjectURL(image)
-		});
+		let result = await worker.detect(exampleImage);
+		console.log(result.data);
 
-		let data = await res.json();
-		data = data.result[0].prediction;
+		result = await worker.recognize(exampleImage);
+		console.log(result.data);
 
-		let total = data.filter((row) => {
-			return row.label === "Total_Amount";
-		});
-
-		total = total[0].ocr_text;
-
-		return(total);
-
+		await worker.terminate();
 	} catch (err) {
-		return(err);
+		return err;
 	}
 };
 

@@ -3,7 +3,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
-// import getCamera from "./getCamera";
 import scanReceipt from "./scanReceipts";
 import avatar from "./avatar.webp";
 
@@ -40,9 +39,7 @@ const restUserData = {
 const getImage = async (name) => {
 	const fileRef = ref(storage, name + ".png");
 	const url = await getDownloadURL(fileRef);
-	let img = await fetch(url);
-	img = img.blob();
-	return img;
+	return url;
 };
 
 const uploadImage = async (blob, name) => {
@@ -145,17 +142,13 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage(userData.current.uid);
-		console.log(img);
-		const amount = await scanReceipt(img);
-		console.log(amount);
+		scanReceipt(null);
 	};
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		uploadImage(dataURLtoFile(image, userData.current.uid + ".png"), userData.current.uid);
-		const imgUrl = await getImage(userData.current.uid);
-		const amount = await scanReceipt(imgUrl);
+		const amount = await scanReceipt(image);
 		setPoints(String(amount));
 	};
 
