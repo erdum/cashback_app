@@ -96,7 +96,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [data, setData] = useState("");
+	const data = useRef("");
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -147,7 +147,8 @@ export default function App({ children }) {
 		// dispatchFunction({ type: "showCamera" });
 		const imgSrc = await downloadImage("test");
 		console.log(imgSrc);
-		setData(imgSrc);
+		data.current = imgSrc;
+		setPoints("2200");
 	};
 
 	const capture = async (image) => {
@@ -179,7 +180,7 @@ export default function App({ children }) {
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
-					data={data}
+					data={data.current}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
