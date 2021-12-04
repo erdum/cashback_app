@@ -144,7 +144,7 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
+		dispatchFunction({ type: "showCamera" });
 		const img = await getImage(userData.current.uid);
 		console.log(img);
 		const amount = await scanReceipt(img);
