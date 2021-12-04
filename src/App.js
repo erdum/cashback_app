@@ -37,12 +37,10 @@ const restUserData = {
 	uid: "",
 };
 
-const downloadImage = async (name) => {
+const getImage = async (name) => {
 	const fileRef = ref(storage, name + ".png");
 	const url = await getDownloadURL(fileRef);
-	let img = await fetch(url);
-	img = await img.blob();
-	return img;
+	return url;
 };
 
 const uploadImage = async (blob, name) => {
@@ -140,21 +138,19 @@ export default function App({ children }) {
 			userData.current.uid = "";
 			dispatchFunction({ type: "showSplash" });
 		});
-		scanReceipt(null);
 	};
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const imgSrc = await downloadImage("test");
-		console.log(imgSrc);
-		data.current = imgSrc;
-		setPoints("2200");
 	};
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
 		uploadImage(dataURLtoFile(image, "test.png"), "test");
+		const imgUrl = await getImage("test");
+		const amount = await scanReceipt(imgUrl);
+		setPoints(amount);
 	};
 
 	const theme = createTheme({
