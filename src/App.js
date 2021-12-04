@@ -143,7 +143,7 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const amount = await scanReceipt(imgUrl);
+		const amount = await scanReceipt(null);
 		console.log(amount);
 	};
 
