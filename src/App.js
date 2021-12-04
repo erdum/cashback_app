@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useReducer, useLayoutEffect } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
@@ -115,10 +115,6 @@ export default function App({ children }) {
 			}
 		});
 	}, []);
-
-	useLayoutEffect(() => {
-		data.current = URL.createObjectURL(data.current);
-	}, [points]);
 
 	const signin = async () => {
 		setLoader(true);
