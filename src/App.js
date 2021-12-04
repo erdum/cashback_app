@@ -152,7 +152,7 @@ export default function App({ children }) {
 			const amount = await scanReceipt(imgUrl);
 			setPoints(String(amount));
 		} catch(err) {
-			setPoints(String(err));
+			alert(err);
 		}
 	};
 
