@@ -6,7 +6,7 @@ const scanReceipt = async (image) => {
 		// http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg
 
 		let reqData = new FormData();
-		reqData.append("file", image);
+		reqData.append("file", URL.createObjectURL(image));
 
 		const url = "https://app.nanonets.com/api/v2/OCR/Model/4616eef1-9ee9-4a4b-beba-88eba6135f89/LabelUrls/";
 
