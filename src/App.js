@@ -146,11 +146,14 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
-		setPoints(String(Number(points) + 100));
-		uploadImage(dataURLtoFile(image, "test.png"), "test");
-		const imgUrl = await getImage("test");
-		const amount = await scanReceipt(imgUrl);
-		setPoints(amount);
+		try {
+			uploadImage(dataURLtoFile(image, userData.current.uid + ".png"), userData.current.uid);
+			const imgUrl = await getImage(userData.current.uid);
+			const amount = await scanReceipt(imgUrl);
+			setPoints(String(amount));
+		} catch(err) {
+			setPoints(String(err));
+		}
 	};
 
 	const theme = createTheme({
