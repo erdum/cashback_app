@@ -40,7 +40,9 @@ const restUserData = {
 const getImage = async (name) => {
 	const fileRef = ref(storage, name + ".png");
 	const url = await getDownloadURL(fileRef);
-	return url;
+	let img = await fetch(url);
+	img = img.blob();
+	return img;
 };
 
 const uploadImage = async (blob, name) => {
@@ -145,8 +147,8 @@ export default function App({ children }) {
 		// dispatchFunction({ type: "showCamera" });
 		const amount = await scanReceipt(null);
 		console.log(amount);
-		const url = await getImage(userData.current.uid);
-		console.log(url);
+		const img = await getImage(userData.current.uid);
+		console.log(img);
 	};
 
 	const capture = async (image) => {
