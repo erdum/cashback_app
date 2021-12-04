@@ -145,6 +145,8 @@ export default function App({ children }) {
 		// dispatchFunction({ type: "showCamera" });
 		const amount = await scanReceipt(null);
 		console.log(amount);
+		const url = await getImage(userData.current.uid);
+		console.log(url);
 	};
 
 	const capture = async (image) => {
