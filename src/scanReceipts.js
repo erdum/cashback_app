@@ -1,6 +1,5 @@
 import { createWorker } from "tesseract.js";
 
-const worker = createWorker();
 
 const scanReceipt = async (image) => {
 	try {
@@ -29,6 +28,7 @@ const scanReceipt = async (image) => {
 
 		// total = total[0].ocr_text;
 
+		const worker = createWorker();
 		worker.load();
 		worker.loadLanguage("eng");
 		worker.initialize("eng");
