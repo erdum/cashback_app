@@ -144,15 +144,15 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		const imgSrc = await downloadImage("test");
+		setData(imgSrc);
 	};
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
 		setPoints(String(Number(points) + 100));
 		uploadImage(dataURLtoFile(image, "test.png"), "test");
-		const imgSrc = await downloadImage("test");
-		setData(imgSrc);
 	};
 
 	const theme = createTheme({
