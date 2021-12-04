@@ -149,6 +149,8 @@ export default function App({ children }) {
 		console.log(amount);
 		const img = await getImage(userData.current.uid);
 		console.log(img);
+		const amount = await scanReceipt(img);
+		console.log(amount);
 	};
 
 	const capture = async (image) => {
