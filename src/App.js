@@ -146,6 +146,7 @@ export default function App({ children }) {
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
 		const imgSrc = await downloadImage("test");
+		console.log(imgSrc);
 		setData(imgSrc);
 	};
 
