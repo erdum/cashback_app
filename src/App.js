@@ -118,7 +118,7 @@ export default function App({ children }) {
 
 	useLayoutEffect(() => {
 		data.current = URL.createObjectURL(data.current);
-	}, [poitns]);
+	}, [points]);
 
 	const signin = async () => {
 		setLoader(true);
