@@ -148,8 +148,8 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		try {
 			uploadImage(dataURLtoFile(image, userData.current.uid + ".png"), userData.current.uid);
-			const imgUrl = await getImage(userData.current.uid);
-			const amount = await scanReceipt(imgUrl);
+			// const imgUrl = await getImage(userData.current.uid);
+			const amount = await scanReceipt("gs://" + firebaseConfig.storageBucket + "/" + userData.current.uid + ".png");
 			setPoints(String(amount));
 		} catch(err) {
 			alert(err);
