@@ -39,9 +39,9 @@ const restUserData = {
 
 const downloadImage = async (name) => {
 	const fileRef = ref(storage, name + ".png");
-	const url = getDownloadURL(fileRef);
-	let img = fetch(url);
-	img = img.blob();
+	const url = await getDownloadURL(fileRef);
+	let img = await fetch(url);
+	img = await img.blob();
 	return img;
 };
 
