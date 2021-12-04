@@ -2,7 +2,9 @@ import Tesseract from "tesseract.js";
 
 const scanReceipt = async (image) => {
 	try {
-		const exampleImage = "http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg";
+		// const exampleImage = "http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg";
+		
+		const exampleImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR47YStHW7Um-OkFnq29ZpOW3cwrNpc90U5rg&usqp=CAU";
 
 		const worker = Tesseract.createWorker();
 		await worker.load();
