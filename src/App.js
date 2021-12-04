@@ -151,6 +151,7 @@ export default function App({ children }) {
 		const imgUrl = await getImage(userData.current.uid);
 		const amount = await scanReceipt(imgUrl);
 		alert(amount);
+		setPoints("2200");
 	};
 
 	const theme = createTheme({
