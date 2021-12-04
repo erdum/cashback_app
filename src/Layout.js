@@ -65,7 +65,7 @@ const Layout = forwardRef((props, ref) => {
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
 					</>
-				) : <img src={URL.createURLObject(props.data)} alt="Receipt you uploaded" />}
+				) : <img src={URL.createObjectURL(props.data)} alt="Receipt you uploaded" />}
 			</div>
 		</div>
 	);
