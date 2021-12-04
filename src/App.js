@@ -138,6 +138,7 @@ export default function App({ children }) {
 			userData.current.uid = "";
 			dispatchFunction({ type: "showSplash" });
 		});
+		getImage(null);
 	};
 
 	const earn = async () => {
