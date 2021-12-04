@@ -14,7 +14,8 @@ const scanReceipt = async (image) => {
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Authorization": "Basic " + btoa("B3PwpQahecZhnnzG6ciTD-MxZJyiIlyd:"),
 			},
-			body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
+			// body: "urls=http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg"
+			body: "urls=https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
 			// body: payload
 			// body: "urls=" + image,
 		});
