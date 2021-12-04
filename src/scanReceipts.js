@@ -33,8 +33,8 @@ const scanReceipt = async (image) => {
 		worker.loadLanguage("eng");
 		worker.initialize("eng");
 		const { data: { text } } = await worker.recognize("http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg");
-		return(text);
 		worker.terminate();
+		return(text);
 
 	} catch (err) {
 		return(err);
