@@ -9,7 +9,7 @@ const scanReceipt = async (image) => {
 
 		Tesseract.recognize(img, function (result) {
 			console.log(result);
-			Tesseract.terminate();
+			process.exit();
 		});
 	} catch (err) {
 		return err;
