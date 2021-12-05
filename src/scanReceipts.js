@@ -4,10 +4,9 @@ const scanReceipt = async (image) => {
 	try {
 		const worker = new Tesseract.TesseractWorker();
 		worker
-			.recognize(file, "eng")
+			.recognize(image, "eng")
 			.progress(function (packet) {
 				console.info(packet);
-				progressUpdate(packet);
 			})
 			.then(function (data) {
 				console.log(data);
