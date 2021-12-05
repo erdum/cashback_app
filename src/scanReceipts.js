@@ -4,7 +4,10 @@ const scanReceipt = async (image) => {
 	try {
 		// const exampleImage = "http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg";
 
-		Tesseract.recognize(image, function (result) {
+		let img = await fetch(image);
+		img = await img.blob();
+
+		Tesseract.recognize(img, function (result) {
 			console.log(result);
 			Tesseract.terminate();
 		});
