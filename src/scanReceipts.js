@@ -10,9 +10,9 @@ const scanReceipt = async (image) => {
 		let worker = createWorker({
 			logger: m => console.log(m)
 		});
-		await worker.load();
-		await worker.loadlanguage("eng");
-		await worker.initialize("eng");
+		worker.load();
+		worker.loadlanguage("eng");
+		worker.initialize("eng");
 		const { data: { text } } = await worker.recognize(img);
 		console.log(text);
 
