@@ -1,24 +1,17 @@
-const scanReceipt = async (image) => {
-	// try {
-	// 	const worker = createWorker({
-	// 		logger: (m) => console.log(m),
-	// 	});
+import Tesseract from "tesseract.js";
 
-	// 	(async () => {
-	// 		await worker.load();
-	// 		await worker.loadLanguage("eng");
-	// 		await worker.initialize("eng");
-	// 		const {
-	// 			data: { text },
-	// 		} = await worker.recognize(
-	// 			"https://tesseract.projectnaptha.com/img/eng_bw.png"
-	// 		);
-	// 		console.log(text);
-	// 		await worker.terminate();
-	// 	})();
-	// } catch (err) {
-	// 	return err;
-	// }
+const scanReceipt = async (image) => {
+	try {
+		Tesseract.recognize(
+			"https://tesseract.projectnaptha.com/img/eng_bw.png",
+			"eng",
+			{ logger: (m) => console.log(m) }
+		).then(({ data: { text } }) => {
+			console.log(text);
+		});
+	} catch (err) {
+		return err;
+	}
 };
 
 export default scanReceipt;
