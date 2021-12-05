@@ -2,13 +2,17 @@ import Tesseract from "tesseract.js";
 
 const scanReceipt = async (image) => {
 	try {
-		Tesseract.recognize(
-			"https://tesseract.projectnaptha.com/img/eng_bw.png",
-			"eng",
-			{ logger: (m) => console.log(m) }
-		).then(({ data: { text } }) => {
-			console.log(text);
-		});
+		const worker = new Tesseract.TesseractWorker();
+		worker
+			.recognize(file, "eng")
+			.progress(function (packet) {
+				console.info(packet);
+				progressUpdate(packet);
+			})
+			.then(function (data) {
+				console.log(data);
+				progressUpdate({ status: "done", data: data });
+			});
 	} catch (err) {
 		return err;
 	}
