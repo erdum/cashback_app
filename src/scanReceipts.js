@@ -7,7 +7,9 @@ const scanReceipt = async (image) => {
 		let img = await fetch(image);
 		img = img.blob();
 
-		let worker = createWorker();
+		let worker = createWorker({
+			logger: m => console.log(m)
+		});
 		await worker.load();
 		await worker.loadlanguage("eng");
 		await worker.initialize("eng");
