@@ -11,7 +11,6 @@ const scanReceipt = async (image) => {
 			})
 			.then(function (data) {
 				console.log(data);
-				progressUpdate({ status: "done", data: data });
 			});
 	} catch (err) {
 		return err;
