@@ -6,7 +6,6 @@ const scanReceipt = async (image) => {
 
 		let img = await fetch(image);
 		img = img.blob();
-		img = URL.createObjectURL(img);
 
 		let worker = createWorker({
 			logger: m => console.log(m)
