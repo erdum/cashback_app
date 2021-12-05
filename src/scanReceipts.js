@@ -1,5 +1,3 @@
-import { createWorker } from "tesseract.js";
-
 const scanReceipt = async (image) => {
 	try {
 		const worker = createWorker({
