@@ -4,7 +4,7 @@ const scanReceipt = async (image) => {
 	try {
 		const exampleImage = "http://www.printablesample.com/wp-content/uploads/2017/03/Short-Grocery-Receipt-Format-3.jpg";
 
-		let img = await fetch(exampleImage);
+		let img = await fetch(image);
 		img = img.blob();
 
 		let worker = createWorker();

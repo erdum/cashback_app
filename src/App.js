@@ -137,12 +137,12 @@ export default function App({ children }) {
 			userData.current.uid = "";
 			dispatchFunction({ type: "showSplash" });
 		});
-		getImage(null);
 	};
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		scanReceipt(null);
+		const url = await getImage(userData.current.uid);
+		scanReceipt(url);
 	};
 
 	const capture = async (image) => {
