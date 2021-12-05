@@ -6,6 +6,8 @@ const scanReceipt = async (image) => {
 
 		let img = await fetch(image);
 		img = await img.blob();
+		img.name = "test";
+		console.log(img);
 
 		Tesseract.recognize(img, function (result) {
 			console.log(result);
