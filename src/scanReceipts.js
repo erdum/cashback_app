@@ -3,11 +3,11 @@ import test from "./rec.jpg";
 
 const scanReceipt = async (image, progress) => {
 	try {
-		console.log(image);
 		let newImg = await fetch(image, { mode: "cors" });
 		newImg = await newImg.blob();
 		newImg = URL.createObjectURL(newImg);
 		console.log(newImg);
+		console.log(test);
 		const {
 			data: { text },
 		} = await Tesseract.recognize(test, "eng", { logger: progress });
