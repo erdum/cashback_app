@@ -56,22 +56,6 @@ const base64Toblob = async (base64) => {
 	return blob;
 }
 
-// const dataURLtoFile = (dataurl, filename) => {
-// 	let arr = dataurl.split(","),
-// 		mime = arr[0].match(/:(.*?);/)[1],
-// 		bstr = atob(arr[1]),
-// 		n = bstr.length,
-// 		u8arr = new Uint8Array(n);
-
-// 	while (n--) {
-// 		u8arr[n] = bstr.charCodeAt(n);
-// 	}
-
-// 	return new File([u8arr], filename, {
-// 		type: mime,
-// 	});
-// };
-
 // const blobToBase64 = (blob) => {
 // 	const reader = new FileReader();
 // 	reader.readAsDataURL(blob);
@@ -157,12 +141,12 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
-		// const imgUrl = await getImage(userData.current.uid);
-		// const amount = await scanReceipt(imgUrl, ({ progress }) => {
-		// 	console.log(String(Number(progress) * 100) + "%");
-		// });
-		// console.log(amount);
+		// dispatchFunction({ type: "showCamera" });
+		const imgUrl = await getImage(userData.current.uid);
+		const amount = await scanReceipt(imgUrl, ({ progress }) => {
+			console.log(String(Number(progress) * 100) + "%");
+		});
+		console.log(amount);
 	};
 
 	const capture = async (image) => {
