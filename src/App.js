@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -37,18 +37,24 @@ const restUserData = {
 };
 
 const getImage = async (name) => {
-	const fileRef = ref(storage,  "test.png");
+	const fileRef = ref(storage, name + ".png");
 	const url = await getDownloadURL(fileRef);
 	return url;
 };
 
 const uploadImage = async (blob, name) => {
 	alert(blob);
-	const fileRef = ref(storage, "what");
-	uploadString(fileRef, blob, "base64").then((snapshot) => {
+	const fileRef = ref(storage, name + ".png");
+	uploadBytes(fileRef, blob, { contentType: "image/png" }).then((snapshot) => {
 		alert("File successfuly uploaded to google cloud storage");
 	});
 };
+
+const base64Toblob = async (blob) => {
+	let blob = await fetch(blob);
+	blob = await blob.blob();
+	return blob;
+}
 
 // const dataURLtoFile = (dataurl, filename) => {
 // 	let arr = dataurl.split(","),
@@ -161,7 +167,7 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
-		await uploadImage(image, userData.current.uid);
+		await uploadImage(base64Toblob(image), userData.current.uid);
 		const imgUrl = await getImage(userData.current.uid);
 		const amount = await scanReceipt(imgUrl, (log) => console.log(log));
 		alert(amount);
