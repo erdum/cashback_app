@@ -147,7 +147,6 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
-		uploadImage(dataURLtoFile(image, userData.current.uid + ".png"), userData.current.uid);
 		const amount = await scanReceipt(image);
 		setPoints(String(amount));
 	};
