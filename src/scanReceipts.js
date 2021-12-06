@@ -2,6 +2,7 @@ import { createWorker } from "tesseract.js";
 
 const scanReceipt = async (image, progress) => {
 	try {
+		const worker = createWorker({ logger: progress });
 		console.log(image);
 		await worker.load();
 		await worker.loadLanguage();
