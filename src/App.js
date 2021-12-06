@@ -37,14 +37,14 @@ const restUserData = {
 };
 
 const getImage = async (name) => {
-	const fileRef = ref(storage, name + ".png");
+	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
 	const url = await getDownloadURL(fileRef);
 	return url;
 };
 
 const uploadImage = async (blob, name) => {
 	alert(blob);
-	const fileRef = ref(storage, name + ".png");
+	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
 	uploadBytes(fileRef, blob, { contentType: "image/png" }).then((snapshot) => {
 		alert("File successfuly uploaded to google cloud storage");
 	});
@@ -54,17 +54,7 @@ const base64Toblob = async (base64) => {
 	let blob = await fetch(base64);
 	blob = await blob.blob();
 	return blob;
-}
-
-// const blobToBase64 = (blob) => {
-// 	const reader = new FileReader();
-// 	reader.readAsDataURL(blob);
-// 	return new Promise((resolve) => {
-// 		reader.onloadend = () => {
-// 			resolve(reader.result);
-// 		};
-// 	});
-// };
+};
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -141,12 +131,11 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		const imgUrl = await getImage(userData.current.uid);
-		const amount = await scanReceipt(imgUrl, ({ progress }) => {
-			console.log(String(Number(progress) * 100) + "%");
-		});
-		console.log(amount);
+		dispatchFunction({ type: "showCamera" });
+	};
+
+	const scanProcess = async ({ progress }) => {
+		console.log(progress);
 	};
 
 	const capture = async (image) => {
@@ -154,9 +143,9 @@ export default function App({ children }) {
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
 		const imgUrl = await getImage(userData.current.uid);
-		const amount = await scanReceipt(imgUrl, (log) => console.log(log));
-		alert(amount);
-		setPoints("000");
+		const amount = await scanReceipt(imgUrl, scanProcess);
+		setPoints("80");
+		console.log(amount);
 	};
 
 	const theme = createTheme({

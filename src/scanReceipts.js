@@ -1,5 +1,4 @@
 import { createWorker } from "tesseract.js";
-// import test from "./rec.jpg";
 
 const scanReceipt = async (image, progress) => {
 	try {
@@ -14,7 +13,7 @@ const scanReceipt = async (image, progress) => {
 			data: { text },
 		} = await worker.recognize(newImg);
 		await worker.terminate();
-		return text;
+		return text.split("\n");
 	} catch (err) {
 		return err;
 	}
