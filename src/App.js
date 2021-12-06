@@ -36,11 +36,11 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async (name) => {
-	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
-	const url = await getDownloadURL(fileRef);
-	return url;
-};
+// const getImage = async (name) => {
+// 	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
+// 	const url = await getDownloadURL(fileRef);
+// 	return url;
+// };
 
 const uploadImage = async (blob, name) => {
 	alert(blob);
