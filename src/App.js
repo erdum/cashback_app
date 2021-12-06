@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -35,12 +35,6 @@ const restUserData = {
 	dpURL: avatar,
 	uid: "",
 };
-
-// const getImage = async (name) => {
-// 	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
-// 	const url = await getDownloadURL(fileRef);
-// 	return url;
-// };
 
 const uploadImage = async (blob, name) => {
 	alert(blob);
