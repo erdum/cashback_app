@@ -1,5 +1,5 @@
 import Tesseract from 'tesseract.js';
-import img from "./rec.jpg";
+// import img from "./rec.jpg";
 
 const scanReceipt = async (image) => {
 	try {
@@ -10,7 +10,7 @@ const scanReceipt = async (image) => {
 		console.log(newImg);
 
 		Tesseract.recognize(
-			img,
+			newImg,
 			"eng",
 			{ logger: (m) => console.log(m) }
 		).then(({ data: { text } }) => {
