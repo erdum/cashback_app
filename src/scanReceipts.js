@@ -1,4 +1,4 @@
-import Tesseract from "tesseract.js";
+import { createWorker } from "tesseract.js";
 import test from "./rec.jpg";
 
 const blobToBase64 = (blob) => {
@@ -13,15 +13,20 @@ const blobToBase64 = (blob) => {
 
 const scanReceipt = async (image, progress) => {
 	try {
+		const worker = createWorker({ logger: progress });
 		let newImg = await fetch(image, { mode: "cors" });
 		newImg = await newImg.blob();
 		const img64 = await blobToBase64(newImg);
 		console.log(newImg);
 		console.log(test);
 		console.log(img64);
+		await worker.load();
+		await worker.loadLanguage();
+		await worker.initialize();
 		const {
 			data: { text },
-		} = await Tesseract.recognize(test, "eng", { logger: progress });
+		} = await worker.recognize(test);
+		await worker.terminate();
 		return text;
 	} catch (err) {
 		return err;
