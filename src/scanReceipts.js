@@ -8,6 +8,7 @@ const scanReceipt = async (image, progress) => {
 		const {
 			data: { text },
 		} = await Tesseract.recognize(newImg, "eng", { logger: progress });
+		return text;
 	} catch (err) {
 		return err;
 	}
