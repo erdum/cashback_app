@@ -43,7 +43,7 @@ const getImage = async (name) => {
 };
 
 const uploadImage = async (blob, name) => {
-	console.log(blob);
+	alert(blob);
 	const fileRef = ref(storage, name + ".png");
 	uploadString(fileRef, blob, "base64").then((snapshot) => {
 		alert("File successfuly uploaded to google cloud storage");
