@@ -140,12 +140,12 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		const imgUrl = await getImage(userData.current.uid);
-		const amount = await scanReceipt(imgUrl, ({ progress }) => {
-			console.log(String(Number(progress) * 100) + "%");
-		});
-		console.log(amount);
+		dispatchFunction({ type: "showCamera" });
+		// const imgUrl = await getImage(userData.current.uid);
+		// const amount = await scanReceipt(imgUrl, ({ progress }) => {
+		// 	console.log(String(Number(progress) * 100) + "%");
+		// });
+		// console.log(amount);
 	};
 
 	const capture = async (image) => {
