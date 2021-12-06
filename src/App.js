@@ -167,7 +167,8 @@ export default function App({ children }) {
 
 	const capture = async (image) => {
 		dispatchFunction({ type: "hideCamera" });
-		await uploadImage(base64Toblob(image), userData.current.uid);
+		const blobImg = await base64Toblob(image);
+		await uploadImage(blobImg, userData.current.uid);
 		const imgUrl = await getImage(userData.current.uid);
 		const amount = await scanReceipt(imgUrl, (log) => console.log(log));
 		alert(amount);
