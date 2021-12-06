@@ -18,13 +18,14 @@ const scanReceipt = async (image, progress) => {
 		newImg = await newImg.blob();
 		const img64 = await blobToBase64(newImg);
 		console.log(test);
+		console.log(newImg);
 		console.log(img64);
 		await worker.load();
 		await worker.loadLanguage();
 		await worker.initialize();
 		const {
 			data: { text },
-		} = await worker.recognize(img64);
+		} = await worker.recognize(test);
 		await worker.terminate();
 		return text;
 	} catch (err) {
