@@ -21,7 +21,7 @@ const scanReceipt = async (image, progress) => {
 		console.log(img64);
 		const {
 			data: { text },
-		} = await Tesseract.recognize(img64, "eng", { logger: progress });
+		} = await Tesseract.recognize(test, "eng", { logger: progress });
 		return text;
 	} catch (err) {
 		return err;
