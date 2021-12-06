@@ -17,7 +17,6 @@ const scanReceipt = async (image, progress) => {
 		let newImg = await fetch(image, { mode: "cors" });
 		newImg = await newImg.blob();
 		const img64 = await blobToBase64(newImg);
-		console.log(newImg);
 		console.log(test);
 		console.log(img64);
 		await worker.load();
@@ -25,7 +24,7 @@ const scanReceipt = async (image, progress) => {
 		await worker.initialize();
 		const {
 			data: { text },
-		} = await worker.recognize(test);
+		} = await worker.recognize(img64);
 		await worker.terminate();
 		return text;
 	} catch (err) {
