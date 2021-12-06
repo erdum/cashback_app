@@ -49,21 +49,21 @@ const uploadImage = async (blob, name) => {
 	});
 };
 
-const dataURLtoFile = (dataurl, filename) => {
-	let arr = dataurl.split(","),
-		mime = arr[0].match(/:(.*?);/)[1],
-		bstr = atob(arr[1]),
-		n = bstr.length,
-		u8arr = new Uint8Array(n);
+// const dataURLtoFile = (dataurl, filename) => {
+// 	let arr = dataurl.split(","),
+// 		mime = arr[0].match(/:(.*?);/)[1],
+// 		bstr = atob(arr[1]),
+// 		n = bstr.length,
+// 		u8arr = new Uint8Array(n);
 
-	while (n--) {
-		u8arr[n] = bstr.charCodeAt(n);
-	}
+// 	while (n--) {
+// 		u8arr[n] = bstr.charCodeAt(n);
+// 	}
 
-	return new File([u8arr], filename, {
-		type: mime,
-	});
-};
+// 	return new File([u8arr], filename, {
+// 		type: mime,
+// 	});
+// };
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -141,8 +141,8 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const url = await getImage(userData.current.uid);
-		scanReceipt(url);
+		// const url = await getImage(userData.current.uid);
+		scanReceipt(null);
 	};
 
 	const capture = async (image) => {
