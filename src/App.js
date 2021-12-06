@@ -37,14 +37,14 @@ const restUserData = {
 };
 
 const getImage = async (name) => {
-	const fileRef = ref(storage, name + ".png");
+	const fileRef = ref(storage,  "test.png");
 	const url = await getDownloadURL(fileRef);
 	return url;
 };
 
 const uploadImage = async (blob, name) => {
 	alert(blob);
-	const fileRef = ref(storage, name + ".png");
+	const fileRef = ref(storage, "what");
 	uploadString(fileRef, blob, "base64").then((snapshot) => {
 		alert("File successfuly uploaded to google cloud storage");
 	});
