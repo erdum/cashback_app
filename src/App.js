@@ -140,7 +140,10 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		const imgUrl = await getImage(userData.current.uid);
+		const amount = await scanReceipt(imgUrl, (log) => console.log(log));
+		console.log(amount);
 	};
 
 	const capture = async (image) => {
@@ -148,8 +151,8 @@ export default function App({ children }) {
 		await uploadImage(image, userData.current.uid);
 		const imgUrl = await getImage(userData.current.uid);
 		const amount = await scanReceipt(imgUrl, (log) => console.log(log));
-		setPoints("14,000");
 		alert(amount);
+		setPoints("14,000");
 	};
 
 	const theme = createTheme({
