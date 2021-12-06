@@ -1,8 +1,9 @@
 import Tesseract from 'tesseract.js';
-import img from "./eng_bw.png";
+import img from "./rec.jpg";
 
 const scanReceipt = async (image) => {
 	try {
+		console.log(img);
 		Tesseract.recognize(
 			img,
 			"eng",
