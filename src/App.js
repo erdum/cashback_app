@@ -50,8 +50,8 @@ const uploadImage = async (blob, name) => {
 	});
 };
 
-const base64Toblob = async (blob) => {
-	let blob = await fetch(blob);
+const base64Toblob = async (base64) => {
+	let blob = await fetch(base64);
 	blob = await blob.blob();
 	return blob;
 }
