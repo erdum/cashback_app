@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -43,8 +43,9 @@ const getImage = async (name) => {
 };
 
 const uploadImage = async (blob, name) => {
+	console.log(blob);
 	const fileRef = ref(storage, name + ".png");
-	uploadBytes(fileRef, blob, { contentType: 'image/png' }).then((snapshot) => {
+	uploadString(fileRef, blob, "base64").then((snapshot) => {
 		alert("File successfuly uploaded to google cloud storage");
 	});
 };
@@ -62,6 +63,16 @@ const uploadImage = async (blob, name) => {
 
 // 	return new File([u8arr], filename, {
 // 		type: mime,
+// 	});
+// };
+
+// const blobToBase64 = (blob) => {
+// 	const reader = new FileReader();
+// 	reader.readAsDataURL(blob);
+// 	return new Promise((resolve) => {
+// 		reader.onloadend = () => {
+// 			resolve(reader.result);
+// 		};
 // 	});
 // };
 
