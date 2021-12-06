@@ -142,8 +142,7 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
-		const imgUrl = await getImage(userData.current.uid);
-		const amount = await scanReceipt(imgUrl, scanProcess);
+		const amount = await scanReceipt(blobImg, scanProcess);
 		setPoints("80");
 		console.log(amount);
 	};
