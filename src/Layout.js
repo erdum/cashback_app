@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
 import Skeleton from "@mui/material/Skeleton";
+import LinearProgress from '@mui/material/LinearProgress';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./layout.css";
@@ -57,7 +58,7 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				{props.data === "" ? (
+				{/*{props.data === "" ? (
 					<>
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
@@ -65,7 +66,9 @@ const Layout = forwardRef((props, ref) => {
 						<Skeleton variant="text" />
 						<Skeleton variant="text" />
 					</>
-				) : null}
+				) : props.data}*/}
+				<h2>Processing Image...</h2>
+				<LinearProgress variant="determinate" value={props.scanProcessValue} />
 			</div>
 		</div>
 	);

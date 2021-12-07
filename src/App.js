@@ -83,6 +83,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
+	const [scanProcessValue, setScanProcessValue] = useState(0);
 	const data = useRef("");
 	const userData = useRef(restUserData);
 
@@ -136,6 +137,7 @@ export default function App({ children }) {
 
 	const scanProcess = async ({ status, progress }) => {
 		console.log(status + ": " + Math.trunc(progress * 100) + "%");
+		setScanProcessValue(Math.trunc(progress * 100));
 	};
 
 	const capture = async (image) => {
@@ -170,6 +172,7 @@ export default function App({ children }) {
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					data={data.current}
+					scanProcessValue={scanProcessValue}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}

@@ -100,11 +100,8 @@
 	overflow: auto;
 }
 
-.MFC-display span {
-	width: 80%;
-	margin: 0.8rem 0;
-}
-
-.MFC-display span:first-child {
-	margin-top: 4rem;
+.MFC-display h2 {
+	font-size: 6vw;
+	margin: 0;
+	margin-top: 10vw;
 }
