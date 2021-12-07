@@ -144,9 +144,6 @@ export default function App({ children }) {
 		if (status === "recognizing text") {
 			setScanProcessStart(true);
 			setScanProcessValue(value);
-		} else {
-			setScanProcessStart(false);
-			setScanProcessValue(null);
 		}
 	};
 
