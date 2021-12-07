@@ -83,8 +83,8 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [scanProcessValue, setScanProcessValue] = useState(null);
-	const [scanProcessStart, setScanProcessStart] = useState(false);
+	const [scanProcessValue, setScanProcessValue] = useState(0);
+	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
 	const data = useRef("");
 	const userData = useRef(restUserData);
 
@@ -142,7 +142,7 @@ export default function App({ children }) {
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
 		if (status === "recognizing text") {
-			setScanProcessStart(true);
+			setScanProcessStart("determinate");
 			setScanProcessValue(value);
 		}
 	};
