@@ -84,6 +84,7 @@ export default function App({ children }) {
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
 	const [scanProcessValue, setScanProcessValue] = useState(0);
+	const [scanProcessStart, setScanProcessStart] = useState(false);
 	const data = useRef("");
 	const userData = useRef(restUserData);
 
@@ -138,8 +139,15 @@ export default function App({ children }) {
 	};
 
 	const scanProcess = async ({ status, progress }) => {
-		console.log(status + ": " + Math.trunc(progress * 100) + "%");
-		setScanProcessValue(Math.trunc(progress * 100));
+		const value = Math.trunc(progress * 100);
+		console.log(status + ": " + value + "%");
+		if (status === "recognizing text") {
+			setScanProcessStart(true);
+			setScanProcessValue(value);
+		} else {
+			setScanProcessStart(false);
+			setScanProcessValue(0);
+		}
 	};
 
 	const capture = async (image) => {
@@ -177,6 +185,7 @@ export default function App({ children }) {
 					// MFC-display props
 					data={data.current}
 					scanProcessValue={scanProcessValue}
+					scanProcessStart={scanProcessStart}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
