@@ -46,9 +46,7 @@ const getImage = async (name) => {
 
 const uploadImage = async (blob, name) => {
 	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
-	uploadBytes(fileRef, blob, { contentType: "image/png" }).then((snapshot) => {
-		alert("File successfuly uploaded to google cloud storage");
-	});
+	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 };
 
 const base64Toblob = async (base64) => {
@@ -145,9 +143,7 @@ export default function App({ children }) {
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Dolor).*/);
-		setPoints("80");
-		console.log(amount);
-		alert(amount);
+		setPoints(amount);
 	};
 
 	const theme = createTheme({
