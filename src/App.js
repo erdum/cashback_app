@@ -140,7 +140,7 @@ export default function App({ children }) {
 	};
 
 	const scanProcess = async ({ progress }) => {
-		console.log(progress);
+		console.log(progress*100 + "%");
 	};
 
 	const capture = async (image) => {
