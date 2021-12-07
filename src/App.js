@@ -135,13 +135,12 @@ export default function App({ children }) {
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
 		const img = await getImage(userData.current.uid);
-		const amount = await scanReceipt(img, scanProcess);
+		const amount = await scanReceipt(img, scanProcess, /^(Dolor).*/);
 		console.log(amount);
 	};
 
-	const scanProcess = async (log) => {
-		// console.log(Math.trunc(progress)*100 + "%");
-		console.log(log);
+	const scanProcess = async ({ status, progress }) => {
+		console.log(status + ": " + Math.trunc(progress)*100 + "%");
 	};
 
 	const capture = async (image) => {
