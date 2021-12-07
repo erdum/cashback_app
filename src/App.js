@@ -143,7 +143,7 @@ export default function App({ children }) {
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Dolor).*/);
-		setPoints(amount);
+		setPoints(Math.trunc(Number(amount)));
 	};
 
 	const theme = createTheme({
