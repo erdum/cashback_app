@@ -139,8 +139,9 @@ export default function App({ children }) {
 		console.log(amount);
 	};
 
-	const scanProcess = async ({ progress }) => {
-		console.log(progress*100 + "%");
+	const scanProcess = async (log) => {
+		// console.log(Math.trunc(progress)*100 + "%");
+		console.log(log);
 	};
 
 	const capture = async (image) => {
