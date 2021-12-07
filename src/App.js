@@ -84,7 +84,7 @@ export default function App({ children }) {
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
 	const [scanProcessValue, setScanProcessValue] = useState(0);
-	const [scanProcessStart, setScanProcessStart] = useState(null);
+	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
 	const data = useRef("");
 	const userData = useRef(restUserData);
 
