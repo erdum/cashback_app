@@ -83,7 +83,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [scanProcessValue, setScanProcessValue] = useState(0);
+	const [scanProcessValue, setScanProcessValue] = useState(null);
 	const [scanProcessStart, setScanProcessStart] = useState(false);
 	const data = useRef("");
 	const userData = useRef(restUserData);
@@ -146,7 +146,7 @@ export default function App({ children }) {
 			setScanProcessValue(value);
 		} else {
 			setScanProcessStart(false);
-			setScanProcessValue(0);
+			setScanProcessValue(null);
 		}
 	};
 
