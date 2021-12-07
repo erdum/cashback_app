@@ -68,7 +68,7 @@ const Layout = forwardRef((props, ref) => {
 					</>
 				) : props.data}*/}
 				<h2>Processing Image...</h2>
-				<LinearProgress variant={props.scanProcessStart} value={props.scanProcessValue} />
+				<LinearProgress variant={props.scanProcessStart} />
 			</div>
 		</div>
 	);
