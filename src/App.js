@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -34,6 +34,14 @@ const restUserData = {
 	phone: "",
 	dpURL: avatar,
 	uid: "",
+};
+
+const getImage = async () => {
+	const fileRef = ref(storage, userData.current.uid + "/1638810753966.png");
+	const url = await getDownloadURL(fileRef);
+	let blob = await fetch(url, { "mode": "cors" });
+	blob = await blob.blob();
+	return blob;
 };
 
 const uploadImage = async (blob, name) => {
@@ -125,7 +133,10 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
+		// dispatchFunction({ type: "showCamera" });
+		const img = await getImage();
+		const amount = await scanReceipt(img, scanProcess);
+		console.log(amount);
 	};
 
 	const scanProcess = async ({ progress }) => {
