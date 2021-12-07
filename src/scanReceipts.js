@@ -13,7 +13,7 @@ const scanReceipt = async (image, progress, regExp) => {
 		const lines = text.split("\n");
 		return lines.filter((line) => {
 			return regExp.test(line);
-		})[0];
+		})[0].match(/(\d+)/)[0];
 	} catch (err) {
 		return err;
 	}

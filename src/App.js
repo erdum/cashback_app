@@ -133,10 +133,8 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage(userData.current.uid);
-		const amount = await scanReceipt(img, scanProcess, /^(Dolor).*/);
-		console.log(amount);
+		dispatchFunction({ type: "showCamera" });
+		getImage(userData.current.uid);
 	};
 
 	const scanProcess = async ({ status, progress }) => {
@@ -147,7 +145,7 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
-		const amount = await scanReceipt(blobImg, scanProcess);
+		const amount = await scanReceipt(blobImg, scanProcess, /^(Dolor).*/);
 		setPoints("80");
 		console.log(amount);
 	};
