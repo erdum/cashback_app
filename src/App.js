@@ -148,6 +148,7 @@ export default function App({ children }) {
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Dolor).*/);
 		setPoints("80");
 		console.log(amount);
+		alert(amount);
 	};
 
 	const theme = createTheme({
