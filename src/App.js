@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -36,9 +36,7 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async (name) => {
-	const fileRef = ref(storage, name + "/1638810753966.png");
-	const url = await getDownloadURL(fileRef);
+const getImage = async (url) => {
 	let blob = await fetch(url, { "mode": "cors" });
 	blob = await blob.blob();
 	return blob;
@@ -131,8 +129,10 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		dispatchFunction({ type: "showCamera" });
-		getImage(userData.current.uid);
+		// dispatchFunction({ type: "showCamera" });
+		const img = await getImage("https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg");
+		const amount = await scanReceipt(img, scanProcess, /^(Sales Tax).*/);
+		setPoints(Number(amount));
 	};
 
 	const scanProcess = async ({ status, progress }) => {
@@ -144,7 +144,7 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
-		const amount = await scanReceipt(blobImg, scanProcess, /^(Dolor).*/);
+		const amount = await scanReceipt(blobImg, scanProcess, /^(Sales Tax).*/);
 		setPoints(Number(amount));
 	};
 
@@ -166,11 +166,13 @@ export default function App({ children }) {
 			)}
 			{functionState.layoutScreen && (
 				<Layout
+					// Layout props
 					handleLogout={signout}
 					handleEarn={earn}
 					points={points}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
+					// MFC-display props
 					data={data.current}
 					scanProcessValue={scanProcessValue}
 				/>
