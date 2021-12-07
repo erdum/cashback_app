@@ -14,7 +14,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -36,7 +36,9 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async (url) => {
+const getImage = async () => {
+	const fileRef = ref(storage, "rec.jpg");
+	const url = await getDownloadURL(fileRef);
 	let blob = await fetch(url, { "mode": "cors" });
 	blob = await blob.blob();
 	return blob;
