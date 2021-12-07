@@ -36,8 +36,8 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async () => {
-	const fileRef = ref(storage, userData.current.uid + "/1638810753966.png");
+const getImage = async (name) => {
+	const fileRef = ref(storage, name + "/1638810753966.png");
 	const url = await getDownloadURL(fileRef);
 	let blob = await fetch(url, { "mode": "cors" });
 	blob = await blob.blob();
@@ -134,7 +134,7 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage();
+		const img = await getImage(userData.current.uid);
 		const amount = await scanReceipt(img, scanProcess);
 		console.log(amount);
 	};
