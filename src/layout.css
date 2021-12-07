@@ -100,7 +100,7 @@
 	overflow: auto;
 }
 
-.MFC-display > * {
+.MFC-display * {
 	margin: 0;
 	margin-top: 10vw;
 }
@@ -111,6 +111,6 @@
 
 .MFC-display span {
 	color: orange;
-	margin: 0 4vw;
+	margin: 10vw 8vw;
 	align-self: stretch;
 }
