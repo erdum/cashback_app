@@ -84,9 +84,7 @@ export default function App({ children }) {
 	);
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
-	const [scanProcessValue, setScanProcessValue] = useState(0);
-	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
-	const [data, setData] = useState("");
+	const [history, setHistory] = useState(true);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -105,16 +103,6 @@ export default function App({ children }) {
 			}
 		});
 	}, []);
-
-	useEffect(() => {
-		const imageInfo = () => (
-			<>
-				<h2>Processing Image...</h2>
-				<CircularProgress variant={scanProcessStart} value={scanProcessValue} />
-			</>
-		);
-		setData(imageInfo);
-	}, [scanProcessStart, scanProcessValue]);
 
 	const signin = async () => {
 		setLoader(true);
@@ -143,6 +131,7 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
+		setHistory(false);
 		// dispatchFunction({ type: "showCamera" });
 		const img = await getImage(
 			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
@@ -152,16 +141,12 @@ export default function App({ children }) {
 	};
 
 	const scanProcess = async ({ status, progress }) => {
-		setData("null");
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
-		if (status === "recognizing text") {
-			setScanProcessStart("determinate");
-			setScanProcessValue(value);
-		}
 	};
 
 	const capture = async (image) => {
+		setHistory(false);
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
@@ -194,7 +179,6 @@ export default function App({ children }) {
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					// MFC-display props
-					data={data}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
