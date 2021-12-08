@@ -158,7 +158,6 @@ export default function App({ children }) {
 		if (status === "recognizing text") {
 			setScanProcessStart("determinate");
 			setScanProcessValue(value);
-			setData(imageInfo);
 		}
 	};
 
