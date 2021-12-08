@@ -86,7 +86,7 @@ export default function App({ children }) {
 	const [loader, setLoader] = useState(true);
 	const [scanProcessValue, setScanProcessValue] = useState(0);
 	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
-	const data = useRef("");
+	const data = useRef(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -105,6 +105,13 @@ export default function App({ children }) {
 			}
 		});
 	}, []);
+
+	const imageInfo = (
+		<>
+			<h2>Processing Image...</h2>
+			<CircularProgress variant={scanProcessStart} value={scanProcessValue} />
+		</>
+	);
 
 	const signin = async () => {
 		setLoader(true);
@@ -169,16 +176,6 @@ export default function App({ children }) {
 			},
 		},
 	});
-
-	const imageInfo = (
-		<>
-			<h2>Processing Image...</h2>
-			<CircularProgress
-				variant={scanProcessStart}
-				value={scanProcessValue}
-			/>
-		</>
-	);
 
 	return (
 		<ThemeProvider theme={theme}>
