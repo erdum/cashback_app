@@ -106,7 +106,7 @@ export default function App({ children }) {
 		});
 	}, []);
 
-	const imageInfo = (
+	const imageInfo = () => (
 		<>
 			<h2>Processing Image...</h2>
 			<CircularProgress variant={scanProcessStart} value={scanProcessValue} />
