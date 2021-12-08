@@ -123,9 +123,6 @@ export default function App({ children }) {
 				</>
 			);
 		}
-		if (scanProgress.value === 100) {
-			setHistory(true);
-		}
 	}, [scanProgress]);
 
 	const signin = async () => {
