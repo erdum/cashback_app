@@ -56,10 +56,10 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				{props.data === null ? (
+				{props.data === "" ? (
 					<h2>No History</h2>
 				) :
-					<h2>Test</h2>
+					<props.data />
 				}
 			</div>
 		</div>

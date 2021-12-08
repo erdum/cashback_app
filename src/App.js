@@ -86,7 +86,7 @@ export default function App({ children }) {
 	const [loader, setLoader] = useState(true);
 	const [scanProcessValue, setScanProcessValue] = useState(0);
 	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
-	const [data, setData] = useState(null);
+	const [data, setData] = useState("");
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
