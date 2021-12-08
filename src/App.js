@@ -85,6 +85,7 @@ export default function App({ children }) {
 	const [points, setPoints] = useState("0");
 	const [loader, setLoader] = useState(true);
 	const [history, setHistory] = useState(true);
+	const [scanProgress, setScanProgress] = useState(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -103,6 +104,10 @@ export default function App({ children }) {
 			}
 		});
 	}, []);
+
+	useEffect(() => {
+		console.log(scanProgress);
+	}, [scanProgress]);
 
 	const signin = async () => {
 		setLoader(true);
@@ -143,6 +148,7 @@ export default function App({ children }) {
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
+		setScanProgress({ ...scanProgress, status, value });
 	};
 
 	const capture = async (image) => {
@@ -180,6 +186,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 					// MFC-display props
 					history={history}
+					display={display}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
