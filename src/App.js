@@ -39,7 +39,7 @@ const restUserData = {
 const getImage = async () => {
 	const fileRef = ref(storage, "rec.jpg");
 	const url = await getDownloadURL(fileRef);
-	let blob = await fetch(url, { "mode": "cors" });
+	let blob = await fetch(url, { mode: "cors" });
 	blob = await blob.blob();
 	return blob;
 };
@@ -133,7 +133,9 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage("https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg");
+		const img = await getImage(
+			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
+		);
 		const amount = await scanReceipt(img, scanProcess, /^(Sales Tax).*/);
 		setPoints(Number(amount));
 	};
@@ -148,6 +150,7 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
+		data.current = imageInfo;
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
@@ -166,6 +169,16 @@ export default function App({ children }) {
 		},
 	});
 
+	const imageInfo = (
+		<>
+			<h2>Processing Image...</h2>
+			<CircularProgress
+				variant={scanProcessStart}
+				value={scanProcessValue}
+			/>
+		</>
+	);
+
 	return (
 		<ThemeProvider theme={theme}>
 			{functionState.splashScreen && (
@@ -181,8 +194,6 @@ export default function App({ children }) {
 					userName={userData.current.name}
 					// MFC-display props
 					data={data.current}
-					scanProcessValue={scanProcessValue}
-					scanProcessStart={scanProcessStart}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}

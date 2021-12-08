@@ -3,8 +3,6 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
-// import Skeleton from "@mui/material/Skeleton";
-import CircularProgress from "@mui/material/CircularProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./layout.css";
@@ -58,17 +56,11 @@ const Layout = forwardRef((props, ref) => {
 				<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 			</Menu>
 			<div className="MFC-display">
-				{/*{props.data === "" ? (
-					<>
-						<Skeleton variant="text" />
-						<Skeleton variant="text" />
-						<Skeleton variant="text" />
-						<Skeleton variant="text" />
-						<Skeleton variant="text" />
-					</>
-				) : props.data}*/}
-				<h2>Processing Image...</h2>
-				<CircularProgress variant={props.scanProcessStart} value={props.scanProcessValue} />
+				{props.data === null ? (
+					<h2>No History</h2>
+				) : (
+					{props.data}
+				)}
 			</div>
 		</div>
 	);
