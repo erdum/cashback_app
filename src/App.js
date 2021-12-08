@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CircularProgress from "@mui/material/CircularProgress";
+// import CircularProgress from "@mui/material/CircularProgress";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
@@ -179,6 +179,7 @@ export default function App({ children }) {
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					// MFC-display props
+					history={history}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
