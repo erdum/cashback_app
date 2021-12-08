@@ -4,8 +4,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
 // import Skeleton from "@mui/material/Skeleton";
-// import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from "@mui/material/CircularProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import "./layout.css";
@@ -70,6 +70,7 @@ const Layout = forwardRef((props, ref) => {
 				) : props.data}*/}
 				<h2>Processing Image...</h2>
 				<CircularProgress />
+				<LinearProgress />
 			</div>
 		</div>
 	);
