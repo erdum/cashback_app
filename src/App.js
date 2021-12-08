@@ -158,7 +158,7 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
-		setData(<imageInfo />);
+		setData(imageInfo);
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
