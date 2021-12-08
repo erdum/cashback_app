@@ -149,6 +149,7 @@ export default function App({ children }) {
 	};
 
 	const scanProcess = async ({ status, progress }) => {
+		setData(imageInfo);
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
 		if (status === "recognizing text") {
@@ -158,7 +159,6 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
-		setData(imageInfo);
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
