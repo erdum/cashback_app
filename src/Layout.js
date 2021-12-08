@@ -69,8 +69,7 @@ const Layout = forwardRef((props, ref) => {
 					</>
 				) : props.data}*/}
 				<h2>Processing Image...</h2>
-				<CircularProgress />
-				<LinearProgress />
+				<CircularProgress variant={props.scanProcessStart} value={props.scanProcessValue} />
 			</div>
 		</div>
 	);
