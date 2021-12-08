@@ -139,13 +139,11 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		setHistory(false);
-		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage(
+		// setHistory(false);
+		dispatchFunction({ type: "showCamera" });
+		await getImage(
 			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
 		);
-		const amount = await scanReceipt(img, scanProcess, /^(Sales Tax).*/);
-		setPoints(Number(amount));
 	};
 
 	const scanProcess = async ({ status, progress }) => {
@@ -155,10 +153,10 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
-		setHistory(false);
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
+		setHistory(false);
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Sales Tax).*/);
 		setPoints(Number(amount));
 	};
