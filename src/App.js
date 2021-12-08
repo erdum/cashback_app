@@ -186,7 +186,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 					// MFC-display props
 					history={history}
-					display={display}
+					display={<h2>Test</h2>}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
