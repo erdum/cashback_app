@@ -86,7 +86,7 @@ export default function App({ children }) {
 	const [loader, setLoader] = useState(true);
 	const [scanProcessValue, setScanProcessValue] = useState(0);
 	const [scanProcessStart, setScanProcessStart] = useState("indeterminate");
-	const data = useRef(null);
+	const [data, setData] = useState(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -158,7 +158,7 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
-		data.current = imageInfo;
+		setData(imageInfo);
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
@@ -191,7 +191,7 @@ export default function App({ children }) {
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					// MFC-display props
-					data={data.current}
+					data={data}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
