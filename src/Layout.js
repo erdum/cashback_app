@@ -58,9 +58,9 @@ const Layout = forwardRef((props, ref) => {
 			<div className="MFC-display">
 				{props.data === null ? (
 					<h2>No History</h2>
-				) : (
-					{props.data}
-				)}
+				) :
+					props.data
+				}
 			</div>
 		</div>
 	);
