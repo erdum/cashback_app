@@ -108,7 +108,12 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (scanProgress) {
+			setHistory(false);
 			setDisplay(<><h2>Processing Image...</h2><CircularProgress variant={scanProgress.status === "recognizing text" ? "determinate" : "indeterminate"} value={scanProgress.value} /></>)
+		}
+
+		if (scanProgress.value === 100) {
+			setHistory(true);
 		}
 	}, [scanProgress]);
 
@@ -156,7 +161,6 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
-		setHistory(false);
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Sales Tax).*/);
 		setPoints(Number(amount));
 	};
