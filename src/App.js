@@ -114,7 +114,7 @@ export default function App({ children }) {
 			</>
 		);
 		setData(imageInfo);
-	}, [setScanProcessStart, setScanProcessValue]);
+	}, [scanProcessStart, scanProcessValue]);
 
 	const signin = async () => {
 		setLoader(true);
