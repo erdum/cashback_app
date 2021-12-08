@@ -107,6 +107,9 @@ export default function App({ children }) {
 	}, []);
 
 	useEffect(() => {
+		if(scanProgress.value === 100) {
+			setHistory(true);
+		}
 		if (scanProgress) {
 			setHistory(false);
 			setDisplay(
