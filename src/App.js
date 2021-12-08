@@ -106,12 +106,15 @@ export default function App({ children }) {
 		});
 	}, []);
 
-	const imageInfo = () => (
-		<>
-			<h2>Processing Image...</h2>
-			<CircularProgress variant={scanProcessStart} value={scanProcessValue} />
-		</>
-	);
+	useEffect(() => {
+		const imageInfo = () => (
+			<>
+				<h2>Processing Image...</h2>
+				<CircularProgress variant={scanProcessStart} value={scanProcessValue} />
+			</>
+		);
+		setData(imageInfo);
+	}, [setScanProcessStart, setScanProcessValue]);
 
 	const signin = async () => {
 		setLoader(true);
@@ -149,12 +152,13 @@ export default function App({ children }) {
 	};
 
 	const scanProcess = async ({ status, progress }) => {
-		setData(imageInfo);
+		setData("null");
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
 		if (status === "recognizing text") {
 			setScanProcessStart("determinate");
 			setScanProcessValue(value);
+			setData(imageInfo);
 		}
 	};
 
