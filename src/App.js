@@ -109,9 +109,20 @@ export default function App({ children }) {
 	useEffect(() => {
 		if (scanProgress) {
 			setHistory(false);
-			setDisplay(<><h2>Processing Image...</h2><CircularProgress variant={scanProgress.status === "recognizing text" ? "determinate" : "indeterminate"} value={scanProgress.value} /></>)
+			setDisplay(
+				<>
+					<h2>Processing Image...</h2>
+					<CircularProgress
+						variant={
+							scanProgress.status === "recognizing text"
+								? "determinate"
+								: "indeterminate"
+						}
+						value={scanProgress.value}
+					/>
+				</>
+			);
 		}
-
 		if (scanProgress.value === 100) {
 			setHistory(true);
 		}
