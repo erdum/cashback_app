@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import CircularProgress from "@mui/material/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
@@ -86,6 +86,7 @@ export default function App({ children }) {
 	const [loader, setLoader] = useState(true);
 	const [history, setHistory] = useState(true);
 	const [scanProgress, setScanProgress] = useState(null);
+	const [display, setDisplay] = useState(null);
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
@@ -106,7 +107,9 @@ export default function App({ children }) {
 	}, []);
 
 	useEffect(() => {
-		console.log(scanProgress);
+		if (scanProgress) {
+			setDisplay(<><h2>{scanProgress.status}</h2><CircularProgress variant={scanProgress.status === "recognizing text" ? "determinate" : "indeterminate"} value={scanProgress.value} /></>)
+		}
 	}, [scanProgress]);
 
 	const signin = async () => {
@@ -186,7 +189,7 @@ export default function App({ children }) {
 					userName={userData.current.name}
 					// MFC-display props
 					history={history}
-					display={<h2>Test</h2>}
+					display={display}
 				/>
 			)}
 			{functionState.cameraScreen && <Camera handleCapture={capture} />}
