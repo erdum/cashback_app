@@ -147,13 +147,14 @@ export default function App({ children }) {
 	const signout = async () => {
 		signOut(auth).then(() => {
 			userData.current.uid = "";
-			dispatchFunction({ type: "showSplash" });
+			setHistory(true);
+			// dispatchFunction({ type: "showSplash" });
 		});
 	};
 
 	const earn = async () => {
-		// setHistory(false);
-		dispatchFunction({ type: "showCamera" });
+		setHistory(false);
+		// dispatchFunction({ type: "showCamera" });
 		await getImage(
 			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
 		);
