@@ -147,7 +147,6 @@ export default function App({ children }) {
 	const signout = async () => {
 		signOut(auth).then(() => {
 			userData.current.uid = "";
-			setHistory(true);
 			// dispatchFunction({ type: "showSplash" });
 		});
 	};
@@ -167,6 +166,7 @@ export default function App({ children }) {
 		console.log(status + ": " + value + "%");
 		setScanProgress({ ...scanProgress, status, value });
 		if (value > 90) {
+			setHistory(true);
 			setHistory(true);
 			console.log("complete");
 		}
