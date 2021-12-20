@@ -111,7 +111,7 @@ export default function App({ children }) {
 			setHistory(false);
 			setDisplay(
 				<>
-					<h2>Processing Image...</h2>
+					<h2>{scanProgress.status}</h2>
 					<CircularProgress
 						variant={
 							scanProgress.status === "recognizing text"
@@ -147,7 +147,7 @@ export default function App({ children }) {
 	const signout = async () => {
 		signOut(auth).then(() => {
 			userData.current.uid = "";
-			// dispatchFunction({ type: "showSplash" });
+			dispatchFunction({ type: "showSplash" });
 		});
 	};
 
