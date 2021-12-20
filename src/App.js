@@ -108,6 +108,7 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (scanProgress) {
+			console.log(scanProgress.value);
 			setHistory(false);
 			setDisplay(
 				<>
@@ -164,9 +165,7 @@ export default function App({ children }) {
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
 		// console.log(status + ": " + value + "%");
-		setScanProgress({ ...scanProgress, status, value }, (prevState) => {
-			console.log("prevState");
-		});
+		setScanProgress({ ...scanProgress, status, value });
 	};
 
 	const capture = async (image) => {
