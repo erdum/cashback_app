@@ -164,7 +164,7 @@ export default function App({ children }) {
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
 		// console.log(status + ": " + value + "%");
-		setScanProgress({ ...scanProgress, status, value }, prevState => {
+		setScanProgress({ ...scanProgress, status, value }, (prevState) => {
 			console.log(prevState);
 		});
 	};
