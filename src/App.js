@@ -113,7 +113,7 @@ export default function App({ children }) {
 				setHistory(false);
 				setDisplay(
 					<>
-						<h2>{scanProgress.status}</h2>
+						<h2>{scanProgress.status !== "recognizing text" ? "Processing image..." : scanProgress.status}</h2>
 						<CircularProgress
 							variant={
 								scanProgress.status === "recognizing text"
