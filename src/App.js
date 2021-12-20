@@ -152,20 +152,21 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		setHistory(false);
 		// dispatchFunction({ type: "showCamera" });
 		const img = await getImage(
 			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
 		);
+		setHistory(false);
 		const amount = await scanReceipt(img, scanProcess, /^(Sales Tax).*/);
 		console.log(amount);
 	};
 
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
-		// console.log(status + ": " + value + "%");
-		if (value > 98) {
+		console.log(status + ": " + value + "%");
+		if (value === 100) {
 			setHistory(true);
+			console.log("Complete");
 		} else {
 			setScanProgress({ ...scanProgress, status, value });
 		}
