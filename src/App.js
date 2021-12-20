@@ -165,7 +165,9 @@ export default function App({ children }) {
 		const value = Math.trunc(progress * 100);
 		console.log(status + ": " + value + "%");
 		if (value === 100) {
-			setHistory(true);
+			setHistory((what) => {
+				console.log(what);
+			});
 			console.log("Complete");
 		} else {
 			setScanProgress({ ...scanProgress, status, value });
