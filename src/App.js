@@ -163,12 +163,11 @@ export default function App({ children }) {
 
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
-		console.log(status + ": " + value + "%");
-		setScanProgress({ ...scanProgress, status, value });
-		if (value > 90) {
+		// console.log(status + ": " + value + "%");
+		if (value > 98) {
 			setHistory(true);
-			setHistory(true);
-			console.log("complete");
+		} else {
+			setScanProgress({ ...scanProgress, status, value });
 		}
 	};
 
