@@ -157,7 +157,7 @@ export default function App({ children }) {
 			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
 		);
 		setHistory(false);
-		const amount = await scanReceipt(img, scanProcess, /^(Sales Tax).*/);
+		const amount = await scanReceipt(img, scanProcess, /^(Total).*/);
 		console.log(amount);
 	};
 
@@ -178,7 +178,7 @@ export default function App({ children }) {
 		dispatchFunction({ type: "hideCamera" });
 		const blobImg = await base64Toblob(image);
 		await uploadImage(blobImg, userData.current.uid);
-		const amount = await scanReceipt(blobImg, scanProcess, /^(Sales Tax).*/);
+		const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 		setPoints(Number(amount));
 	};
 
