@@ -111,9 +111,14 @@ export default function App({ children }) {
 
 			if ((history) && (scanProgress.value === 0)) {
 				setHistory(false);
+
+			} else if ((!history) && (scanProgress.value === 100)) {
+				setHistory(true);
+				
+			} else {
 				setDisplay(
 					<>
-						<h2>{scanProgress.status !== "recognizing text" ? "Processing image..." : scanProgress.status}</h2>
+						<h2>"Processing image..."</h2>
 						<CircularProgress
 							variant={
 								scanProgress.status === "recognizing text"
@@ -124,10 +129,6 @@ export default function App({ children }) {
 						/>
 					</>
 				);
-			}
-
-			if ((!history) && (scanProgress.value === 100)) {
-				setHistory(true);
 			}
 
 		}
