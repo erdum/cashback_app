@@ -108,29 +108,26 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (scanProgress) {
-
-			if ((history) && (scanProgress.value === 0)) {
+			if (history && scanProgress.value === 0) {
 				setHistory(false);
-
-			} else if ((!history) && (scanProgress.value === 100)) {
+			} else if (!history && scanProgress.value === 100) {
 				setHistory(true);
-				
 			} else {
-				setDisplay(
-					<>
-						<h2>"Processing image..."</h2>
-						<CircularProgress
-							variant={
-								scanProgress.status === "recognizing text"
-									? "determinate"
-									: "indeterminate"
-							}
-							value={scanProgress.value}
-						/>
-					</>
-				);
 			}
 
+			setDisplay(
+				<>
+					<h2>Processing image...</h2>
+					<CircularProgress
+						variant={
+							scanProgress.status === "recognizing text"
+								? "determinate"
+								: "indeterminate"
+						}
+						value={scanProgress.value}
+					/>
+				</>
+			);
 		}
 	}, [scanProgress, history]);
 
