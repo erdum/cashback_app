@@ -163,14 +163,10 @@ export default function App({ children }) {
 
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
-		console.log(status + ": " + value + "%");
-		if (value === 100) {
-			setHistory(true, () => {
-				console.log(history);
-			});
-		} else {
-			setScanProgress({ ...scanProgress, status, value });
-		}
+		// console.log(status + ": " + value + "%");
+		setScanProgress({ ...scanProgress, status, value }, prevState => {
+			console.log(prevState);
+		});
 	};
 
 	const capture = async (image) => {
