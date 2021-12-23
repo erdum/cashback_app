@@ -110,7 +110,7 @@ export default function App({ children }) {
 		setDisplay(
 			<>
 				<h2>
-					Processing image...
+					{scanProgress.value}
 				</h2>
 				<CircularProgress variant="indeterminate" />
 			</>
