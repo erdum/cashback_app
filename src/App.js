@@ -108,11 +108,12 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (scanProgress) {
-			if (history && scanProgress.value === 0) {
+			if (history && scanProgress.value === 0 && scanProgress.status === "recognizing text") {
 				setHistory(false);
-			} else if (!history && scanProgress.value === 100) {
+				return;
+			} else if (!history && scanProgress.value === 100 scanProgress.status === "recognizing text") {
 				setHistory(true);
-			} else {
+				return;
 			}
 
 			setDisplay(
