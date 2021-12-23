@@ -118,6 +118,18 @@ export default function App({ children }) {
 		}
 	}, [history]);
 
+	useEffect(() => {
+		if (scanProgress.status === "recognizing text") {
+			setDisplay(
+				<>
+					<h2>Recognizing text...</h2>
+					<CircularProgress variant="determinate" value={scanProgress.value} />
+				</>
+			);
+			console.log("scanProgress updated");
+		}
+	}, [scanProgress]);
+
 	const signin = async () => {
 		setLoader(true);
 		try {
