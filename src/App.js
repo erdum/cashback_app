@@ -110,12 +110,12 @@ export default function App({ children }) {
 		setDisplay(
 			<>
 				<h2>
-						{scanProgress.status}
+					Processing image...
 				</h2>
 				<CircularProgress variant="indeterminate" />
 			</>
 		);
-	}, [scanProgress.status]);
+	}, [scanProgress]);
 
 	const signin = async () => {
 		setLoader(true);
