@@ -115,7 +115,7 @@ export default function App({ children }) {
 				<CircularProgress variant="indeterminate" />
 			</>
 		);
-	}, [scanProgress]);
+	}, [scanProgress.status]);
 
 	const signin = async () => {
 		setLoader(true);
