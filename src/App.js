@@ -108,26 +108,14 @@ export default function App({ children }) {
 
 	useEffect(() => {
 		if (!history) {
-			if (scanProgress.status === "recognizing text") {
-				setDisplay(
-					<>
-						<h2>Recognizing text...</h2>
-						<CircularProgress
-							variant="determinate"
-							value={scanProgress.value}
-						/>
-					</>
-				);
-			} else {
-				setDisplay(
-					<>
-						<h2>Processing image...</h2>
-						<CircularProgress variant="indeterminate" />
-					</>
-				);
-			}
+			setDisplay(
+				<>
+					<h2>{scanProgress.status === "recognizing text" ? "Recognizing text..." : "Processing image..."}</h2>
+					<CircularProgress variant="indeterminate" />
+				</>
+			);
 		}
-	}, [history, scanProgress]);
+	}, [history]);
 
 	const signin = async () => {
 		setLoader(true);
