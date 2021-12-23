@@ -115,7 +115,7 @@ export default function App({ children }) {
 				</>
 			);
 		}
-	}, [history]);
+	}, [history, scanProgress]);
 
 	const signin = async () => {
 		setLoader(true);
