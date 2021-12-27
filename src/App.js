@@ -191,9 +191,10 @@ export default function App({ children }) {
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 			if (typeof amount === "string") {
-				await handleScanSuccess(userData.current.uid, amount);
+				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
+				await handleScanSuccess(userData.current.uid, amount + userSavedPoints);
 				await uploadImage(blobImg, userData.current.uid);
-				setPoints(Number(amount));
+				setPoints(Number(amount) + userSavedPoints);
 			} else {
 				alert("Please try again, \ntry to capture a clear photo!");
 				await uploadImage(blobImg, userData.current.uid, true);
