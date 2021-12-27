@@ -69,7 +69,7 @@ const handleScanSuccess = async (name, amount) => {
 const getUserSavedPoints = async (name) => {
 	const userSnap = await getDoc(doc(db, "users", name));
 	if (!userSnap.exists()) return;
-	alert(JSON.stringify(userSnap.data()));
+	setPoints(Number(userSnap.data().points));
 };
 
 const reducer = (state, action) => {
