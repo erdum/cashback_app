@@ -15,7 +15,7 @@ import {
 	onAuthStateChanged,
 	signOut,
 } from "firebase/auth";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
@@ -39,14 +39,6 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async (extUrl = null) => {
-	const fileRef = ref(storage, "rec.jpg");
-	const url = await getDownloadURL(fileRef);
-	let blob = await fetch(url, { mode: "cors" });
-	blob = await blob.blob();
-	return blob;
-};
-
 const uploadImage = async (blob, name, error = false) => {
 	let ISODate = new Date();
 	ISODate = ISODate.toISOString();
@@ -65,13 +57,13 @@ const base64Toblob = async (base64) => {
 
 const updatePoints = async (name, amount) => {
 	await setDoc(doc(db, "users", name), {
-		points: "test value",
+		points: Number(amount),
 	});
 	alert("points updated successfuly");
 };
 
 const handleScanSuccess = async (name, amount) => {
-	await updatePoints(name);
+	await updatePoints(name, amount);
 };
 
 const reducer = (state, action) => {
@@ -128,7 +120,7 @@ export default function App({ children }) {
 		if (scanProgress) {
 			setDisplay(
 				<>
-					<h2>{scanProgress.status}</h2>
+					<h2>Proccessing Image...</h2>
 					<CircularProgress
 						variant={
 							scanProgress.status === "recognizing text"
@@ -176,14 +168,6 @@ export default function App({ children }) {
 
 	const earn = async () => {
 		dispatchFunction({ type: "showCamera" });
-		if (false) {
-			const img = await getImage(
-				"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
-			);
-			setHistory(false);
-			const amount = await scanReceipt(img, scanProcess, /^(Total).*/);
-			console.log(amount);
-		}
 	};
 
 	const scanProcess = async ({ status, progress }) => {
