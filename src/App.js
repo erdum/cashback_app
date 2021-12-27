@@ -190,7 +190,7 @@ export default function App({ children }) {
 				setPoints(1200);
 				alert(amount);
 			} else {
-				alert("Please try again, \ncapture a clear photo of receipt!");
+				alert("Please try again, \ntry to capture a clear photo!");
 			}
 		} catch (err) {
 			alert(err);
