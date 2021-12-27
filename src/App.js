@@ -68,7 +68,7 @@ const handleScanSuccess = async (name, amount) => {
 
 const getUserSavedPoints = async (name) => {
 	const userSnap = await getDoc(doc(db, "users", name));
-	if (!userSnap.exists()) return;
+	if (!userSnap.exists()) return null;
 	return Number(userSnap.data().points);
 };
 
@@ -116,7 +116,7 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
-				setPoints(userSavedPoints);
+				if (userSavedPoints) setPoints(userSavedPoints);
 				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
@@ -191,7 +191,8 @@ export default function App({ children }) {
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 			if (typeof amount === "string") {
-				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
+				let userSavedPoints = await getUserSavedPoints(userData.current.uid);
+				if (!userSavedPoints) userSavedPoints = 0;
 				await handleScanSuccess(userData.current.uid, amount + userSavedPoints);
 				await uploadImage(blobImg, userData.current.uid);
 				setPoints(Number(amount) + userSavedPoints);
