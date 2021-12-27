@@ -46,7 +46,9 @@ const getImage = async (extUrl=null) => {
 };
 
 const uploadImage = async (blob, name) => {
-	const fileRef = ref(storage, name + "/" + new Date.toISOString() + ".png");
+	let ISODate = new Date();
+	ISODate = ISODate.toISOString();
+	const fileRef = ref(storage, name + "/" + ISODate + ".png");
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 };
 
