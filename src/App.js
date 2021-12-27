@@ -131,6 +131,8 @@ export default function App({ children }) {
 				</>
 			);
 		}
+
+		if (scanProgress.status === "recognizing text" && scanProgress.value === 100) setHistory(true);
 	}, [scanProgress]);
 
 	const signin = async () => {
