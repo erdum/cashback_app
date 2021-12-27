@@ -106,7 +106,7 @@ export default function App({ children }) {
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, async (result) => {
+		onAuthStateChanged(auth,(result) => {
 			if (userData.current.uid === "" && result) {
 				userData.current = {
 					name: result.displayName,
@@ -116,10 +116,12 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				dispatchFunction({ type: "hideSplash" });
-				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
-				if (userSavedPoints) {
-					setPoints(Number(userSavedPoints));
-				}
+				getUserSavedPoints(userData.current.uid)
+					.then((userSavedPoints) => {
+						if (userSavedPoints) {
+							setPoints(Number(userSavedPoints));
+						}
+					});
 			} else {
 				setLoader(false);
 			}
