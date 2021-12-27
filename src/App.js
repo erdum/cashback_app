@@ -165,12 +165,17 @@ export default function App({ children }) {
 	};
 
 	const capture = async (image) => {
-		dispatchFunction({ type: "hideCamera" });
-		const blobImg = await base64Toblob(image);
-		await uploadImage(blobImg, userData.current.uid);
-		const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-		setPoints(Number(amount));
-		alert(amount);
+		try {
+			dispatchFunction({ type: "hideCamera" });
+			const blobImg = await base64Toblob(image);
+			await uploadImage(blobImg, userData.current.uid);
+			setHistory(false);
+			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
+			setPoints(Number(amount));
+			alert(amount);
+		} catch (err) {
+			alert(err);
+		}
 	};
 
 	const theme = createTheme({
