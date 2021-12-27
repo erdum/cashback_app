@@ -182,12 +182,16 @@ export default function App({ children }) {
 		try {
 			dispatchFunction({ type: "hideCamera" });
 			const blobImg = await base64Toblob(image);
-			await uploadImage(blobImg, userData.current.uid);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			await handleScanSuccess(userData.current.uid, amount);
-			setPoints(1200);
-			alert(amount);
+			if (typeof(amount) === "number") {
+				await handleScanSuccess(userData.current.uid, amount);
+				await uploadImage(blobImg, userData.current.uid);
+				setPoints(1200);
+				alert(amount);
+			} else {
+				alert("Please try again, \ncapture a clear photo of receipt!");
+			}
 		} catch (err) {
 			alert(err);
 		}
