@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useReducer } from "react";
+import { useEffect, useState, useRef, useReducer, useCallback } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Layout from "./Layout";
@@ -105,8 +105,15 @@ export default function App({ children }) {
 	const [display, setDisplay] = useState(null);
 	const userData = useRef(restUserData);
 
+	const test = useCallback(() => {
+		alert("points changed " + points);
+		if (false) {
+			getUserSavedPoints(null);
+		}
+	}, [points])
+
 	useEffect(() => {
-		onAuthStateChanged(auth,(result) => {
+		onAuthStateChanged(auth, (result) => {
 			if (userData.current.uid === "" && result) {
 				userData.current = {
 					name: result.displayName,
@@ -116,17 +123,15 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				dispatchFunction({ type: "hideSplash" });
-				getUserSavedPoints(userData.current.uid)
-					.then((userSavedPoints) => {
-						if (userSavedPoints) {
-							setPoints(Number(userSavedPoints));
-						}
-					});
 			} else {
 				setLoader(false);
 			}
 		});
 	}, []);
+
+	useEffect(() => {
+		test();
+	});
 
 	useEffect(() => {
 		if (scanProgress) {
