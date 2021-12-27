@@ -115,7 +115,8 @@ export default function App({ children }) {
 					dpURL: result.photoURL,
 					uid: result.uid,
 				};
-				await getUserSavedPoints(userData.current.uid);
+				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
+				setPoints(userSavedPoints);
 				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
