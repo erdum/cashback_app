@@ -231,7 +231,7 @@ export default function App({ children }) {
 					// Layout props
 					handleLogout={signout}
 					handleEarn={earn}
-					points={points}
+					points={Math.round(points)}
 					dpURL={userData.current.dpURL}
 					userName={userData.current.name}
 					// MFC-display props
