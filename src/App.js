@@ -69,7 +69,7 @@ const updatePoints = async (name, amount) => {
 };
 
 const handleScanSuccess = async (name, amount) => {
-	updatePoints(name);
+	await updatePoints(name);
 };
 
 const reducer = (state, action) => {
