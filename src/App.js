@@ -116,7 +116,9 @@ export default function App({ children }) {
 					uid: result.uid,
 				};
 				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
-				if (userSavedPoints) setPoints(userSavedPoints);
+				if (userSavedPoints) {
+					setPoints(userSavedPoints)
+				};
 				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
