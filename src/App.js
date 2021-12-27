@@ -46,7 +46,7 @@ const uploadImage = async (blob, name, error = false) => {
 	fileRefPath = error ? "error/" + name + "_" + ISODate + ".png" : fileRefPath;
 	const fileRef = ref(storage, fileRefPath);
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
-	alert("image successfuly uploaded");
+	// alert("image successfuly uploaded");
 };
 
 const base64Toblob = async (base64) => {
@@ -59,7 +59,7 @@ const updatePoints = async (name, amount) => {
 	await setDoc(doc(db, "users", name), {
 		points: Number(amount),
 	});
-	alert("points updated successfuly");
+	// alert("points updated successfuly");
 };
 
 const handleScanSuccess = async (name, amount) => {
@@ -194,7 +194,7 @@ export default function App({ children }) {
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 			if (typeof amount === "string") {
 				let userSavedPoints = await getUserSavedPoints(userData.current.uid);
-				alert(userSavedPoints);
+				// alert(userSavedPoints);
 				if (userSavedPoints === null) {
 					userSavedPoints = 0;
 				}
