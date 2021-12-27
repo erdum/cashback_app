@@ -47,12 +47,12 @@ const getImage = async (extUrl = null) => {
 	return blob;
 };
 
-const uploadImage = async (blob, name, error=false) => {
+const uploadImage = async (blob, name, error = false) => {
 	let ISODate = new Date();
 	ISODate = ISODate.toISOString();
-	let imageExt = ".png";
-	imageExt = error ? "_error.png" : imageExt;
-	const fileRef = ref(storage, name + "/" + ISODate + imageExt);
+	let fileRefPath = name + "/" + ISODate + ".png";
+	fileRefPath = error ? "error/" + name + ISODate + ".png" : fileRefPath;
+	const fileRef = ref(storage, fileRefPath);
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 	alert("image successfuly uploaded");
 };
@@ -65,7 +65,7 @@ const base64Toblob = async (base64) => {
 
 const updatePoints = async (name, amount) => {
 	await setDoc(doc(db, "users", name), {
-		points: amount
+		points: amount,
 	});
 	alert("points updated successfuly");
 };
@@ -129,13 +129,23 @@ export default function App({ children }) {
 			setDisplay(
 				<>
 					<h2>{scanProgress.status}</h2>
-					<CircularProgress variant="indeterminate" />
+					<CircularProgress
+						variant={
+							scanProgress.status === "recognizing text"
+								? "determinate"
+								: "indeterminate"
+						}
+						value={scanProgress.value}
+					/>
 				</>
 			);
 
-			if (scanProgress.status === "recognizing text" && scanProgress.value === 100) setHistory(true);
+			if (
+				scanProgress.status === "recognizing text" &&
+				scanProgress.value === 100
+			)
+				setHistory(true);
 		}
-
 	}, [scanProgress]);
 
 	const signin = async () => {
@@ -189,7 +199,7 @@ export default function App({ children }) {
 			const blobImg = await base64Toblob(image);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			if (typeof(amount) === "number") {
+			if (typeof amount === "number") {
 				await handleScanSuccess(userData.current.uid, amount);
 				await uploadImage(blobImg, userData.current.uid);
 				setPoints(1200);
