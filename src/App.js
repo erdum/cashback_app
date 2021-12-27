@@ -16,6 +16,7 @@ import {
 	signOut,
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -27,6 +28,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth();
 const storage = getStorage(firebaseApp);
+const db = getFirestore();
 const provider = new GoogleAuthProvider();
 
 const restUserData = {
@@ -37,7 +39,7 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async (extUrl=null) => {
+const getImage = async (extUrl = null) => {
 	const fileRef = ref(storage, "rec.jpg");
 	const url = await getDownloadURL(fileRef);
 	let blob = await fetch(url, { mode: "cors" });
@@ -50,12 +52,24 @@ const uploadImage = async (blob, name) => {
 	ISODate = ISODate.toISOString();
 	const fileRef = ref(storage, name + "/" + ISODate + ".png");
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
+	alert("image successfuly uploaded");
 };
 
 const base64Toblob = async (base64) => {
 	let blob = await fetch(base64);
 	blob = await blob.blob();
 	return blob;
+};
+
+const updatePoints = async (name, amount) => {
+	await setDoc(doc(db, "users", name), {
+		points: amount
+	});
+	alert("points updated successfuly");
+};
+
+const handleScanSuccess = async (name, amount) => {
+	updatePoints(name);
 };
 
 const reducer = (state, action) => {
@@ -112,9 +126,7 @@ export default function App({ children }) {
 		if (scanProgress) {
 			setDisplay(
 				<>
-					<h2>
-						{scanProgress.status}
-					</h2>
+					<h2>{scanProgress.status}</h2>
 					<CircularProgress variant="indeterminate" />
 				</>
 			);
@@ -173,7 +185,8 @@ export default function App({ children }) {
 			await uploadImage(blobImg, userData.current.uid);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			setPoints(Number(amount));
+			handleScanSuccess(userData.current.uid, amount);
+			setPoints(1200);
 			alert(amount);
 		} catch (err) {
 			alert(err);
