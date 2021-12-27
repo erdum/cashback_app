@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useReducer, useCallback } from "react";
+import { useEffect, useState, useRef, useReducer } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Layout from "./Layout";
@@ -16,7 +16,7 @@ import {
 	signOut,
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -66,11 +66,11 @@ const handleScanSuccess = async (name, amount) => {
 	await updatePoints(name, amount);
 };
 
-const getUserSavedPoints = async (name) => {
-	const userSnap = await getDoc(doc(db, "users", name));
-	if (!userSnap.exists()) return;
-	alert(userSnap.data());
-};
+// const getUserSavedPoints = async (name) => {
+// 	const userSnap = await getDoc(doc(db, "users", name));
+// 	if (!userSnap.exists()) return;
+// 	alert(userSnap.data());
+// };
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -105,13 +105,6 @@ export default function App({ children }) {
 	const [display, setDisplay] = useState(null);
 	const userData = useRef(restUserData);
 
-	const test = useCallback(() => {
-		alert("points changed " + points);
-		if (false) {
-			getUserSavedPoints(null);
-		}
-	}, [points])
-
 	useEffect(() => {
 		onAuthStateChanged(auth, (result) => {
 			if (userData.current.uid === "" && result) {
@@ -128,10 +121,6 @@ export default function App({ children }) {
 			}
 		});
 	}, []);
-
-	useEffect(() => {
-		test();
-	});
 
 	useEffect(() => {
 		if (scanProgress) {
