@@ -65,7 +65,7 @@ const base64Toblob = async (base64) => {
 
 const updatePoints = async (name, amount) => {
 	await setDoc(doc(db, "users", name), {
-		points: amount,
+		points: Number(amount),
 	});
 	alert("points updated successfuly");
 };
