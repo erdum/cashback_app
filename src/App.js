@@ -51,7 +51,7 @@ const uploadImage = async (blob, name, error = false) => {
 	let ISODate = new Date();
 	ISODate = ISODate.toISOString();
 	let fileRefPath = name + "/" + ISODate + ".png";
-	fileRefPath = error ? "error/" + name + ISODate + ".png" : fileRefPath;
+	fileRefPath = error ? "error/" + name + "_" + ISODate + ".png" : fileRefPath;
 	const fileRef = ref(storage, fileRefPath);
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 	alert("image successfuly uploaded");
@@ -199,10 +199,10 @@ export default function App({ children }) {
 			const blobImg = await base64Toblob(image);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			if (typeof amount === "number") {
+			if (typeof amount === "string") {
 				await handleScanSuccess(userData.current.uid, amount);
 				await uploadImage(blobImg, userData.current.uid);
-				setPoints(1200);
+				setPoints(Number(amount));
 				alert(amount);
 			} else {
 				alert("Please try again, \ntry to capture a clear photo!");

@@ -14,7 +14,7 @@ const scanReceipt = async (image, progress, regExp) => {
 		let resultLine = lines.filter((line) => {
 			return regExp.test(line);
 		})[0];
-		return resultLine.replace(/[^.\d]/g, '');
+		return resultLine.replace(/[^.\d]/gi, '');
 	} catch (err) {
 		return err;
 	}
