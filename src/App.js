@@ -65,7 +65,7 @@ const base64Toblob = async (base64) => {
 
 const updatePoints = async (name, amount) => {
 	await setDoc(doc(db, "users", name), {
-		points: Number(amount),
+		points: "test value",
 	});
 	alert("points updated successfuly");
 };
@@ -165,7 +165,6 @@ export default function App({ children }) {
 			setLoader(false);
 			alert(err);
 		}
-		// dispatchFunction({ type: "hideSplash"});
 	};
 
 	const signout = async () => {
@@ -203,7 +202,6 @@ export default function App({ children }) {
 				await handleScanSuccess(userData.current.uid, amount);
 				await uploadImage(blobImg, userData.current.uid);
 				setPoints(Number(amount));
-				alert(amount);
 			} else {
 				alert("Please try again, \ntry to capture a clear photo!");
 				await uploadImage(blobImg, userData.current.uid, true);
