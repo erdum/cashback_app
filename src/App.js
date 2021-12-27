@@ -47,10 +47,12 @@ const getImage = async (extUrl = null) => {
 	return blob;
 };
 
-const uploadImage = async (blob, name) => {
+const uploadImage = async (blob, name, error=false) => {
 	let ISODate = new Date();
 	ISODate = ISODate.toISOString();
-	const fileRef = ref(storage, name + "/" + ISODate + ".png");
+	let imageExt = ".png";
+	imageExt = error ? "_error.png" : imageExt;
+	const fileRef = ref(storage, name + "/" + ISODate + imageExt);
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 	alert("image successfuly uploaded");
 };
@@ -130,7 +132,7 @@ export default function App({ children }) {
 					<CircularProgress variant="indeterminate" />
 				</>
 			);
-			
+
 			if (scanProgress.status === "recognizing text" && scanProgress.value === 100) setHistory(true);
 		}
 
@@ -194,6 +196,7 @@ export default function App({ children }) {
 				alert(amount);
 			} else {
 				alert("Please try again, \ntry to capture a clear photo!");
+				await uploadImage(blobImg, userData.current.uid, true);
 			}
 		} catch (err) {
 			alert(err);
