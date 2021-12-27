@@ -194,8 +194,11 @@ export default function App({ children }) {
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 			if (typeof amount === "string") {
 				let userSavedPoints = await getUserSavedPoints(userData.current.uid);
-				if (!userSavedPoints) userSavedPoints = 0;
-				await handleScanSuccess(userData.current.uid, amount + userSavedPoints);
+				alert(userSavedPoints);
+				if (userSavedPoints === null) {
+					userSavedPoints = 0;
+				}
+				await handleScanSuccess(userData.current.uid, Number(amount) + userSavedPoints);
 				await uploadImage(blobImg, userData.current.uid);
 				setPoints(Number(amount) + userSavedPoints);
 			} else {
