@@ -185,7 +185,7 @@ export default function App({ children }) {
 			await uploadImage(blobImg, userData.current.uid);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			handleScanSuccess(userData.current.uid, amount);
+			await handleScanSuccess(userData.current.uid, amount);
 			setPoints(1200);
 			alert(amount);
 		} catch (err) {
