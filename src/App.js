@@ -130,9 +130,10 @@ export default function App({ children }) {
 					<CircularProgress variant="indeterminate" />
 				</>
 			);
+			
+			if (scanProgress.status === "recognizing text" && scanProgress.value === 100) setHistory(true);
 		}
 
-		if (scanProgress.status === "recognizing text" && scanProgress.value === 100) setHistory(true);
 	}, [scanProgress]);
 
 	const signin = async () => {
