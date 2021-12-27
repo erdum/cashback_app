@@ -16,7 +16,7 @@ import {
 	signOut,
 } from "firebase/auth";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 const firebaseConfig = {
 	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
 	authDomain: "loyality-program-e7185.firebaseapp.com",
@@ -66,11 +66,11 @@ const handleScanSuccess = async (name, amount) => {
 	await updatePoints(name, amount);
 };
 
-// const getUserSavedPoints = async (name) => {
-// 	const userSnap = await getDoc(doc(db, "users", name));
-// 	if (!userSnap.exists()) return;
-// 	alert(userSnap.data());
-// };
+const getUserSavedPoints = async (name) => {
+	const userSnap = await getDoc(doc(db, "users", name));
+	if (!userSnap.exists()) return;
+	alert(userSnap.data());
+};
 
 const reducer = (state, action) => {
 	switch (action.type) {
@@ -106,7 +106,7 @@ export default function App({ children }) {
 	const userData = useRef(restUserData);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (result) => {
+		onAuthStateChanged(auth, async (result) => {
 			if (userData.current.uid === null && result) {
 				userData.current = {
 					name: result.displayName,
@@ -115,6 +115,7 @@ export default function App({ children }) {
 					dpURL: result.photoURL,
 					uid: result.uid,
 				};
+				await getUserSavedPoints(userData.current.uid);
 				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
