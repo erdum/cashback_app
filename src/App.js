@@ -37,7 +37,7 @@ const restUserData = {
 	uid: "",
 };
 
-const getImage = async () => {
+const getImage = async (extUrl=null) => {
 	const fileRef = ref(storage, "rec.jpg");
 	const url = await getDownloadURL(fileRef);
 	let blob = await fetch(url, { mode: "cors" });
@@ -46,7 +46,7 @@ const getImage = async () => {
 };
 
 const uploadImage = async (blob, name) => {
-	const fileRef = ref(storage, name + "/" + Date.now() + ".png");
+	const fileRef = ref(storage, name + "/" + new Date.toISOString() + ".png");
 	await uploadBytes(fileRef, blob, { contentType: "image/png" });
 };
 
@@ -107,15 +107,17 @@ export default function App({ children }) {
 	}, []);
 
 	useEffect(() => {
-		setDisplay(
-			<>
-				<h2>
-					{scanProgress.value}
-				</h2>
-				<CircularProgress variant="indeterminate" />
-			</>
-		);
-	}, [scanProgress.value]);
+		if (scanProgress) {
+			setDisplay(
+				<>
+					<h2>
+						{scanProgress.status}
+					</h2>
+					<CircularProgress variant="indeterminate" />
+				</>
+			);
+		}
+	}, [scanProgress]);
 
 	const signin = async () => {
 		setLoader(true);
@@ -134,6 +136,7 @@ export default function App({ children }) {
 			setLoader(false);
 			alert(err);
 		}
+		// dispatchFunction({ type: "hideSplash"});
 	};
 
 	const signout = async () => {
@@ -144,13 +147,15 @@ export default function App({ children }) {
 	};
 
 	const earn = async () => {
-		// dispatchFunction({ type: "showCamera" });
-		const img = await getImage(
-			"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
-		);
-		setHistory(false);
-		const amount = await scanReceipt(img, scanProcess, /^(Total).*/);
-		console.log(amount);
+		dispatchFunction({ type: "showCamera" });
+		if (false) {
+			const img = await getImage(
+				"https://cdn3.vectorstock.com/i/1000x1000/65/32/paper-cash-sell-receipt-vector-23876532.jpg"
+			);
+			setHistory(false);
+			const amount = await scanReceipt(img, scanProcess, /^(Total).*/);
+			console.log(amount);
+		}
 	};
 
 	const scanProcess = async ({ status, progress }) => {
@@ -165,6 +170,7 @@ export default function App({ children }) {
 		await uploadImage(blobImg, userData.current.uid);
 		const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
 		setPoints(Number(amount));
+		alert(amount);
 	};
 
 	const theme = createTheme({
