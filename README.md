@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Cashback App
+##### A simple server less Receipt scanning app
+## Table of contents
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Demo](#demo)
+* [Why I Created](#why-i-created)
+* [What I Learned](#what-i-learned)
+* [Bugs and Missing Features](#bugs-and-missing-features)
+* [Future](#future)
+* [Working Principle](#working-principle)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies
+At the time of creating this project I only knew about basic web technologies
+* Html 5
+* Css
+* Javascript
+* React.js
+* Mui
+* Firebase
 
-## Available Scripts
+## Setup
+To run this app on localhost:
 
-In the project directory, you can run:
+`git clone https://github.com/erdum/cashback_app.git`
 
-### `npm start`
+`npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> you also need to change "firebaseConfig" object with your own firebase credentials
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Demo
+[Live Demo](https://cashback-app-nine.vercel.app) **Note:** Please don't abuse my innocent web-app
 
-### `npm test`
+## Why I Created
+At the end of 2021 I got an order from my client he wants a simple text extracting app which can extract specified amount from any receipt,
+and then add that amount to users wallet and that's it, but I will add more functionality to it because I really need some good projects to add into my resume.
+> Don't worry I have all the required permissions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What I Learned
+* How to work with Tesseract.js library
+* Libraries gives you more advantage than accessing user camera or any from web-api's directly by your own
+* What is base64 images how to handle data in base64 format
+* How to use React Reducer hook
+* How useRef presist data
+* How convert base64 data into blob
+* React states not update immediately and how to handle them when React hydrates user display
+* and much more...
 
-### `npm run build`
+## Bugs and Missing Features
+* [ ] I want to add some animations to it when things and values changes on the user screen
+* [ ] I also want some sort of authentication when scanning receipts like receipt Id or something
+* [ ] I want to add a mechanisim for users to withdraw their points
+* [ ] I also want to change it's layout for large screen
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Future
+This app can scales up to the moon in terms of backend, this is the benefit of using services like firebase we can focus on our UI and UX, I will make this app more usable for practical uses because it has a lot of potential this is what I believe.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Working Principle
+Users will login or signup with their google account then they can scan their receipts and we will extract the amount of a specified item and then points to their wallets.
+I will add more features to it in future.
+#### Working
+It's very simple so I am not explaining it
