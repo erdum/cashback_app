@@ -5,7 +5,7 @@ import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
 import scanReceipt from "./scanReceipts";
-import avatar from "/avatar.webp";
+import avatar from "./avatar.webp";
 
 import { initializeApp } from "firebase/app";
 import {
