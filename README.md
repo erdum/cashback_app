@@ -30,6 +30,7 @@ To run this app on localhost:
 
 ## Demo
 [Live Demo](https://cashback-app-nine.vercel.app) **Note:** Please don't abuse my innocent web-app
+> Currently only mobile layout is available
 
 ## Why I Created
 At the end of 2021 I got an order from my client he wants a simple text extracting app which can extract specified amount from any receipt,
