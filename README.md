@@ -30,6 +30,7 @@ To run this app on localhost:
 
 ## Demo
 [Live Demo](https://cashback-app-nine.vercel.app) **Note:** Please don't abuse my innocent web-app
+> Currently only mobile layout is available
 
 ## Why I Created
 At the end of 2021 I got an order from my client he wants a simple text extracting app which can extract specified amount from any receipt,
@@ -38,7 +39,7 @@ and then add that amount to users wallet and that's it, but I will add more func
 
 ## What I Learned
 * How to work with Tesseract.js library
-* Libraries gives you more advantage than accessing user camera or any from web-api's directly by your own
+* Libraries gives you more advantage than accessing user camera or any web-api directly
 * What is base64 images how to handle data in base64 format
 * How to use React Reducer hook
 * How useRef presist data
