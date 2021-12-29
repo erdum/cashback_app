@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Avatar from "@mui/material/Avatar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import "./layout.css";
+import "./assets/layout.css";
 
 const Layout = forwardRef((props, ref) => {
 	const [anchorEl, setAnchorEl] = useState(null);

@@ -1,7 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import "./splashScreen.css";
+import "./assets/splashScreen.css";
 
 const SplashScreen = (props) => {
 	return (

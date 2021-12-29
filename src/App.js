@@ -5,7 +5,7 @@ import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
 import scanReceipt from "./scanReceipts";
-import avatar from "./avatar.webp";
+import avatar from "./assets/avatar.webp";
 
 import { initializeApp } from "firebase/app";
 import {
@@ -128,7 +128,7 @@ export default function App({ children }) {
 		if (scanProgress) {
 			setDisplay(
 				<>
-					<h2>{scanProgress.status === "recognizing text" ? "Getting amount..." : "Proccessing Image..."}</h2>
+					<h2>{scanProgress.status === "recognizing text" ? "Fetching amount..." : "Proccessing Image..."}</h2>
 					<CircularProgress
 						variant={
 							scanProgress.status === "recognizing text"
@@ -180,7 +180,6 @@ export default function App({ children }) {
 
 	const scanProcess = async ({ status, progress }) => {
 		const value = Math.trunc(progress * 100);
-		// console.log(status + ": " + value + "%");
 		setScanProgress({ ...scanProgress, status, value });
 	};
 

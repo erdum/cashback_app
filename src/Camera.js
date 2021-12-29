@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useLayoutEffect } from "react";
 import Webcam from "react-webcam";
-import "./camera.css";
+import "./assets/camera.css";
 
 const Camera = (props) => {
 	const [cam, setCam] = useState(false);
