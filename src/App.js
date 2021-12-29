@@ -189,7 +189,7 @@ export default function App({ children }) {
 			const blobImg = await base64Toblob(image);
 			setHistory(false);
 			const amount = await scanReceipt(blobImg, scanProcess, /^(Total).*/);
-			if (typeof amount === "string") {
+			if (typeof amount === "string" && amount) {
 				let userSavedPoints = await getUserSavedPoints(userData.current.uid);
 				if (userSavedPoints === null) {
 					userSavedPoints = 0;
