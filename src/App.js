@@ -5,39 +5,17 @@ import Layout from "./Layout";
 import SplashScreen from "./SplashScreen";
 import Camera from "./Camera";
 import scanReceipt from "./scanReceipts";
-import avatar from "./assets/avatar.webp";
-
-import { initializeApp } from "firebase/app";
+import firebaseApp from "./firebaseApp";
 import {
-	getAuth,
-	signInWithPopup,
-	GoogleAuthProvider,
-	onAuthStateChanged,
-	signOut,
-} from "firebase/auth";
+	auth,
+	provider,
+	savedLogin
+} from "./signin";
+
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
-const firebaseConfig = {
-	apiKey: "AIzaSyARe9LNP6X9mb0z1LFzYktjzE65GkR2zks",
-	authDomain: "loyality-program-e7185.firebaseapp.com",
-	projectId: "loyality-program-e7185",
-	storageBucket: "loyality-program-e7185.appspot.com",
-	messagingSenderId: "32610232361",
-	appId: "1:32610232361:web:ea6276c703a870a10bd438",
-};
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth();
 const storage = getStorage(firebaseApp);
 const db = getFirestore();
-const provider = new GoogleAuthProvider();
-
-const restUserData = {
-	name: "User",
-	email: "",
-	phone: "",
-	dpURL: avatar,
-	uid: null,
-};
 
 const uploadImage = async (blob, name, error = false) => {
 	let ISODate = new Date();
@@ -101,22 +79,16 @@ export default function App({ children }) {
 	const [history, setHistory] = useState(true);
 	const [scanProgress, setScanProgress] = useState(null);
 	const [display, setDisplay] = useState(null);
-	const userData = useRef(restUserData);
+	const userData = useRef(null);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, async (result) => {
-			if (userData.current.uid === null && result) {
-				userData.current = {
-					name: result.displayName,
-					email: result.email,
-					phone: result.phoneNumber,
-					dpURL: result.photoURL,
-					uid: result.uid,
-				};
+		savedLogin(async (loggedData) => {
+			if (!userData.current && loggedData) {
+				userData.current = loggedData;
 				const userSavedPoints = await getUserSavedPoints(userData.current.uid);
 				if (userSavedPoints) {
-					setPoints(userSavedPoints)
-				};
+					setPoints(userSavedPoints);
+				}
 				dispatchFunction({ type: "hideSplash" });
 			} else {
 				setLoader(false);
@@ -128,7 +100,11 @@ export default function App({ children }) {
 		if (scanProgress) {
 			setDisplay(
 				<>
-					<h2>{scanProgress.status === "recognizing text" ? "Fetching amount..." : "Proccessing Image..."}</h2>
+					<h2>
+						{scanProgress.status === "recognizing text"
+							? "Fetching amount..."
+							: "Proccessing Image..."}
+					</h2>
 					<CircularProgress
 						variant={
 							scanProgress.status === "recognizing text"
@@ -194,7 +170,10 @@ export default function App({ children }) {
 				if (!userSavedPoints) {
 					userSavedPoints = 0;
 				}
-				await handleScanSuccess(userData.current.uid, Number(amount) + userSavedPoints);
+				await handleScanSuccess(
+					userData.current.uid,
+					Number(amount) + userSavedPoints
+				);
 				await uploadImage(blobImg, userData.current.uid);
 				setPoints(Number(amount) + userSavedPoints);
 			} else {
